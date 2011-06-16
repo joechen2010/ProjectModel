@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="Input.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:med="http://medecision.com/alineo/taglib">
+	<ui:define name="messages">
+		<ice:message for="time" />
+	</ui:define>
+	<ui:define name="input">
+		<table width="100%">
+			<tr>
+				<td width="200px">
+					<ice:selectInputDate tabindex="#{tabindex * 10}"
+						disabled="#{disabled}" style="display: inline;"
+						renderMonthAsDropdown="true" renderYearAsDropdown="true"
+						renderAsPopup="true" value="#{dateValue}" id="input"
+						required="#{required}">
+						<!-- <f:convertDateTime pattern="MM/dd/yyyy hh:mm a" /> -->
+						<f:convertDateTime pattern="MM/dd/yyyy" />
+					</ice:selectInputDate>
+
+				</td>
+				<td>
+					<c:if test="#{not (empty hasTime) and hasTime eq true}">
+						<ice:outputLabel styleClass="formLabelText" value="Time:"
+							for="time" />
+						<ice:inputText tabindex="#{tabindex * 10}" disabled="#{disabled}"
+							id="time" value="#{timeValue}" required="#{required}">
+							<f:convertDateTime type="time" timeStyle="short" />
+						</ice:inputText>
+					</c:if>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+	<ui:define name="output">
+		<ice:outputText value="#{dateValue}">
+			<f:convertDateTime type="date" pattern="MM/dd/yyyy" />
+		</ice:outputText>
+		<ice:outputText value="#{timeValue}">
+			<f:convertDateTime type="time" />
+		</ice:outputText>
+	</ui:define>
+</ui:composition>

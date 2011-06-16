@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root  version="1.2"
+		   xmlns:jsp="http://java.sun.com/JSP/Page"
+		   xmlns:f="http://java.sun.com/jsf/core"
+		   xmlns:med="http://medecision.com"
+		   xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<jsp:directive.page contentType="text/html;charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+	<f:view>
+		<ice:outputDeclaration  doctypeRoot="html" 
+		    					doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN" 
+								doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" /> 
+		<html>
+			<head>
+				<title>Alineo&#8482; by MEDecision</title>
+			    <meta http-equiv="pragma" content="no-cache" />
+				<meta http-equiv="cache-control" content="no-cache" />
+				<meta http-equiv="expires" content="0" />
+				<link rel="Stylesheet" type="text/css" href="css/main.css"  />
+				<link rel="Stylesheet" type="text/css" href="css/buttons.css" />
+				<style type="text/css">
+					.iceDatTbl th { border: 1px solid; background-color: #EFEFEF; }
+					.iceDatTbl td { padding: 3px 5px; border: 1px solid; background-color: #FFFFFF; }
+				</style>
+			
+				<ice:outputStyle href="css/compatible.css" />
+			</head>
+			<body>
+	    		<ice:form id="mainForm">
+                    <jsp:directive.include file="pageHeader.jspx" />
+					<div class="mainBody">
+						<ice:panelGroup>
+							<ice:panelGrid columns="3">
+								<ice:outputLabel for="connectivityTestType" id="connectivityTestTypeText" value="Connectvity Test Type: " />
+								<ice:selectOneMenu id="connectivityTestType"
+										value="#{ConnectivityTestBean.connectivityTestType}">
+									<f:selectItems id="connectivityTestTypeValues"
+										value="#{ConnectivityTestBean.checkTypeValues}"/>
+								</ice:selectOneMenu>
+								<ice:commandButton id="connectivityTestSubmit"
+		                           	value="Submit"
+		                           	actionListener="#{ConnectivityTestBean.submitButton}"/>
+							</ice:panelGrid>
+							
+							<ice:dataTable id="connectivityTestMessages" 
+									value="#{ConnectivityTestBean.testMessages}"
+									var="testResponse" rendered="#{!ConnectivityTestBean.messagesEmpty}">
+								<f:facet name="header">									
+									<ice:columnGroup>
+										<ice:headerRow>
+											<ice:column>
+												<ice:outputText value="Code" />
+											</ice:column>
+											<ice:column>
+												<ice:outputText value="Message" />
+											</ice:column>
+										</ice:headerRow>
+									</ice:columnGroup>
+								</f:facet>
+								<ice:column>
+									<ice:outputText id="testResponseCode"
+											value="#{testResponse.code}"/>		
+								</ice:column>
+								
+								<ice:column>
+									<ice:outputText id="testMessageMessage"
+											value="#{testResponse.message}"/>
+								</ice:column>
+							</ice:dataTable>
+						</ice:panelGroup>
+					</div>
+					<jsp:directive.include file="alineo/messages.jspx" />
+				</ice:form>
+			</body>
+		</html>
+	</f:view>
+</jsp:root>

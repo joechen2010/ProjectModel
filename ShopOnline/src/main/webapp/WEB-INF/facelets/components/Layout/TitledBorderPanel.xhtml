@@ -1,0 +1,55 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:alineo="http://medecision.com/alineo/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+    <div class="borderedPanelContent" id="bpc_#{id}">
+        <div class="borderedHeader32px">
+            <div class="borderedHeaderLeft32px" />
+            <div class="borderedHeaderMiddle32px">
+                <div class="borderedHeaderMiddle32pxInnerDiv">
+                    <c:choose>
+                    <c:when test="#{empty showRequiredFieldTip or showRequiredFieldTip eq 'false'}">
+                        <ui:insert name="title" />
+                    </c:when>
+                    <c:otherwise>
+					    <ice:panelGrid columns="2" style="width:100%;">
+					        <ice:column rendered="#{! (empty titleText)}">
+                                <ice:outputText styleClass="h3Text" value="#{titleText}"  />
+                            </ice:column>
+					        <ice:column rendered="#{empty titleText}">
+                                <ui:insert name="title" />
+					        </ice:column>
+					        <ice:column>
+					          <div style="float:right;">
+					          <div class="star" />
+						 	  <div class="required_text">&#160;Required</div>
+					          </div>
+					        </ice:column>
+					    </ice:panelGrid>
+		            </c:otherwise>
+                    </c:choose>
+                </div>
+            </div>
+            <div class="borderedHeaderRight32px" />
+        </div>
+        <div class="borderedContent">
+            <div class="borderedContentLeft">
+                <div class="borderedContentRight">
+                    <div class="contentmiddle">
+                        <ui:insert />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="borderedFooter">
+            <div class="borderedFooterLeft"></div>
+            <div class="borderedFooterRight"></div>
+        </div>
+    </div>
+    
+        
+</ui:composition>

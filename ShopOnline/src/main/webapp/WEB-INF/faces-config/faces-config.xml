@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<faces-config xmlns="http://java.sun.com/xml/ns/javaee" 
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd"
+              version="2.0">
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/start.xhtml</to-view-id>
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>help</from-outcome>
+			<to-view-id>/help.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	 <application>
+		<action-listener>com.joe.utilities.core.jsf.listeners.UncheckedExceptionListener</action-listener>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+	</application>
+
+	
+	<!-- 
+	
+		<view-handler>com.joe.jsf.viewHandler.ActionViewHandler</view-handler>
+		<system-event-listener>			
+			<system-event-class>
+				javax.faces.event.PostConstructApplicationEvent
+			</system-event-class>
+		</system-event-listener>		
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>		
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>de</supported-locale>			
+		</locale-config>
+	 -->
+	</application>
+	
+	<lifecycle>
+		<phase-listener>com.joe.utilities.core.jsf.listeners.FacesMessagesMultiPageSupport</phase-listener>
+	</lifecycle>
+
+
+</faces-config>

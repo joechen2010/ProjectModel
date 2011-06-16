@@ -1,0 +1,36 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+<h:head>
+</h:head>
+<h:body>
+
+<ui:composition template="/page/layout/layout.xhtml">
+	<ui:define name="title">demoSpringIceHibernate</ui:define>
+	<ui:define name="mainnav"><ui:include src="/page/menu/mainNavLoginArea.xhtml" /></ui:define>
+	<ui:define name="content">
+
+	<br/>
+	<br/>
+	Hi #{sessionBean.user.firstName} #{sessionBean.user.lastName}
+	<br/>
+	<br/>
+	<br/>
+	<br/> 
+	<h:form id="form">
+		JSF 2.0 <br/>
+		<h:inputText value="#{welcomeBean.text}" >
+			<f:ajax execute="@form" render="form:result" event="keyup" />
+		</h:inputText>
+		<h:outputText id="result" value="#{welcomeBean.text}" /> - This Feature is a litle bit buggy in IceFaces 2.0.ALPHA
+	</h:form>
+	<br/>
+	<br/>
+
+	</ui:define>
+</ui:composition>
+
+</h:body>
+</html>

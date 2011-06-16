@@ -1,0 +1,21 @@
+<?xml version='1.0'?><project>
+  <parent>
+    <artifactId>sql-parent</artifactId>
+    <groupId>com.joe</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.joe</groupId>
+  <artifactId>uninstall-sql-parent</artifactId>
+  <name>uninstall-sql-parent</name>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  
+  
+  <!-- Sub modules of alineo-uninstall-sql-parent -->
+  <modules>
+    <module>../uninstall-sql</module>
+  </modules>
+  
+</project>

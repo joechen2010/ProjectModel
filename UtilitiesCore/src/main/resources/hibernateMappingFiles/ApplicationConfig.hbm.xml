@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd" >
+
+<hibernate-mapping>
+
+
+
+	<class name="com.joe.utilities.core.configuration.admin.ApplicationConfiguration" table="CONFIG.APPL_CONFIG">
+		<id name="code" type="string" column="APPL_CONFIG_CODE" access="field">
+			<generator class="assigned" />
+		</id>
+		<property name="categoryCode" type="string" access="field" column="APPL_CONFIG_CTGY_CODE" not-null="true" />
+		<property name="value" type="string" access="field" column="APPL_CONFIG_VAL"  />
+		<property name="description" type="string" access="field" column="APPL_CONFIG_TXT" not-null="true" />
+		<property name="editableFlag" type="boolean" access="field" column="EDITABLE_FLAG" not-null="true" />
+	</class>
+	
+</hibernate-mapping>

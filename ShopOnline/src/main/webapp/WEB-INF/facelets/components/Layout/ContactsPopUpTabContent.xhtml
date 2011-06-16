@@ -1,0 +1,18 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component" xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:alineo="http://medecision.com/alineo/taglib" xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:composition>
+		<alineo:contactsTabPanel>
+			<alineo:contacttab id="memberTabLink"
+				label="Member (#{MemberContactBean.memberContactsCount})" 
+				action="openMemberContacts"
+				class="#{bean.memberTab? 'active' : ''}" status="#{ProviderContactBean.disabledTabStatus}" />
+			<alineo:contacttab id="providerTabLink"
+				label="Provider (#{ProviderContactBean.providerContactsCount})"
+				action="openProviderContacts" class="#{bean.providerTab? 'active' : ''}" status="#{MemberContactBean.disabledTabStatus}" />
+		</alineo:contactsTabPanel>
+	</ui:composition>
+</html>

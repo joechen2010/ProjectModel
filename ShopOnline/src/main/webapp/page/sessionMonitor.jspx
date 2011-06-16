@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root version="1.2" xmlns:jsp="http://java.sun.com/JSP/Page"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<jsp:directive.page contentType="text/html;charset=ISO-8859-1"
+		pageEncoding="ISO-8859-1" />
+	<f:view>
+		<ice:outputDeclaration doctypeRoot="html"
+			doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN"
+			doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" />
+		<html>
+			<head>
+				<title>Alineo&#8482; by MEDecision - Session Monitor</title>
+				<meta http-equiv="pragma" content="no-cache" />
+				<meta http-equiv="cache-control" content="no-cache" />
+				<meta http-equiv="expires" content="0" />
+				<ice:outputStyle href="css/main.css" />
+				<ice:outputStyle href="css/buttons.css" />
+				<ice:outputStyle href="css/homepage.css" />
+			
+<ice:outputStyle href="css/compatible.css" />
+</head>
+
+			<body>
+				<ice:form id="sessionMonitorForm">
+					<table cellpadding="2" border="0" cellspacing="0">
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<h:outputText rendered="#{SessionMonitorBean.enabled}"
+									id="enabledStatusText1"
+									value="The session monitor is currently enabled." />
+								<h:outputText rendered="#{!SessionMonitorBean.enabled}"
+									id="enabledStatusText2"
+									value="The session monitor is currently disabled." />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<ice:commandButton rendered="#{SessionMonitorBean.enabled}"
+									id="disableButton" value="Disable"
+									actionListener="#{SessionMonitorBean.invokeDisable}" />
+								<ice:commandButton
+									rendered="#{SessionMonitorBean.monitorStateExists}"
+									id="clearButton" value="Clear"
+									actionListener="#{SessionMonitorBean.invokeClear}" />
+								<ice:commandButton rendered="#{!SessionMonitorBean.enabled}"
+									id="enableButton" value="Enable"
+									actionListener="#{SessionMonitorBean.invokeEnable}" />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<ice:commandButton rendered="true" id="refreshButton"
+									value="Refresh"
+									actionListener="#{SessionMonitorBean.invokeRefresh}" />
+								<h:outputText value="Last refresh:" id="lastRefreshLabel" style="PADDING-LEFT: 5px;" />
+								<h:outputText value="#{SessionMonitorBean.lastRefreshTime}"
+									id="lastRefreshValue">
+									<f:convertDateTime type="both"
+										timeZone="#{SessionMonitorBean.timeZone}" />
+								</h:outputText>
+								<br />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<h:outputText value="Memory size threshhold (KB):" id="memoryThreshholdLabel" style="PADDING-RIGHT: 3px;"/>
+								<ice:inputText id="memoryThreshholdInput" size="7" style="PADDING-LEFT: 2px;"
+									maxlength="7" partialSubmit="true" value="#{SessionMonitorBean.memoryThreshold}" converter="javax.faces.Long" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<h:outputText value="Depth size:" id="stackDepthLabel" style="PADDING-RIGHT: 3px;"/>
+								<ice:inputText id="stackDepthInput" size="2" 
+									maxlength="7" 
+									partialSubmit="true"
+									value="#{SessionMonitorBean.stackLevel}" converter="javax.faces.Integer" />
+							</td>
+						</tr>
+
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<h:outputText value="Only MEDecision classes:" id="filterMEDecisionLabel" style="PADDING-RIGHT: 3px;"/>
+								<ice:selectBooleanCheckbox id="filterMEDecisionCheckBox" partialSubmit="true"  
+									value="#{SessionMonitorBean.filterMEDecisionClasses}" />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<br />
+								<h:outputText rendered="true" id="cacheManagerLabel"
+									value="CacheManager: " />
+								<h:outputText rendered="true" id="cacheManagerText" style="PADDING-RIGHT: 3px;"
+									value="#{SessionMonitorBean.cacheManagerText}" />
+								<ice:commandButton rendered="true" id="cacheManagerButton"
+									value="Estimate"
+									actionListener="#{SessionMonitorBean.invokeEstimateCacheManager}" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="PADDING-LEFT: 15px;" border="1">
+								<ice:tree id="cacheManagerTree" value="#{SessionMonitorBean.cacheManagerMemoryTreeModel}" var="item"
+									hideRootNode="false" hideNavigation="false" rendered="#{SessionMonitorBean.cacheManagerMemoryTreeExists}"
+									imageDir="./xmlhttp/css/xp/css-images/">
+									<ice:treeNode>
+										<f:facet name="content">
+											<ice:panelGroup style="display: inline">
+												<ice:outputText value="#{item.userObject.text}" />
+											</ice:panelGroup>
+										</f:facet>
+									</ice:treeNode>
+								</ice:tree>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<h:outputText rendered="true" id="serviceLocatorLabel"
+									value="ServiceLocator: " />
+								<h:outputText rendered="true" id="serviceLocatorText" style="PADDING-RIGHT: 3px;"
+									value="#{SessionMonitorBean.serviceLocatorText}" />
+								<ice:commandButton rendered="true" id="serviceLocatorButton" 
+									value="Estimate"
+									actionListener="#{SessionMonitorBean.invokeEstimateServiceLocator}" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="PADDING-LEFT: 15px;"  border="1">
+								<ice:tree id="serviceLocatorTree" value="#{SessionMonitorBean.serviceLocatorMemoryTreeModel}" var="item"
+									hideRootNode="false" hideNavigation="false" rendered="#{SessionMonitorBean.serviceLocatorMemoryTreeExists}"
+									imageDir="./xmlhttp/css/xp/css-images/" >
+									<ice:treeNode>
+										<f:facet name="content">
+											<ice:panelGroup style="display: inline">
+												<ice:outputText value="#{item.userObject.text}" />
+											</ice:panelGroup>
+										</f:facet>
+									</ice:treeNode>
+								</ice:tree>
+							</td>
+						</tr>
+						
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<h:outputText
+									value="Total measured session size: #{SessionMonitorBean.totalMeasuredSessionSize}"
+									id="totalMeasuredLabel"
+									rendered="#{SessionMonitorBean.monitorStateExists}" />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<ice:dataTable value="#{SessionMonitorBean.sessionMonitorList}"
+									id="sessionMonitorList" var="sessionState" align="left"
+									rendered="#{SessionMonitorBean.monitorStateExists}" border="2"
+									cellpadding="2" cellspacing="2">
+									<ice:column>
+										<f:facet name="header">
+											<h:outputText id="col0HeaderList" value="Detail" />
+										</f:facet>
+										<ice:commandLink id="detailLink"
+											actionListener="#{SessionMonitorBean.invokeRecordSession}"
+											value="Record" partialSubmit="true">
+											<f:param name="sessionID" value="#{sessionState.sessionID}" />
+										</ice:commandLink>
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<h:outputText id="col1HeaderList" value="Session ID" />
+										</f:facet>
+										<h:outputText id="col1Value" value="#{sessionState.sessionID}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<h:outputText id="col2HeaderList" value="User" />
+										</f:facet>
+										<h:outputText id="col2Value" value="#{sessionState.userName}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<h:outputText id="col3HeaderList" value="Size (KB)" />
+										</f:facet>
+										<h:outputText id="col3Value"
+											value="#{sessionState.currentSessionSize}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<h:outputText id="col4HeaderList"
+												value="Max size (KB)" />
+										</f:facet>
+										<h:outputText id="col4Value"
+											value="#{sessionState.maxSessionSize}" />
+									</ice:column>
+									<ice:column>
+										<f:facet name="header">
+											<h:outputText id="col5HeaderList" value="Hits" />
+										</f:facet>
+										<h:outputText id="col5Value" value="#{sessionState.pageHits}" />
+									</ice:column>
+								</ice:dataTable>
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<br />
+								<h:outputText
+									rendered="#{SessionMonitorBean.selectedSessionMonitorStateExists}"
+									id="detailText1"
+									value="Recorded Details for User/Session ID: #{SessionMonitorBean.selectedSessionMonitorState.userName} / #{SessionMonitorBean.selectedSessionMonitorState.sessionID}" />
+							</td>
+						</tr>
+						
+						<tr>
+							<td style="PADDING-LEFT: 15px;">
+								<br />
+								<h:outputText
+									rendered="#{SessionMonitorBean.selectedSessionMonitorStateExists and !SessionMonitorBean.selectedSessionDetailTreeExists}"
+									id="detailText2"
+									value="No details have been recorded yet for the selected session ID. Select Refresh after the user has performed some action in the application." />
+							</td>
+						</tr>
+
+						<tr>
+							<td style="PADDING-LEFT: 15px;"  border="1">
+								<ice:tree id="sessionDetailTree" value="#{SessionMonitorBean.selectedSessionMemoryTreeModel}" var="item"
+									hideRootNode="false" hideNavigation="false" rendered="#{SessionMonitorBean.selectedSessionDetailTreeExists}"
+									imageDir="./xmlhttp/css/xp/css-images/">
+									<ice:treeNode>
+										<f:facet name="content">
+											<ice:panelGroup style="display: inline">
+												<ice:outputText value="#{item.userObject.text}" />
+											</ice:panelGroup>
+										</f:facet>
+									</ice:treeNode>
+								</ice:tree>
+							</td>
+						</tr>
+
+					</table>
+				</ice:form>
+			</body>
+		</html>
+	</f:view>
+</jsp:root>

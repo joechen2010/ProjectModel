@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.joe</groupId>
+	<artifactId>sql-parent</artifactId>
+	<name>sql-parent</name>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	
+	<!-- ==================================================================================== 
+	      Shared modules of Sql. 
+	     ==================================================================================== -->
+	<modules>
+		<module>jdbc-utils</module>
+		<module>sql-tools</module>
+	</modules>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.4</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+	<!-- Default property values.  These properties can be overwritten in a profile.\ -->
+	<properties>
+		
+		<!-- selects cache sql scripts -->
+		<!-- define as 'oracle' and over-ride all datasource settings to install to Oracle -->
+		<dbms>mssql</dbms>
+		
+		<!-- customize non-dbms specific datasource settings -->
+		<host>localhost</host>
+		<port>1433</port>
+		<db>anaconda</db>
+		<user>sa</user>
+		<password>SYSTEM</password>
+
+<!-- default datasource settings -->
+		<com.med.config.dataSource.alineoDataSource.jdbc.driver>net.sourceforge.jtds.jdbc.Driver</com.med.config.dataSource.alineoDataSource.jdbc.driver>
+		<com.med.config.dataSource.alineoDataSource.jdbc.url>jdbc:jtds:sqlserver://${host}:${port}/${db}</com.med.config.dataSource.alineoDataSource.jdbc.url>
+		<com.med.config.dataSource.alineoDataSource.jdbc.user>${user}</com.med.config.dataSource.alineoDataSource.jdbc.user>
+		<com.med.config.dataSource.alineoDataSource.jdbc.password>${password}</com.med.config.dataSource.alineoDataSource.jdbc.password>		<!-- do not fail on errors - just log errors to console -->
+		<!-- define as 'abort' to fail the build if an error occurs -->
+		<onError>continue</onError>
+		<ojdbc6.version>11.2.0.1.0</ojdbc6.version>
+	</properties>
+
+	<!-- SCM configuration -->
+	<scm>
+		<connection>scm:clearcase::default_config_spec:Jaguar</connection>
+		<developerConnection>scm:clearcase::default_config_spec:Jaguar</developerConnection>
+	</scm>
+	<!-- ==================================================================================== 
+      		Internal MEDecision repositories.
+           ==================================================================================== -->
+	
+	<!-- Plugins share the same repository -->
+	
+
+  <build>
+    <plugins>
+      <plugin>
+        <!-- This is necessary to enable JDK 1.5 for sub modules -->
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

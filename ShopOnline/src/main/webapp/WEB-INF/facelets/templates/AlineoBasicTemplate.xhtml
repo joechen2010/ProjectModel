@@ -1,0 +1,174 @@
+<ui:composition xmlns:f="http://java.sun.com/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:alineo="http://medecision.com/alineo/taglib"
+	xmlns:c="http://java.sun.com/jstl/core">
+	
+	<c:if test="#{empty partialSubmit}">
+    	<c:set var="partialSubmit" value="true" />
+	</c:if>
+
+	<ice:outputDeclaration doctypeRoot="HTML"
+		doctypePublic="-//W3C//DTD XHTML 1.0 Transitional//EN"
+		doctypeSystem="http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd" />
+
+	<ice:outputHtml>
+		<ice:outputHead>
+			<title>Alineo&amp;trade; by MEDecision</title>
+			<meta content="no-cache" http-equiv="pragma" />
+			<meta content="no-cache" http-equiv="cache-control" />
+			<meta content="0" http-equiv="expires" />
+			<ice:outputStyle href="/css/main.css" />
+			<ice:outputStyle href="/css/buttons.css" />
+			<ice:outputStyle href="/utils/header.css" />
+			<ice:outputStyle href="/css/compatible.css" />
+			<ice:outputStyle href="/css/iceStyle.css" />
+			<ice:outputStyle href="/css/table.css" />
+			<ui:insert name="faceletHeader" />
+			<script type="text/javascript">
+function closeCLBrowser() {
+	var isCLBrowserInitialized = document
+			.getElementById('mainForm:clBrowserInitialized').value;
+	if (isCLBrowserInitialized == "true") {
+		var clUrl = document.getElementById('mainForm:clURL').value;
+		// overlay the CL Browser window using default sessionid as Target
+		clWindow = window.open(clUrl + "/clwebservices/html/frSplash.aspx",
+				"WSESSION1");
+		// close the CL Browser Window
+		clWindow.close();
+	}
+}
+
+			</script>
+		</ice:outputHead>
+
+		<ice:outputBody styleClass="mainBody">
+			<ice:form id="mainForm" name="mainForm" partialSubmit="#{partialSubmit}">
+				<ice:inputHidden id="clBrowserInitialized"
+					value="#{ClientLetterView.clBrowserInitialized}" immediate="true"></ice:inputHidden>
+				<ice:inputHidden id="clURL" value="#{ClientLetterView.clURL}"
+					immediate="true"></ice:inputHidden>
+				<ice:inputHidden id="contextPath" value="#{HeaderBean.contextPath}" immediate="true"/>
+				<div class="header">
+					<ice:panelGrid id="headerGrid" styleClass="headerRow1" cellpadding="0"
+						cellspacing="0" columns="3"
+						columnClasses="headerRowCol1,headerRowCol2,headerRowCol3">
+						<ice:column>
+							<ice:panelGrid id="headerGridRow1" cellpadding="0" cellspacing="0" columns="3">
+								<ice:column>
+									<div class="alineoLogoButton">
+										<ice:commandLink
+											action="#{HomepageNavigationBean.openHomepageTasks}"
+											id="alineoLogoLink"
+											immediate="true" />
+									</div>
+								</ice:column>
+								<ice:column>
+									<div>
+										<ui:insert name="mainHeaderRowIconArea" />
+									</div>
+								</ice:column>
+								<ice:column>
+									<div class="headerAlineoHome" id="headerAlineoHomeDiv">
+										<ice:panelGroup id="headerAlineoHomePanelGroup">
+											<c:choose>
+												<c:when test="#{! empty mainTitleBundle}">
+													<ice:loadBundle basename="#{mainTitleBundle}"
+														var="mainTitleResourceBundle" />
+													<ice:outputText id="mainTitle"
+														styleClass="headerMemberName"
+														value="#{mainTitleResourceBundle[mainTitleKey]}" />
+												</c:when>
+												<c:otherwise>
+													<ice:outputText id="mainTitle"
+														styleClass="headerMemberName" value="#{mainTitle}"
+														rendered="#{! empty mainTitle}" />
+												</c:otherwise>
+											</c:choose>
+											<ui:insert name="mainHeaderRowMiddleArea" />
+										</ice:panelGroup>
+									</div>
+								</ice:column>
+							</ice:panelGrid>
+						</ice:column>
+						<ice:column>
+							<div style="float: right;">
+								<ice:panelGrid cellpadding="0" cellspacing="0" columns="2">
+									<ice:column>
+										<div class="headerSeperator">
+											<ice:graphicImage value="/images/hdr_queue_vert_rule.png"
+												rendered="true" />
+										</div>
+									</ice:column>
+									<ice:column>
+										<ice:outputText id="userName"
+											value="Welcome #{loginBean.currUser.fullName}"
+											styleClass="headerWelcomeMessage" />
+									</ice:column>
+								</ice:panelGrid>
+							</div>
+						</ice:column>
+						<ice:column>
+							<div style="float: right;">
+								<ice:panelGrid cellpadding="0" cellspacing="5" columns="2"
+									columnClasses="helpButton,logoutButton">
+									<ice:column>
+										<ice:commandLink
+											onclick="javascript:window.open('#{facesContext.externalContext.request.contextPath}/WebHelp/index.htm','Help_Window');"
+											style="cursor:pointer" />
+									</ice:column>
+									<ice:column>
+										<ice:commandLink id="logOffCommandLink"
+											action="#{loginBean.logoff}" immediate="true"
+											onclick="closeCLBrowser();" />
+									</ice:column>
+								</ice:panelGrid>
+							</div>
+						</ice:column>
+					</ice:panelGrid>
+
+					<div class="hdr_status_data">
+						<ice:panelGrid styleClass="headerRow2" cellpadding="0"
+							cellspacing="0" columns="5"
+							columnClasses="headerHomeBasicRowCol1,headerHomeBasicRowCol2,headerHomeBasicRowCol3,headerHomeBasicRowCol4,headerHomeBasicRowCol5">
+							<ice:column>
+								<ui:insert name="headerRow2Left" />
+							</ice:column>
+							<ice:column>
+								<ui:insert name="headerRow2Middle" />
+							</ice:column>
+							<ice:column>
+								<ui:insert name="headerRow2Right1" />
+							</ice:column>
+							<ice:column>
+								<ui:insert name="headerRow2Right2" />
+							</ice:column>
+							<ice:column>
+								<ice:graphicImage value="/images/hdr_logo.png" />
+							</ice:column>
+						</ice:panelGrid>
+					</div>
+				</div>
+				<div id="breadcrumbs">
+					<ice:panelGroup rendered="#{showBreadcrumbBar}">
+						<alineo:breadcrumbs />
+					</ice:panelGroup>
+				</div>
+
+				<div class="headerShadowBorder"></div>
+
+				<div class="worksheetRightInner clearfix">
+					<ui:insert />
+				</div>
+				<ui:insert name="pageFooter"/>
+				<ui:insert name="popupsInForm"/>
+			</ice:form>
+			
+			<ui:insert name="popups"/>
+			
+		</ice:outputBody>
+
+	</ice:outputHtml>
+</ui:composition>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+<f:view contentType="text/html">
+
+	<h:head>
+		<title>PrimeFaces - ShowCase</title>
+		<meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+		<link type="text/css" rel="stylesheet" href="syntaxhighlighter/styles/syntaxhighlighter.css" />
+		<style type="text/css">
+			.new {
+				background: url(../images/new-ico.gif) no-repeat 1%;
+			}
+			
+			.ui-widget {
+				font-size: 98% !important;
+			}
+			
+			.ui-menu .ui-menu-item .ui-menu-item-label {
+				padding: .2em 1.7em;
+			}
+			
+			.ui-growl {
+				top:115px;
+			}
+			
+			.themeMenu {
+				overflow: auto;
+				height:300px;
+				width:200px;
+			}
+		</style>
+		
+	</h:head>
+	
+	<h:body>
+<ice:form>
+ 
+    <ice:dataTable cellspacing="1"
+                           value="#{mBean.myPagedDataModel}"
+                           id="customerdatatable"
+                           rows="#{mBean.pageSize}"
+                           sortAscending="#{true}"
+                           sortColumn="id"
+                           width="750px"
+                           rowClasses="evenRow,oddRow"
+                           var="item">
+                      
+                      
+            <ice:column>
+                <f:facet name="header">
+                        <ice:outputText value="id"/>
+                </f:facet>
+               <ice:outputText value="#{item.id}"/>
+            </ice:column>
+            
+            <ice:column>
+                <f:facet name="header">
+                     <ice:outputText value="name"/>
+                </f:facet>
+               <ice:outputText value="#{item.name}"/>
+            </ice:column>
+           
+</ice:dataTable>
+
+
+
+<ice:dataPaginator for="customerdatatable"
+                               paginator="true"
+                               fastStep="3" paginatorMaxPages="6">
+                <f:facet name="first">
+                    <ice:graphicImage id="firstpage_1"
+                                      url="http://component-showcase.icefaces.org/component-showcase/xmlhttp/css/rime/css-images/arrow-first.gif"
+                                      style="border:none;"
+                                      title=""/>
+                </f:facet>
+                <f:facet name="last">
+                    <ice:graphicImage id="lastpage_1"
+                                      url="http://component-showcase.icefaces.org/component-showcase/xmlhttp/css/rime/css-images/arrow-last.gif"
+                                      style="border:none;"
+                                      title=""/>
+                </f:facet>
+                <f:facet name="previous">
+                    <ice:graphicImage id="previouspage_1"
+                                      url="http://component-showcase.icefaces.org/component-showcase/xmlhttp/css/rime/css-images/arrow-previous.gif"
+                                      style="border:none;"
+                                      title=""/>
+                </f:facet>
+                <f:facet name="next">
+                    <ice:graphicImage id="nextpage_1"
+                                      url="http://component-showcase.icefaces.org/component-showcase/xmlhttp/css/rime/css-images/arrow-next.gif"
+                                      style="border:none;"
+                                      title=""/>
+                </f:facet>
+                <f:facet name="fastforward">
+                    <ice:graphicImage id="fastforward_1"
+                                      url="http://component-showcase.icefaces.org/component-showcase/xmlhttp/css/rime/css-images/arrow-ff.gif"
+                                      style="border:none;"
+                                      title=""/>
+                </f:facet>
+                <f:facet name="fastrewind">
+                    <ice:graphicImage id="fastrewind_1"
+                                      url="http://component-showcase.icefaces.org/component-showcase/xmlhttp/css/rime/css-images/arrow-fr.gif"
+                                      style="border:none;"
+                                      title=""/>
+                </f:facet>
+</ice:dataPaginator>
+ 	     
+	<ice:commandLink value="add"	id="saveLinkIP" action="#{mBean.addUser}" rendered="true"/>                      
+	                      
+	    
+</ice:form>		
+	</h:body>
+	
+
+</f:view>
+</html>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:test="http://medecision.com/alineo/taglib/test"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<head>
+		<title>Test</title>
+		<link rel="stylesheet" type="text/css"
+			href="../../css/rime/rime.css" />
+	</head>
+	<body>
+	
+		<ui:component rendered="#{empty rendered or rendered}">
+			<ice:panelCollapsible styleClass="accordion" toggleOnClick="true"
+				expanded="true" partialSubmit="true">
+				<c:if test="#{not empty binding}">
+					<f:attribute name="binding" value="#{binding}" />
+				</c:if>
+				<f:facet name="header">
+					<ice:panelGroup styleClass="headerText">
+						<ui:insert name="before_header"/><ice:outputText value="#{name}" nospan="true"/>
+					</ice:panelGroup>
+				</f:facet>
+				<ui:insert />
+			</ice:panelCollapsible>
+		</ui:component>
+	</body>
+</html>

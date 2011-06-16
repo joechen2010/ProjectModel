@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p" xsi:schemaLocation="http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+
+
+		<!-- ==================================================================== -->
+	<!-- FACADE LAYER                                                         -->
+	<!-- ==================================================================== -->
+
+	<bean id="commonFacade" class="com.joe.utilities.core.manager.facade.impl.CommonFacadeImpl">
+		<constructor-arg ref="commonRepository"/>
+	</bean>
+
+	<!-- ==================================================================== -->
+	<!-- SERVICE LAYER                                                        -->
+	<!-- ==================================================================== -->
+
+
+	<!-- ==================================================================== -->
+	<!-- REPOSITORY LAYER			                                          -->
+	<!-- ==================================================================== -->
+	<bean id="commonRepository" class="com.joe.utilities.core.hibernate.repository.impl.CommonRepositoryImpl">
+		<constructor-arg ref="hibernateTemplate"/>
+	</bean>
+	
+	<bean id="lookupManagerFactory" class="com.joe.utilities.core.lookup.LookupManager" factory-method="getInstance" p:applicationConfigRepo-ref="applicationConfigRepository" p:lookupRepository-ref="lookupRepository"/>
+	
+	<!-- ==================================================================== -->
+	<!-- FACADE LAYER				                                          -->
+	<!-- ==================================================================== -->
+	
+	<bean id="cacheFlushFacade" class="com.joe.utilities.core.facade.CacheFlushFacadeImpl">
+		<constructor-arg ref="cacheFlushRepository"/>
+	</bean>
+	
+	<bean id="lookupFacade" class="com.joe.utilities.core.lookup.LookupFacadeImpl">
+		<constructor-arg ref="lookupRepository"/>
+		<property name="lookupManager" ref="lookupManager"/>
+		<property name="cacheFlushFacade" ref="cacheFlushFacade"/>
+	</bean>
+	
+	<bean id="applicationConfigFacade" class="com.joe.utilities.core.lookup.ApplicationConfigurationFacadeImpl" p:applicationConfigurationRepo-ref="applicationConfigRepository" p:lookupManager-ref="lookupManager"/>
+		
+	<bean id="configFacade" class="com.joe.utilities.core.configuration.admin.facade.ConfigurationFacadeImpl">
+		<constructor-arg ref="configRepository"/>
+	</bean>
+
+
+	<!-- ==================================================================== -->
+	<!-- REPOSITORY LAYER				                                          -->
+	<!-- ==================================================================== -->
+
+	<bean id="cacheFlushRepository" class="com.joe.utilities.core.hibernate.repository.impl.CacheFlushRepositoryJMSImpl"/>
+
+	<bean id="configRepository" class="com.joe.utilities.core.configuration.admin.repository.ConfigurationRepositoryImpl">
+		<constructor-arg ref="hibernateTemplate"/>
+	</bean>
+
+
+	<bean id="applicationConfigRepository" class="com.joe.utilities.core.hibernate.repository.impl.ApplicationConfigurationRepositoryImpl">
+		<constructor-arg ref="hibernateTemplate"/>
+	</bean>
+
+	<bean id="lookupRepository" class="com.joe.utilities.core.hibernate.repository.impl.LookupRepositoryImpl">
+		<constructor-arg ref="hibernateTemplate"/>
+	</bean>
+	
+	<bean id="lookupManager" class="com.joe.utilities.core.lookup.LookupManager" p:applicationConfigRepo-ref="applicationConfigRepository" p:lookupRepository-ref="lookupRepository"/>
+	
+	<bean id="genericRepository" class="com.joe.utilities.core.hibernate.repository.impl.GenericRepository">
+		<constructor-arg ref="hibernateTemplate"/>
+	</bean>
+
+</beans>

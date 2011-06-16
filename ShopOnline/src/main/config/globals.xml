@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties version="1.0">
+
+  <!-- -->
+  <entry key="com.med.config.dataSource.list">alineoDataSource</entry>
+
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.driver">oracle.jdbc.driver.OracleDriver</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.initialPoolSize">0</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.maxConnectionWait">50000</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.maxPoolSize">8</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.password">sys</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.url">jdbc:oracle:thin:@localhost:1521:ALINEO</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.user">SYSTEM</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.type">c3p0</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.c3p0.checkoutTimeout.milliseconds">10000</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.jdbc.maxStatementsPerConnection">100</entry>
+  <entry key="com.med.config.dataSource.alineoDataSource.c3p0.acquireIncrement">5</entry>
+  
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate  Settings -->
+  <!-- ############################################################################################# -->
+  <!-- -->
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate C3P0 Connection Pool -->
+  <!-- ############################################################################################# -->
+  <entry key="hibernate.c3p0.acquire_increment">50</entry>
+  <entry key="hibernate.c3p0.idle_test_period">30</entry>
+  <entry key="hibernate.c3p0.max_size">80</entry>
+  <entry key="hibernate.c3p0.max_statements">100</entry>
+  <entry key="hibernate.c3p0.min_size">10</entry>
+  <entry key="hibernate.c3p0.timeout">100000</entry>
+  <entry key="hibernate.c3p0.validate">false</entry>
+  <!-- -->
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate Second-level Cache -->
+  <!-- ############################################################################################# -->
+  <!--  <entry key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</entry> -->
+  <!--  <entry key="hibernate.cache.provider_class">org.hibernate.cache.EmptyCacheProvider</entry> -->
+  <entry key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</entry>
+  <!--  <entry key="hibernate.cache.provider_class">org.hibernate.cache.OSCacheProvider</entry> -->
+  <!--  <entry key="hibernate.cache.provider_class">org.hibernate.cache.SwarmCacheProvider</entry> -->
+  <!--  <entry key="hibernate.cache.provider_class">org.hibernate.cache.TreeCacheProvider</entry> -->
+
+  <!-- # set a prefix for cache region names -->
+  <entry key="hibernate.cache.region_prefix">hibernate.test</entry>
+  <!-- -->
+  <!-- # optimize chache for minimal "puts" instead of minimal "gets" (good for clustered cache)  -->
+  <!-- <entry key="hibernate.cache.use_minimal_puts">true</entry> -->
+  <!-- -->
+  <!-- # enable the query cache -->
+  <!-- <entry key="hibernate.cache.use_query_cache">true</entry> -->
+  <!-- -->
+  <!-- # disable the second-level cache -->
+  <!-- <entry key="hibernate.cache.use_second_level_cache">false</entry> -->
+  <!-- -->
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate JDBC Settings -->
+  <!-- ############################################################################################# -->
+  <!-- -->
+  <!-- # enable JDBC autocommit (not recommended!) -->
+  <!-- <entry key="hibernate.connection.autocommit">true</entry> -->
+  <!-- -->
+  <!-- # specify a JDBC isolation level -->
+  <!-- <entry key="hibernate.connection.isolation">4</entry> -->
+  <!-- -->
+  <!-- # set the maximum JDBC 2 batch size (a nonzero value enables batching) -->
+  <!-- <entry key="hibernate.jdbc.batch_size">0</entry> -->
+  <!-- <entry key="hibernate.jdbc.batch_size">5</entry> -->
+  <!-- -->
+  <!-- # enable batch updates even for versioned data -->
+  <entry key="hibernate.jdbc.batch_versioned_data">true</entry>
+  <!-- -->
+  <!-- # set the JDBC fetch size -->
+  <!--  <entry key="hibernate.jdbc.fetch_size">25</entry> -->
+  <!-- -->
+  <!-- # use JDBC 3 PreparedStatement.getGeneratedKeys() to get the identifier of an inserted row  -->
+  <entry key="hibernate.jdbc.use_get_generated_keys">false</entry>
+  <!-- -->
+  <!-- # use streams when writing binary types to / from JDBC -->
+  <entry key="hibernate.jdbc.use_streams_for_binary">true</entry>
+  <!-- -->
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate Platforms -->
+  <!-- ############################################################################################# -->
+
+  <!-- # Hibernate Connection Pool -->
+  <entry key="hibernate.connection.pool_size">3</entry>
+  <!-- -->
+  <!-- # Hibernate Database - InterSystems Cache   -->
+  <entry key="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</entry>
+
+  <!-- -->
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate Log Settings -->
+  <!-- ############################################################################################# -->
+  <!-- -->
+  <!-- # format SQL in log and console -->
+  <entry key="hibernate.format_sql">true</entry>
+  <!-- -->
+  <!-- # print all generated SQL to the console -->
+  <entry key="hibernate.show_sql">true</entry>
+  <!-- -->
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate  Query Language -->
+  <!-- ############################################################################################# -->
+  <!-- -->
+  <!-- # select the classic query parser -->
+  <!-- <entry key="hibernate.query.factory_class">org.hibernate.hql.classic.ClassicQueryTranslatorFactory</entry> -->
+  <!-- -->
+  <!-- # define query language constants / function names -->
+  <entry key="hibernate.query.substitutions">no 'N'</entry>
+  <entry key="hibernate.query.substitutions">yes 'Y'</entry>
+  <!-- -->
+  <!-- ############################################################################################# -->
+  <!-- # Hibernate Transaction API -->
+  <!-- ############################################################################################# -->
+  <!-- -->
+  <!-- # Enable automatic session close at the end of transaction -->
+  <!-- # (This setting is relevant with or without the Transaction API) -->
+  <!-- <entry key="hibernate.transaction.auto_close_session"/> -->
+  <!-- -->
+  <!-- # the Transaction API abstracts application code from the underlying JTA or JDBC transactions -->
+  <entry key="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</entry>
+  
+  <entry key="hibernate.bytecode.use_reflection_optimizer">true</entry>
+  <!-- -->
+  <!-- # set the default batch size for batch fetching   -->
+  <entry key="hibernate.default_batch_fetch_size">20</entry>
+   <!-- # set the maximum depth of the outer join fetch tree  -->
+  <entry key="hibernate.max_fetch_depth">50</entry>
+  
+   <entry key="jta.transaction.defaultTimeout">3000</entry>
+  
+
+</properties>

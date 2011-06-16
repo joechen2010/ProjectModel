@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="TableInput.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:med="http://medecision.com/alineo/taglib">
+	<ui:define name="messages">
+		<ice:message for="time" />
+	</ui:define>
+	<ui:define name="input">
+		<table width="100%">
+			<tr>
+				<td>
+					<ice:selectInputDate tabindex="#{tabindex * 10}"
+						disabled="#{disabled}" style="display: inline;"
+						renderMonthAsDropdown="true" renderYearAsDropdown="true"
+						renderAsPopup="true" value="#{dateValue}" id="input" >
+
+					<c:if test="#{empty hasTime or hasTime eq false}">
+						<c:if test="#{empty timeZone}">
+							<f:converter converterId="CustomDateConverter" />
+							<f:validator validatorId="CustomDateValidator" />
+						</c:if>
+						<c:if test="#{!empty timeZone}">
+							<f:converter converterId="CustomDateConverter" />
+							<f:validator validatorId="CustomDateValidator" />
+						</c:if>
+					</c:if>
+					<c:if test="#{not (empty hasTime) and hasTime eq true}">
+			            <f:convertDateTime pattern="MM/dd/yyyy hh:mm a" timeZone="#{timeZone}"/>
+					</c:if>
+					</ice:selectInputDate>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+	<ui:define name="output">
+		<ice:outputText value="#{dateValue}">
+			<c:if test="#{empty hasTime or hasTime eq false}">
+				<c:if test="#{empty timeZone}">
+					<f:converter converterId="CustomDateConverter" />
+				</c:if>
+				<c:if test="#{!empty timeZone}">
+					<f:converter converterId="CustomDateConverter" />
+				</c:if>
+			</c:if>
+			<c:if test="#{not (empty hasTime) and hasTime eq true}">
+	            <f:convertDateTime pattern="MM/dd/yyyy hh:mm a" timeZone="#{timeZone}"/>
+			</c:if>
+		</ice:outputText>
+	</ui:define>
+</ui:composition>

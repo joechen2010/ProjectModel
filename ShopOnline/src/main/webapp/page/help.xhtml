@@ -1,0 +1,41 @@
+<f:subview
+      id="help"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ice="http://www.icesoft.com/icefaces/component">
+
+<ui:composition template="/page/layout/layout.xhtml">
+  <ui:define name="title">demoSpringIceHibernate</ui:define>
+  <ui:define name="mainnav"><ui:include src="/page/menu/mainNavGuestArea.xhtml" /></ui:define>
+  <ui:define name="content">
+
+	<table width="100%">
+		<tr>
+			<td style="padding-top: 50px;" align="center">
+				<h:messages showDetail="true"
+  	              showSummary="false"
+  	              errorClass="errorStyle"
+  	              infoClass="infoStyle"
+  	              globalOnly="true"
+  	              />
+
+  	            <br/>
+				<ice:form id="helpForm"
+				          style="margin: 0px; padding: 1px;"
+				          autocomplete="false">
+
+				    <br/><br/>
+					HELP
+				</ice:form>
+				<br/>
+				<br/>
+			</td>
+		</tr>
+	</table>
+
+  </ui:define>
+</ui:composition>
+
+</f:subview>

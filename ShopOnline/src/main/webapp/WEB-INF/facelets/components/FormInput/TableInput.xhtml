@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:med="http://medecision.com/alineo/taglib">
+	<f:subview>
+<!-- NOTE:  Don't use the JSTL if since it may not behave as 
+	expected because of the JSF/Faclets lifecycle.
+	see http://www.znetdevelopment.com/blogs/2008/10/18/jstl-with-jsffacelets/
+
+		<c:if test="#{empty required}">
+			<h:outputText value="In input Required: #{required} "/>
+			<c:set var="required" value="#{false}" />
+		</c:if>
+		<c:if test="#{empty disabled}">
+			<c:set var="disabled" value="#{false}"></c:set>
+		</c:if>
+		<c:if test="#{empty editable}">
+			<c:set var="editable" value="#{true}"></c:set>
+		</c:if>
+-->		
+
+		<!--  this is fine since it's not dynamic(no lifecylce issues -->
+		<c:if test="#{empty labelClass}">
+			<c:set var="labelClass" value="formLabelText"></c:set>
+		</c:if>
+
+		<ui:insert name="vars" />
+
+		<td style="width:9px">
+			<ui:fragment rendered="#{!empty required and required eq true}">
+				<div class="label_required_star"></div>
+			</ui:fragment>
+		</td>
+		<td style="#{labelStyle}">
+			<ui:insert name="label">
+				<ice:outputLabel styleClass="#{labelClass}" value="#{name}:" for="input" />
+			</ui:insert>
+		</td>
+        <td>
+			<table width="100%" class="tableInputValueTable" cellpadding="0" cellspacing="0">
+				<tr>
+					<td>
+						<ice:panelGroup rendered="#{editable}" styleClass="#{extraStyleClass}">
+							<ui:insert name="input" />
+
+							<!-- use postText as a hook to print extra stuff -->
+							<ui:fragment rendered="#{!empty postText}">
+								<ice:outputText value="#{postText}"/>
+							</ui:fragment>
+						</ice:panelGroup>
+						<ice:panelGroup rendered="#{not editable}" styleClass="#{extraStyleClass}">
+							<ui:insert name="output">
+								<ice:outputText value="#{value}"/>
+							</ui:insert>
+							<!-- use postText as a hook to print extra stuff -->
+							<ui:fragment rendered="#{!empty postText}">
+								<ice:outputText value="#{postText}"/>
+							</ui:fragment>
+						</ice:panelGroup>
+					</td>
+				</tr>
+			</table>
+        </td>
+
+	</f:subview>
+</ui:composition>

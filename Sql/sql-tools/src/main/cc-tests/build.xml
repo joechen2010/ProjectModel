@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+Runs the Alineo installer and updater and compares the results.  
+-->
+<project default="CompareDBUpdateInstall" name="CompareDBUpdateInstall">
+
+	<!-- properties provided at runtime -->
+	
+	<property name="ccase.viewdir"	value="C:/ccviews/Alineo_Model_int"/>
+	<property name="testdir"	value="C:/testsql"/>
+	<property name="mavenhomedir"	value="C:/apache-maven-2.1.0"/>
+	
+	<property name="db"		value="DEVCCINSTLR"/>
+	<property name="dbms"		value="oracle"/>
+	<property name="database"	value="CWVDV-JUNIT:DEVCCINSTLR-SYSTEM"/>	
+	
+	<property name="prev.installer.exe"	value="AlineoInstaller_windows_2_2_1_100608.exe" />
+
+	<property name="installer.exe" 		value="AlineoInstaller_windows_TBD.exe" />
+	<property name="updater.exe" 		value="AlineoUpdater_windows_TBD.exe" />
+	
+	<property name="pre-updater-pom" 	value="pre-updater-pom.xml" />
+	
+	<!-- derived properties -->
+	
+	<property name="installer.dir"	   location="${ccase.viewdir}/Jaguar/Installer"/>
+	<property name="installer.exe.dir" location="${installer.dir}/alineo-installer-install4j/target" />
+	<property name="updater.exe.dir"   location="${installer.dir}/alineo-updater-install4j/target" />
+
+	<property name="testsql.dir"		location="${testdir}"/>
+	<property name="installer-updater.dir"	location="${testsql.dir}/installer-updater"/>
+	<property name="sql-tools.dir"	 	location="${testsql.dir}/sql-tools"/>
+	
+	<property name="mvn"		location="${mavenhomedir}/bin/mvn.bat"/>	
+
+	<property name="installer" 	location="${installer-updater.dir}/${installer.exe}" />
+	<property name="prev.installer"	location="${installer-updater.dir}/${prev.installer.exe}" />
+	<property name="updater" 	location="${installer-updater.dir}/${updater.exe}" />	
+
+	<property name="installer.props" location="${installer-updater.dir}/${dbms}-${db}-installer.properties" />
+	<property name="updater.props"	 location="${installer-updater.dir}/${dbms}-${db}-updater.properties" />
+
+	<property name="sql-tools.props" location="${sql-tools.dir}/sql-tools-${dbms}-${db}.properties" />
+
+	<property name="dbreport" 	  	location="${sql-tools.dir}/dbreport.bat" />
+	<property name="dbreport.install" 	location="${sql-tools.dir}/${dbms}-dbreport-install.txt" />
+	<property name="dbreport.update"  	location="${sql-tools.dir}/${dbms}-dbreport-update.txt" />
+	<property name="dbreport.diffs"	  	location="${sql-tools.dir}/${dbms}-dbreport-diffs.txt" />
+	<property name="public.dbreport.diffs"	location="T:/dbreport-${dbms}-diffs.txt" />
+	
+	<property name="daily.reports.dir" location="\\medecision.com\dfs-dept\DEV/Pub/Updater/Daily/DBReports" />
+	<property name="daily.logs.dir" location="\\medecision.com\dfs-dept\DEV/Pub/Updater/Daily/Updater-Logs/${dbms}" />
+	<property name="updater.log" location="C:/AlineoUpdater_TBD/.install4j/installation.log" />
+
+	<target name="echo">
+		<echo>You are here ${testdir}.</echo>
+		<echo>dbms = ${dbms}</echo>
+	</target>
+	
+	<target name="setup">
+		<!-- delete old test files -->
+		<echo>delete old test files</echo>
+		<delete file="${installer}"/>
+		<delete file="${updater}"/>
+		<delete file="${dbreport.install}"/>
+		<delete file="${dbreport.update}"/>
+		<delete file="${dbreport.diffs}"/>
+		
+		<!-- copy installer exe to testsql directory -->	
+		<echo>copy installer exe</echo>
+		<copy file="${installer.exe.dir}/${installer.exe}"
+			todir="${installer-updater.dir}" />
+		
+		<!-- copy updater exe to testsql directory -->
+		<echo>copy updater exe</echo>
+		<copy file="${updater.exe.dir}/${updater.exe}"
+			todir="${installer-updater.dir}" />
+	</target>
+
+	<target name="run.installer">
+		<!-- run db uninstall scripts -->
+		<echo>run db uninstall scripts</echo>
+		<echo>dbms = ${dbms}</echo>
+		<echo>database = ${database}</echo>
+		<exec executable="${mvn}" 
+			failonerror="false"
+			dir="${ccase.viewdir}/Jaguar/Sql/alineo-uninstall-sql-parent" >
+			<arg value="process-resources"/>
+			<arg value="-Ddbms=${dbms}"/>
+			<arg value="-Ddatabase=${database}"/>
+		</exec>
+		
+		<!-- run current build's installer -->
+		<echo>run current build's installer</echo>
+		<echo>exe = ${installer.exe}</echo>
+		<echo>props = ${installer.props}</echo>	
+		<exec executable="${installer}" 
+			failonerror="true"
+			dir="${installer-updater.dir}" >
+			<arg value="-q"/>
+			<arg value="-varfile"/>
+			<arg value="${installer.props}"/>
+			<env key="install4j.logToStderr" value="true"/>
+		</exec>
+		
+		<!-- run sql-tools reports on installed DB -->
+		<echo>run sql-tools reports on installed DB</echo>
+		<echo>props = ${sql-tools.props}</echo>
+		<echo>report = ${dbreport.install}</echo>
+		<exec executable="${dbreport}" 
+			failonerror="true"
+			dir="${sql-tools.dir}" >
+			<arg value="${sql-tools.props}"/> 
+			<arg value="${dbreport.install}"/>
+		</exec>
+
+	</target>
+	
+	<target name="run.prev.installer">
+		<!-- run db uninstall scripts -->
+		<echo>run db uninstall scripts</echo>
+		<echo>dbms = ${dbms}</echo>
+		<echo>database = ${database}</echo>
+		<exec executable="${mvn}" 
+			failonerror="false"
+			dir="${ccase.viewdir}/Jaguar/Sql/alineo-uninstall-sql-parent" >
+			<arg value="process-resources"/>
+			<arg value="-Ddbms=${dbms}"/>
+			<arg value="-Ddatabase=${database}"/>
+		</exec>
+
+		<!-- run previous release's installer -->
+		<echo>run previous release's installer</echo>
+		<echo>exe = ${prev.installer}</echo>
+		<echo>props = ${installer.props}</echo>	
+		<exec executable="${prev.installer}" 
+			failonerror="true"
+			dir="${installer-updater.dir}" >
+			<arg value="-q"/>
+			<arg value="-varfile"/>
+			<arg value="${installer.props}"/>
+			<env key="install4j.logToStderr" value="true"/>
+		</exec>
+	</target>
+	
+	<target name="run.cache.patch.and.maint.scripts" if="cache.dbms" >
+		<!-- run cache remote cc-tests scripts -->
+		<echo>run cache remote patch/maintenance scripts</echo>
+		<echo>dbms = ${dbms}</echo>
+		<echo>database = ${database}</echo>
+		<exec executable="${mvn}" 
+			failonerror="false"
+			dir="${ccase.viewdir}/Jaguar/Sql/remote-install-sql" >
+			<arg value="process-resources"/>
+			<arg value="-f"/>
+			<arg value="${pre-updater-pom}"/>
+			<arg value="-Ddbms=${dbms}"/>
+			<arg value="-Ddatabase=${database}"/>
+		</exec>
+
+		<!-- run other cache cc-tests scripts -->
+		<echo>run other cache patch/maintenance scripts</echo>
+		<echo>dbms = ${dbms}</echo>
+		<echo>database = ${database}</echo>
+		<exec executable="${mvn}" 
+			failonerror="false"
+			dir="${ccase.viewdir}/Jaguar/Sql/alineo-install-sql/install-cache-sql" >
+			<arg value="process-resources"/>
+			<arg value="-f"/>
+			<arg value="${pre-updater-pom}"/>
+			<arg value="-Ddbms=${dbms}"/>
+			<arg value="-Ddatabase=${database}"/>
+		</exec>
+	</target>
+
+	<target name="run.oracle.patch.and.maint.scripts" unless="cache.dbms">
+		<!-- run oracle alineo cc-tests scripts -->
+		<echo>run oracle patch/maintenance scripts</echo>
+		<echo>dbms = ${dbms}</echo>
+		<echo>database = ${database}</echo>
+		<exec executable="${mvn}" 
+			failonerror="false"
+			dir="${ccase.viewdir}/Jaguar/Sql/alineo-install-sql/install-oracle-sql" >
+			<arg value="process-resources"/>
+			<arg value="-f"/>
+			<arg value="${pre-updater-pom}"/>
+			<arg value="-Ddbms=${dbms}"/>
+			<arg value="-Ddatabase=${database}"/>
+		</exec>
+	</target>
+	
+	<target name="run.patch.and.maint.scripts" depends="run.cache.patch.and.maint.scripts, run.oracle.patch.and.maint.scripts"/>
+	
+	<target name="run.updater" depends="run.prev.installer, run.patch.and.maint.scripts">
+		<!-- run current build's updater -->
+		<echo>run current build's updater</echo>
+		<echo>exe = ${updater}</echo>
+		<echo>props = ${updater.props}</echo>	
+		<exec executable="${updater}" 
+			failonerror="true"
+			dir="${installer-updater.dir}" >
+			<arg value="-q"/>
+			<arg value="-varfile"/>
+			<arg value="${updater.props}"/>
+			<env key="install4j.logToStderr" value="true"/>
+		</exec>
+		
+		<!-- run sql-tools reports on updated DB -->
+		<echo>run sql-tools reports on updated DB</echo>
+		<echo>props = ${sql-tools.props}</echo>
+		<echo>report = ${dbreport.update}</echo>
+		<exec executable="${dbreport}" 
+			failonerror="true"
+			dir="${sql-tools.dir}" >
+			<arg value="${sql-tools.props}"/> 
+			<arg value="${dbreport.update}"/>
+		</exec>
+	</target>
+	
+	<target name="compare.reports">
+		<!-- compare install report with update report -->
+		<echo>compare install report with update report</echo>
+		<exec executable="C:/Program Files/GnuWin32/bin/diff.exe" 
+			failonerror="true"
+			dir="${sql-tools.dir}"
+			output="${dbreport.diffs}">
+			<arg value="-i"/>
+			<arg value="-w"/>
+			<arg value="${dbreport.install}"/> 
+			<arg value="${dbreport.update}"/>
+		</exec>
+	</target>
+
+	<target name="publish.results">
+		<!-- copy installation.log and dbreport to public locations -->
+		<echo>copy installation.log and dbreport to public locations</echo>
+		<copy file="${updater.log}" todir="${daily.logs.dir}" overwrite="true" />
+		<copy file="${dbreport.update}" todir="${daily.reports.dir}" overwrite="true" />
+	</target>	
+	
+	<target name="CompareDBUpdateInstall" 
+		depends="setup, run.installer, run.updater, compare.reports, publish.results"/>
+	
+</project>

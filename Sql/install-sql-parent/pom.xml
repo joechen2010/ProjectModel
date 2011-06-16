@@ -1,0 +1,52 @@
+<?xml version='1.0'?><project>
+  <parent>
+    <artifactId>sql-parent</artifactId>
+    <groupId>com.joe</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.joe</groupId>
+  <artifactId>install-sql-parent</artifactId>
+  <name>install-sql-parent</name>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  
+
+  <profiles>
+  
+    
+    <profile>
+      <id>if-dbms-is-oracle</id>
+      <activation>
+        <property>
+          <name>dbms</name>
+          <value>oracle</value>
+        </property>
+      </activation>
+      <modules>
+        <module>../install-sql</module>
+      </modules>
+    </profile>
+    
+	<profile>
+          <id>if-dbms-is-mssql</id>
+          <activation>
+            <property>
+              <name>dbms</name>
+              <value>mssql</value>
+            </property>
+          </activation>
+          <modules>
+            <module>../install-sql</module>
+          </modules>
+    </profile>
+    
+  </profiles>  
+  
+  
+  
+  
+  
+  
+</project>

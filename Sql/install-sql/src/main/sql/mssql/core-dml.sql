@@ -1,0 +1,5 @@
+
+INSERT [CONFIG].[APPL_CONFIG] ([APPL_CONFIG_CODE], [APPL_CONFIG_CTGY_CODE], [APPL_CONFIG_VAL], [APPL_CONFIG_TXT], [EDITABLE_FLAG]) VALUES ('AAECarePlannerProductCode', 'AAE', 'cp', 'Indicates what product code to use to identify transactions from CarePlanner', 1);
+INSERT [CONFIG].[APPL_CONFIG] ([APPL_CONFIG_CODE], [APPL_CONFIG_CTGY_CODE], [APPL_CONFIG_VAL], [APPL_CONFIG_TXT], [EDITABLE_FLAG]) VALUES ('AAEDefaultActTemplate', 'AAE', NULL, 'Determines default Route To/Activity Template if no matching Rule is found', 1);
+INSERT [CONFIG].[APPL_CONFIG] ([APPL_CONFIG_CODE], [APPL_CONFIG_CTGY_CODE], [APPL_CONFIG_VAL], [APPL_CONFIG_TXT], [EDITABLE_FLAG]) VALUES ('AAEDefaultActTemplateUser', 'AAE', NULL, 'Determines default Route To/Activity Party if no matching Rule is found', 1);
+INSERT [CONFIG].[APPL_CONFIG] ([APPL_CONFIG_CODE], [APPL_CONFIG_CTGY_CODE], [APPL_CONFIG_VAL], [APPL_CONFIG_TXT], [EDITABLE_FLAG]) VALUES ('AAEDefaultApproveStatusReason', 'AAE', 'MEDRSR1', 'Approval type status reason code for detail lines created in CarePlanner as the result of an approval returned from the auto approval engine', 1);

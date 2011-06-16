@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:alineo="http://medecision.com/alineo/taglib"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<head>
+		<title>Test</title>
+		<link rel="stylesheet" type="text/css"
+			href="./xmlhttp/css/rime/rime.css" />
+			<link rel="stylesheet" type="text/css" href="${request.contextPath}/css/accordion.css" />
+	</head>
+	<body>
+		<ui:composition>
+			<alineo:beanSet target="#{block}" property="hotkey" value="#{hotkey}" />
+			<!-- <alineo:beanSet target="#{block}" property="instanceId" value="#{id}" /> -->
+			
+			<c:if test="#{empty panelMode}">
+				<c:set var="panelMode" value="#{false}" />
+			</c:if>
+			<!-- <alineo:beanSet target="#{processNav.blockMap}" property="#{id}"
+				value="#{block}" /> -->
+			<c:if test="#{panelMode and not empty visible}">
+				<alineo:beanSet target="#{block}" property="blockVisible"
+					value="#{visible}" />
+			</c:if>
+
+			<alineo:subform id="block_#{block.instanceId}_form" binding="#{block.contents}"
+				rendered="#{block.blockVisible}">
+				<c:if test="#{empty requiredForSaveAll}">
+					<c:set var="requiredForSaveAll" value="#{true}" />
+				</c:if>
+				<f:attribute name="requiredForSaveAll" value="#{requiredForSaveAll}" />
+				<c:if test="#{panelMode}">
+					<alineo:accordion 
+						name="#{block.blockName}">
+						<c:set var="name" value="" />
+						<ui:define name="before_header">
+							<a name="##{block.instanceId}_anchor" />
+						</ui:define>
+						<ui:include src="#{src}" />
+					</alineo:accordion>
+				</c:if>
+				<c:if test="#{not panelMode}">
+					<alineo:worksheet rendered="#{block.blockVisible}"
+						name="#{block.blockName}">
+						<c:set var="name" value="" />
+						<ui:define name="before_header">
+							<a name="#{block.instanceId}_anchor" />
+						</ui:define>
+						<ui:include src="#{src}" />
+					</alineo:worksheet>
+				</c:if>
+			</alineo:subform>
+		</ui:composition>
+	</body>
+</html>

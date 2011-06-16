@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core">
+
+	<ui:composition>
+
+
+		<c:if test="#{empty tooltipVisible}">
+			<c:set var="tooltipVisible" value="true" />
+		</c:if>
+		<c:if test="#{empty visible}">
+			<c:set var="visible" value="true" />
+		</c:if>
+		<c:if test="#{empty align}">
+			<c:set var="align" value="text-align: left;" />
+		</c:if>
+		<c:if test="#{empty firstStyle}">
+			<c:set var="firstStyle" value="margin-left:0;" />
+		</c:if>
+		<c:if test="#{not empty key and empty sortKey}">
+			<c:set var="sortKey" value="#{key}" />
+		</c:if>
+
+		<c:if test="#{empty sortable}">
+			<c:set var="sortable" value="false" />
+			<c:if test="#{not empty sortKey}">
+				<c:set var="sortable" value="true" />
+			</c:if>
+		</c:if>
+
+		<c:if test="#{not empty value}">
+			<c:set var="id" value="#{__obj.id}" />
+		</c:if>
+		<c:if test="#{empty value and not empty key}">
+			<c:set var="value" value="#{__obj[key]}" />
+			<c:set var="id" value="#{__obj['id']}" />
+		</c:if>
+		<c:if test="#{empty marginStyle}">
+			<c:set var="marginStyle" value="margin-left:0;" />
+		</c:if>
+
+
+
+		<ice:column style="#{style}" rendered="#{visible}">
+			<f:facet name="header">
+				<!-- <ice:outputText value="#{name}" /> -->
+				<ice:panelGroup style="#{firstStyle}">
+					<ice:panelGroup style="#{align}">
+						<table style="#{marginStyle}">
+							<tr>
+								<td>
+									<c:choose>
+										<c:when test="#{sortable}">
+											<ice:panelGroup>
+												<ice:commandSortHeader columnName="#{sortKey}">
+													<ice:panelGroup style="#{align}" styleClass="strong arrow whiteSpace">
+														<ice:outputText nospan="true" value="#{name}" />
+													</ice:panelGroup>
+												</ice:commandSortHeader>
+											</ice:panelGroup>
+										</c:when>
+										<c:otherwise>
+												<ice:panelGroup styleClass="strong whiteSpace">
+													<ice:outputText nospan="true" value="#{name}" />
+												</ice:panelGroup>
+										</c:otherwise>
+									</c:choose>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<ui:insert name="header" />
+								</td>
+							</tr>
+						</table>
+					</ice:panelGroup>
+				</ice:panelGroup>
+			</f:facet>
+
+
+			<ui:insert name="rowSelector"/>
+			<ice:panelGroup contextValue="#{id}" style="#{align}">
+				<c:if test="#{tooltipVisible}">
+					<f:attribute name="panelTooltip" value=":::staticTooltip" />
+				</c:if>
+				<ui:insert name="cell">
+					<ice:outputText value="#{value}">
+						<c:if test="#{not empty datePattern}">
+							<f:convertDateTime type="date" pattern="#{datePattern}" />
+						</c:if>
+					</ice:outputText>
+				</ui:insert>
+			</ice:panelGroup>
+
+
+
+		</ice:column>
+	</ui:composition>
+
+</html>

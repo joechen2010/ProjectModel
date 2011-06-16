@@ -1,0 +1,284 @@
+<jsp:root xmlns:f="http://java.sun.com/jsf/core"
+          xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:ice="http://www.icesoft.com/icefaces/component"
+          xmlns:med="http://medecision.com">
+		
+		<link href="../utils/header.css" media="screen" rel="stylesheet" type="text/css" />
+		
+		<script type="text/javascript">
+            function closeCLBrowser() {
+                var isCLBrowserInitialized = document.getElementById('mainForm:clBrowserInitialized').value;
+                if (isCLBrowserInitialized == "true"){
+                    var clUrl = document.getElementById('mainForm:clURL').value;
+                    // overlay the CL Browser window using default sessionid as Target
+                    clWindow=window.open(clUrl+"/clwebservices/html/frSplash.aspx","WSESSION1"); 
+                    // close the CL Browser Window
+                    clWindow.close();
+                }
+            }
+	    
+
+            function openIMModule()
+            {
+            	var memberDetailsPage = document.getElementById('mainForm:tabType');
+            	var tabType;
+            	if(memberDetailsPage != null)
+            	{
+            		tabType = memberDetailsPage.value;
+            	}
+            	else
+            	{
+            		tabType = 'null';
+            	}
+            	
+            	var contextpath = document.getElementById('mainForm:contextPath').value;
+            	var url = contextpath + 'interactionmanagement/interactionManagement.iface?tabType='+ tabType;
+            	document.getElementById('nonRecordButton').style.visibility="hidden";
+            	document.getElementById('recordButton').style.visibility="visible";
+            	var width = document.body.clientWidth +20;
+            	var height = document.body.clientHeight - 180 ;
+            	startLoc = screen.height - (height +180 )- 25 ;
+            	var param = 'dialogHeight:'+ (height-30) +'px;dialogWidth:'+ width +'px;dialogTop: '+ startLoc +'px;status: No;resizable:no;help:no;';
+            	retVal=window.showModalDialog(url,"Interaction Management",param);
+            	if(retVal=="true"){
+            		document.getElementById('recordButton').style.visibility="visible";
+            		document.getElementById('nonRecordButton').style.visibility="hidden";
+            	}else{
+            		document.getElementById('recordButton').style.visibility="hidden";
+            		document.getElementById('nonRecordButton').style.visibility="visible";
+            	}
+            }
+                        
+
+            function openPopup()
+            {
+            	var url = document.getElementById('mainForm:contextPath').value;
+            	url += "contacts/Contacts.iface?contactParam=fetchMemberData";
+            	var width = screen.width - 5;
+				var height = screen.height;
+				startLoc = height - 580;
+				var param = 'dialogHeight:'+ (height-188) +'px;dialogWidth:'+ width +'px;dialogTop: '+ startLoc +'px;status: No;resizable:no;help:no;';
+            	window.showModalDialog(url ,'Contact List',param);
+            }
+                       
+        </script>
+        <ice:inputHidden id="clBrowserInitialized" value="#{ClientLetterView.clBrowserInitialized}" immediate="true"></ice:inputHidden>
+       	<ice:inputHidden id="clURL" value="#{ClientLetterView.clURL}" immediate="true"></ice:inputHidden>
+       	<ice:inputHidden id="contextPath" value="#{HeaderBean.contextPath}" immediate="true"/>
+		<div class="header">
+			<ice:panelGrid styleClass="headerRow1" cellpadding="0" cellspacing="0" columns="3" columnClasses="headerRow1Col1,headerRow1Col2,headerRow1Col3">
+				<ice:column>
+					<ice:panelGrid cellpadding="0" cellspacing="0" columns="3" >
+						<ice:column>
+							<div class="alineoLogoButton">
+								<ice:commandLink id="alineoLogoLink" action="#{HomepageNavigationBean.openHomepageTasks}" immediate="true"/>
+							</div>
+						</ice:column>
+						<ice:column>
+							<div>
+								<ice:graphicImage value="/images/hdr_queue_vert_rule.png" rendered="#{HeaderBean.homepage}"/>
+								<ice:panelGroup rendered="#{!HeaderBean.homepage}" styleClass="patient_info"></ice:panelGroup>
+							</div>
+						</ice:column>
+						<ice:column>
+							<div class="headerAlineoHome">
+								<ice:outputText value="Home" rendered="#{HeaderBean.homepage}"/>
+								<ice:panelGroup rendered="#{!HeaderBean.homepage}">
+									<ice:outputText id="memberName" styleClass="headerMemberName" value="#{HeaderBean.mainTitle}"/>
+									<ice:commandLink id="hideAlertCommandLink" styleClass="#{HeaderBean.alertStyleClass}" title="#{HeaderBean.alertsTitle}"/>
+								</ice:panelGroup>
+							</div>
+						</ice:column>
+					</ice:panelGrid>
+				</ice:column>
+				<ice:column>
+					<ice:panelGrid cellpadding="0" cellspacing="0" columns="2" styleClass="headerRow1Col22">
+						<ice:column>
+							<div class="headerSeperator" >
+								<ice:graphicImage value="/images/hdr_queue_vert_rule.png" />
+							</div>
+						</ice:column>
+						<ice:column>
+							<ice:outputText style="text-align: left;" id="userName" value="Welcome #{loginBean.currUser.fullName}" styleClass="headerWelcomeMessage"/>
+						</ice:column>
+					</ice:panelGrid>
+				</ice:column>
+				<ice:column>
+					<ice:panelGrid cellpadding="0" cellspacing="5" columns="2" columnClasses="helpButton,logoutButton" styleClass="headerRow2Col22">
+						<ice:column>
+							<ice:commandLink id="helpCommandLink" onclick="javascript:window.open('#{facesContext.externalContext.request.contextPath}/WebHelp/index.htm','Help_Window');"
+											 style="cursor:pointer" />
+						</ice:column>
+						<ice:column>
+							<ice:commandLink id="logOffCommandLink" action="#{loginBean.logoff}" immediate="true" onclick="closeCLBrowser();"/>
+						</ice:column>
+					</ice:panelGrid>
+				</ice:column>
+			</ice:panelGrid>
+			<ice:panelGrid styleClass="headerRow2" cellpadding="0" cellspacing="0" columns="3" columnClasses="headerRow1Col1,headerRow1Col2,headerRow1Col3">
+				<ice:column>
+					<div class="headerMenuBar">
+						<ice:panelGrid columns="2" rendered="#{HeaderBean.homepage}">
+							<ice:column>
+								<span class="administrationButton">
+									<ice:commandLink  id="adminLink" rendered="#{HomepageNavigationBean.administrationPrivilege}"
+													  action="#{HomepageNavigationBean.openAlineoAdmin}" immediate="true" />
+								</span>
+							</ice:column>
+							<ice:column>
+								<ice:menuBar id="homepageMenuBar" orientation="Horizontal">
+									<ice:menuItem value="" id="alineoSearch">
+									    <ice:menuItem action="#{HomepageNavigationBean.openProviderSearch}"
+									                  id="providerSearchMenuItem" value="Provider Search">
+									    </ice:menuItem>
+									    <ice:menuItem id="memberSearchMenuItem" value="Member Search" 
+									    			  action="#{HomepageNavigationBean.openMemberSearch}">
+									    </ice:menuItem>
+									    <ice:menuItem id="requestSearchMenuItem" value="Request Search" 
+									    			  action="#{HomepageNavigationBean.openTreatmentRequestSearch}"
+									    			  rendered="#{ ComprehensiveMemberViewBean.hasViewRequestPriv}">
+									    </ice:menuItem>
+									</ice:menuItem>
+	             				</ice:menuBar>
+	             			</ice:column>
+	             		</ice:panelGrid>
+	             		<ice:panelGroup rendered="#{HeaderBean.displayDataRendered}">
+             				<ice:panelGrid columns="9" cellpadding="0" cellspacing="0"
+             							   columnClasses="displayComponentCol,,displayComponentCol,,displayComponentCol,,displayComponentCol,,displayComponentCol">
+             					<ice:column>
+             						<ice:panelGrid columns="2" cellpadding="0" cellspacing="0" columnClasses="displayComponentLabel,displayComponentText">
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component1.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong" value="#{HeaderBean.headerDisplayComponents.component1.displayValue} "/>
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component2.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong" value="#{HeaderBean.headerDisplayComponents.component2.displayValue} "/>
+             							</ice:column>
+             						</ice:panelGrid>
+             					</ice:column>
+             					<ice:column>
+             						<div class="headerSeperator">
+										<ice:graphicImage value="/images/headerVertDataSeperator.png" />
+									</div>
+             					</ice:column>
+             					<ice:column>
+             						<ice:panelGrid columns="2" cellpadding="0" cellspacing="0" columnClasses="displayComponentLabel,displayComponentText">
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component3.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong" value="#{HeaderBean.headerDisplayComponents.component3.displayValue} "/>
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component4.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong" value="#{HeaderBean.headerDisplayComponents.component4.displayValue} "/>
+             							</ice:column>
+             						</ice:panelGrid>
+             					</ice:column>
+             					<ice:column>
+             						<div class="headerSeperator">
+										<ice:graphicImage value="/images/headerVertDataSeperator.png" />
+									</div>
+             					</ice:column>
+             					<ice:column>
+             						<ice:panelGrid columns="2" cellpadding="0" cellspacing="0" columnClasses="displayComponentLabel2,displayComponentText">
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component5.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong-nowrap" value="#{HeaderBean.headerDisplayComponents.component5.displayConcatenatedValue} " title="#{HeaderBean.headerDisplayComponents.component5.displayValue}"/>
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component6.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong-nowrap" value="#{HeaderBean.headerDisplayComponents.component6.displayConcatenatedValue} " title="#{HeaderBean.headerDisplayComponents.component6.displayValue}"/>
+             							</ice:column>
+             						</ice:panelGrid>
+             					</ice:column>
+             					<ice:column>
+             						<div class="headerSeperator">
+										<ice:graphicImage value="/images/headerVertDataSeperator.png" />
+									</div>
+             					</ice:column>
+             					<ice:column>
+             						<ice:panelGrid columns="2" cellpadding="0" cellspacing="0" columnClasses="displayComponentLabel,displayComponentText">
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component7.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong" value="#{HeaderBean.headerDisplayComponents.component7.displayValue} "/>
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText value="#{HeaderBean.headerDisplayComponents.component8.displayLabel}" />
+             							</ice:column>
+             							<ice:column>
+             								<ice:outputText styleClass="strong" value="#{HeaderBean.headerDisplayComponents.component8.displayValue} "/>
+             							</ice:column>
+             						</ice:panelGrid>
+             					</ice:column>
+             					<ice:column>
+             						<div class="headerSeperator">
+										<ice:graphicImage value="/images/headerVertDataSeperator.png" />
+									</div>
+             					</ice:column>
+             					<ice:column>
+             						<div class="detailsButton" style="width: 80px;">
+	             						<ice:commandLink id="headBeanDetailLink" action="#{HeaderBean.doAction}" 
+	             										 title="#{HeaderBean.actionTitle}" rendered="#{HeaderBean.actionAvailable}">
+											<f:param name="#{HeaderBean.actionParameterName1}" value="#{HeaderBean.actionParameterValue1}" />
+											<f:param name="#{HeaderBean.actionParameterName2}" value="#{HeaderBean.actionParameterValue2}" />
+										</ice:commandLink>&#160;
+									</div>
+									<div style="width: 80px;">
+										<ice:outputLink id="onClickActionLink" styleClass="#{HeaderBean.action2StyleClass}" onclick="#{HeaderBean.action2OnClickEvent}" value="#"></ice:outputLink>
+										&#160;
+									</div>
+             					</ice:column>
+             				</ice:panelGrid>
+	             		</ice:panelGroup>
+	             		
+	             	</div>
+	             	
+				</ice:column>
+				
+				<ice:column>
+				<ice:panelGrid columns="1" columnClasses="contactHomeDivStyle">
+	             		<ice:column>
+	             			<ice:commandLink rendered="#{ContactInfoBean.memberDisplayContactsPopup}" styleClass="contactButtonStyle" value="" onclick="openPopup();" immediate="true"/>
+	             			<ice:graphicImage rendered="#{ContactInfoBean.memberDisableContactsPopup}" styleClass="contactImageStyle" url="/images/contacts_80x30Pixel_disabled.png"/>
+	             		</ice:column>
+	             	</ice:panelGrid>
+				<ice:panelGrid>
+					<ice:column>
+						<ice:portlet styleClass="IMDivStyle">
+							<div id="nonRecordButton">
+								<ice:commandLink  styleClass="IMButtonStyle"  onclick="openIMModule();" rendered="#{InteractionUtilityBean.imButtonPresent}" />
+							</div>
+							<div id="recordButton" style="visibility: hidden;">
+								<ice:commandLink id="recordingState"  styleClass="IMRecordButtonStyle" onclick="openIMModule();" rendered="#{InteractionUtilityBean.imButtonPresent}" />
+							</div>
+							<div>
+								<ice:commandLink id="continueRecordingState"  styleClass="IMRecordButtonStyle" onclick="openIMModule();" rendered="#{InteractionUtilityBean.recordStatus and InteractionUtilityBean.imButtonPresent}" />
+							</div>							
+						</ice:portlet>
+					</ice:column>
+				</ice:panelGrid>
+				
+				</ice:column>
+							
+				<ice:column>
+					<ice:graphicImage value="/images/hdr_logo.png" />
+				</ice:column>
+			</ice:panelGrid>
+		</div>
+		<jsp:directive.include file="/alineo/breadCrumbs.jspx" />
+		<div class="headerShadowBorder">&#160;</div>
+</jsp:root>

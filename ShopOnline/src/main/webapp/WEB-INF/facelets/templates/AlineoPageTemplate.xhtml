@@ -1,0 +1,32 @@
+<ui:decorate
+    xmlns:f="http://java.sun.com/jsf/core"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:alineo="http://medecision.com/alineo/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	template="/WEB-INF/facelets/templates/AlineoBasicTemplate.xhtml">
+	
+	<ui:param name="showBreadcrumbBar" value="true" />
+	
+	<ice:panelGrid columns="1" style="width:100%;">
+		<ice:column>
+			<ice:panelGrid columns="1" styleClass="content_title_table">
+				<ice:column styleClass="title">
+					<ui:insert name="pageHeaderTitle" />
+				</ice:column>
+				<ice:column styleClass="links">
+					<div class="headerLinks">
+						<ui:insert name="pageHeaderLinks" />
+					</div>
+				</ice:column>
+			</ice:panelGrid>
+		</ice:column>
+		<ice:column>
+			<div>
+				<ui:insert />
+			</div>
+		</ice:column>
+	</ice:panelGrid>
+</ui:decorate>

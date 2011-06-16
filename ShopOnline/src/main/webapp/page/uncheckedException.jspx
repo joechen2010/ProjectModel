@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<jsp:root  version="1.2"
+		   xmlns:jsp="http://java.sun.com/JSP/Page"
+		   xmlns:f="http://java.sun.com/jsf/core"
+		   xmlns:ice="http://www.icesoft.com/icefaces/component">
+	<jsp:directive.page contentType="text/html;charset=ISO-8859-1" pageEncoding="ISO-8859-1" />
+	<f:view>
+		<ice:outputDeclaration  doctypeRoot="html" 
+		    					doctypePublic="-//W3C//DTD HTML 4.01 Transitional//EN" 
+								doctypeSystem="http://www.w3.org/TR/html4/loose.dtd" /> 
+		<html>
+			<head>
+				<title>Alineo&#8482; by MEDecision</title>
+			    <meta http-equiv="pragma" content="no-cache" />
+				<meta http-equiv="cache-control" content="no-cache" />
+				<meta http-equiv="expires" content="0" />
+				<link rel="stylesheet" type="text/css" href="css/main.css"  />
+				<link rel="stylesheet" type="text/css" href="css/buttons.css" />
+				<link rel="stylesheet" type="text/css" href="css/unhandledException.css" />
+			
+<ice:outputStyle href="css/compatible.css" />
+</head>
+			<body>
+	    		<ice:form id="mainForm">
+					<div class="header">
+						<ice:panelGrid styleClass="headerRow2" cellpadding="0" cellspacing="0" columns="3" columnClasses="headerRow2Col1,headerRow2Col2">
+							<ice:column>
+							</ice:column>
+							<ice:column>
+								<ice:graphicImage value="images/logon_hdr_logo_alineo.png" />
+							</ice:column>
+						</ice:panelGrid>
+					</div>
+					<div class="errorPageMainBody">
+						<div class="headerShadowBorder">&#160;</div>
+						<div class="errorPageContent">
+							<div class="shadowedBGDiv">
+								<br/>
+								<ice:panelGrid columns="2" styleClass="errorDescGrid">
+									<ice:column>
+										<ice:graphicImage value="images/error_icon_30x30.png" />
+									</ice:column>
+									<ice:column>
+										<ice:outputText styleClass="errorLabelText" value="An error occurred from which Alineo is unable to recover." />
+									</ice:column>
+								</ice:panelGrid>
+							</div>
+							<br/>
+							<ice:panelGrid columns="2" styleClass="error_information_grid"
+										 columnClasses="error_information_grid_column1, error_information_grid_column2">
+								<ice:column>
+									<ice:outputText styleClass="errorLabelText" value="Transaction ID:  " />
+								</ice:column>
+								<ice:column>
+									<ice:outputText styleClass="errorLabelText" value="#{ExceptionBean.transactionId}" />
+								</ice:column>
+							</ice:panelGrid>
+							<ice:panelGrid columns="2" styleClass="error_information_grid"
+										 columnClasses="error_information_grid_column1, error_information_grid_column2">
+								<ice:column>
+									<ice:outputText styleClass="errorLabelText" value="Server Host Name: " />
+								</ice:column>
+								<ice:column>
+									<ice:outputText styleClass="errorLabelText" value="#{ExceptionBean.applicationServerHostName}" />
+								</ice:column>
+							</ice:panelGrid>
+							<ice:panelGrid columns="2" styleClass="error_information_grid"
+										 columnClasses="error_information_grid_column1, error_information_grid_column2">
+								<ice:column>
+									<ice:outputText styleClass="errorLabelText" value="Server IP Address: " />
+								</ice:column>
+								<ice:column>
+									<ice:outputText styleClass="errorLabelText" value="#{ExceptionBean.applicationServerIPAddress}" />
+								</ice:column>
+							</ice:panelGrid>	
+							<br/>
+							<ice:panelGroup styleClass="errorInformationDiv2">
+								<ice:outputText styleClass="errorLabelText" value="You must log out and log on again to resume.  
+																				   You may need to re-enter information from the previous page. 
+																				   Click log out to return to the login page or show details to see details of the error." />
+							</ice:panelGroup>
+							<br/>
+							<ice:panelGroup styleClass="errorInformationDiv">
+								<ice:panelGrid columns="2" styleClass="errorDescGrid" 
+											   cellpadding="5" cellspacing="5"
+											   columnClasses="errorDescGridCol1,errorDescGridCol2">
+									<ice:column>
+										<ice:commandLink action="#{loginBean.logoff}"
+													     title="Log Out" value="Log out" immediate="true" 
+													     id="clickLogoutLink" />
+									</ice:column>
+									<ice:column>
+										<ice:commandLink action="#{ExceptionBean.openErrorDetails}"
+													     title="Show Details" value="Show Details" immediate="true"
+													     id="showDetailsLink" />
+									</ice:column>
+								</ice:panelGrid>
+							</ice:panelGroup>
+							<br/>
+							
+							<div class="copyrightFooter" id="copyrightText">
+			                    <ice:outputText value="#{bundle.copyright}"/>
+			                </div>
+			            </div>
+		            </div>
+					<ice:panelPopup id="requestPnlPop"
+					      			draggable="false" modal="true"
+					             	rendered="#{ExceptionBean.stackDetailRendered}"
+									autoCentre="true" styleClass="popDivStyle">
+						<f:facet name="header">
+							<ice:panelGrid columns="2" styleClass="popupHeaderGrid" id="popupHdrGrid"
+										   columnClasses="popupHeaderGridCol1,popupHeaderGridCol2">
+								<ice:column>
+									<ice:outputText id="viewErrorDesc" value="Viewing details for error #{ExceptionBean.transactionId}" />
+								</ice:column>
+								<ice:column>
+									<ice:commandButton id="errorMsgCloseBtn" type="button"
+									                   image="css/css-images/cal_off.gif"
+									                   actionListener="#{ExceptionBean.closeErrorPopup}"
+									              	   title="Close Error Details" alt="Close"/>
+								</ice:column>
+							</ice:panelGrid>
+						</f:facet>
+                        <f:facet name="body" id="errorDetailBodyFacet">
+                        	<ice:panelGroup>
+								<br /><br />
+								<ice:outputText id="stackTraceErrorText"
+											  value="The stack trace of the error is as follows:" />
+								<br/>
+								<ice:inputTextarea id="stackTractTextArea"
+												 value="#{ExceptionBean.stackTrace}" rows="20" cols="100"
+												 readonly="true" />
+								<ice:inputHidden id="hiddenErrorMessage"
+											   value="An unexpected error has occured in the application" />
+								<br/><br/><br/>
+							</ice:panelGroup>
+						</f:facet>
+					</ice:panelPopup>
+				</ice:form>
+			</body>
+		</html>
+	</f:view>
+</jsp:root>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<ui:composition>
+		<c:if test="#{empty rowName}">
+	   		<c:set var="rowName" value="row" />
+		</c:if>
+		<c:if test="#{empty loc }">
+			<c:set var="loc" value="" />
+		</c:if>
+		
+	    <ice:panelGroup id="#{tableId}_data_paginator1_pg_#{loc}">
+		      <center>
+		        <ice:dataPaginator id="#{tableId}_data_paginator1_#{loc}"
+		                   for="#{tableId}"
+		                   rowsCountVar="rowsCount"
+		                   displayedRowsCountVar="displayedRowsCountVar"
+		                   firstRowIndexVar="firstRowIndex"
+		                   lastRowIndexVar="lastRowIndex"
+		                   pageCountVar="pageCount"
+		                   pageIndexVar="pageIndex">
+		            <!--  <ice:outputFormat value="{0} {1}(s) found, displaying {2} {3}(s), from {4} to {5}. Page {6} / {7}."
+		                              styleClass="standard">-->
+		            <ice:outputFormat value="Records {4}-{5} of {0}, Page {6} of {7}."
+		                              styleClass="standard">
+		                <f:param value="#{rowsCount}"/>
+		                <f:param value="#{rowName}"/>
+		                <f:param value="#{displayedRowsCountVar}"/>
+		                <f:param value="#{rowName}"/>
+		                <f:param value="#{firstRowIndex}"/>
+		                <f:param value="#{lastRowIndex}"/>
+		                <f:param value="#{pageIndex}"/>
+		                <f:param value="#{pageCount}"/>
+		            </ice:outputFormat>
+		        </ice:dataPaginator>
+		       </center>
+		 </ice:panelGroup>
+</ui:composition>
+
+</html>

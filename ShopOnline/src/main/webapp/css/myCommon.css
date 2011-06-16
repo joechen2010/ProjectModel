@@ -1,0 +1,72 @@
+body
+{
+	BACKGROUND: #EFEACA;
+	MARGIN-TOP:10px;
+	margin-left:10px;
+	FONT-SIZE:9pt;
+	word-break:break-all;
+}
+
+TABLE { border: 0px; padding: 0px; margin: 0px; }
+
+FORM { margin: 0px; padding: 0px; border: 0px;} 
+
+a{text-decoration: none; color: #135da6;cursor:pointer;}
+
+a:hover{TEXT-DECORATION:underline;}
+
+td
+{
+	FONT-SIZE:9pt;
+	word-break:break-all;
+}
+
+.STYLE1 {
+	color: #FFFFFF;
+	font-size: 12px;
+}
+.FrameLeftMenu {background-color: #FF8951;}
+
+#CommonBreadCrumbArea {
+	text-align: left;
+	font-weight: bold;
+	color: #000000;
+	HEIGHT: 20px;
+}
+
+#CommonListArea{BACKGROUND-COLOR: #a6c7e7;MARGIN-TOP: 5px;border: 1px solid #135da6;}
+
+#CommonListTitle{background-color: #135da6;COLOR:#FFFFFF;FONT-WEIGHT:bold;}
+
+#CommonListTitle a{COLOR:#FFFFFF;}
+
+#CommonListHeader{BACKGROUND-COLOR: #EFEFEF;}
+
+#CommonListCell{BACKGROUND-COLOR: #FFFFFF;}
+
+#dhtmlfloatie{
+position: absolute;
+left: 0;
+left: -900px;
+filter:alpha(opacity=0);
+-moz-opacity:0;
+border: 2px solid black;
+padding: 5px;
+z-index: 100;
+}
+
+.button {
+	BACKGROUND-IMAGE:url(../images/search.gif);
+	BORDER-TOP-WIDTH: 0px;
+	MARGIN-TOP: -1px;
+	PADDING-LEFT: 12px;
+	BORDER-LEFT-WIDTH: 0px;
+	BORDER-BOTTOM-WIDTH: 0px;
+	WIDTH: 70px;
+	HEIGHT: 23px;
+	cursor: hand;
+	BORDER-RIGHT-WIDTH: 0px;
+}
+.header_TR_Title { border-color: #F1F4FE; text-align: center; }
+.header_TR_Title td { background-color: #FFFFFF; }
+.f_c_1{color:#000000}

@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+
+	<ui:component>
+		<c:set var="filterDateLabel" value="Due Date: " />
+		<c:set var="filterFollowUpDateLabel" value="Follow Up Date: " />
+		<c:set var="radioItemLabel1" value="Today " />
+		<c:set var="radioItemLabel2" value="Prior to Today" />
+		<c:set var="radioItemLabel3" value="Range " />		
+		<c:if test="#{type == 'programs'}">
+			<c:set var="filterDateLabel" value="Start Date:" />
+		</c:if>
+		<ice:panelGroup>
+			<center>
+				<ice:panelGrid columns="2" columnClasses="verticalTop,verticalTop"
+					id="dateGrid">
+					<ice:column>
+						<c:choose>
+							<c:when test="#{type == 'requests'}">
+								<div>
+									<ice:selectOneMenu id="filterDateDescSelectMenu"
+										value="#{dateType}" partialSubmit="true"
+										style="margin-top: 3px; font-size: 8pt;"
+										valueChangeListener="#{bean[dateTypeValueChangeListener]}">
+										<f:selectItems value="#{bean.dateTypeSelectItems}"/>
+									</ice:selectOneMenu>
+								</div>
+							</c:when>
+							<c:when test="#{type == 'topics'}">
+							<div style="margin-top: 7px;">
+								<ice:outputText id="filterFollowUpDateDesc" value="#{filterFollowUpDateLabel}" />
+							</div>
+							</c:when>
+							<c:otherwise>
+								<div style="margin-top: 7px;">
+									<ice:outputText id="filterDateDesc" value="#{filterDateLabel}" />
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</ice:column>
+					<ice:column>
+						<ice:panelGrid columns="2" columnClasses="verticalTop,verticalTop"
+							id="dateRadioGrid">
+							<ice:column>
+								<ice:selectOneRadio style=" font-size: 8pt; border: 0px; padding-left:0px; padding-right:0px"
+									layout="lineDirection" value="#{filterType}" id="dateRadio"
+									partialSubmit="true"
+									valueChangeListener="#{bean[filterTypeValueChangeListener]}">
+									<f:selectItem itemValue="today" itemLabel="#{radioItemLabel1}"
+										id="dateRadioToday" />
+									<c:choose>
+										<c:when test="#{type == 'programs'}">
+											<f:selectItem itemValue="overdue"
+										itemLabel="#{radioItemLabel2}" id="dateRadioOverdue" />
+										</c:when>
+										<c:otherwise>
+											<f:selectItem itemValue="overdue"
+										itemLabel="#{radioItemLabel2} (#{numOverdue})" id="dateRadioOverdue" />
+										</c:otherwise>
+									</c:choose>
+									
+									<f:selectItem itemValue="range" itemLabel="#{radioItemLabel3}"
+										id="dateRadioRange" />
+								</ice:selectOneRadio>
+							</ice:column>
+							<ice:column>
+								<ice:panelGroup style="width: 250px;text-align:left;"
+									effect="#{rangeEffect}" id="rangeContainer">
+									<div style="width: 250px; margin-top: -5px;">
+										<ice:panelGrid columns="3" id="dueDateGrid">
+											<ice:column>
+												<ice:selectInputDate value="#{fromDate}" id="fromDate"
+													partialSubmit="true" disabled="#{filterType != 'range'}"
+													renderAsPopup="true" renderMonthAsDropdown="true"
+													renderYearAsDropdown="true">				
+													<f:converter converterId="CustomDateConverter" />
+													<f:validator validatorId="CustomDateValidator" />
+												</ice:selectInputDate>
+											</ice:column>
+											<ice:column>
+												<ice:selectInputDate value="#{toDate}" id="toDate"
+													popupDateFormat="#{dateFormat}"
+													disabled="#{filterType != 'range'}" partialSubmit="true"
+													renderAsPopup="true" renderMonthAsDropdown="true"
+													renderYearAsDropdown="true">
+													<f:converter converterId="CustomDateConverter" />
+													<f:validator validatorId="CustomDateValidator" />
+												</ice:selectInputDate>
+											</ice:column>
+											<ice:column>
+												<span class="taskListLink"> &#160;&#160;<ice:commandLink
+														value="Refresh" rendered="#{filterType == 'range'}"
+														id="refreshLink"
+														action="#{bean[refreshAction]}" /> </span>
+											</ice:column>
+										</ice:panelGrid>
+									</div>
+								</ice:panelGroup>
+							</ice:column>
+						</ice:panelGrid>
+					</ice:column>
+				</ice:panelGrid>
+			</center>
+		</ice:panelGroup>
+	</ui:component>
+
+
+</html>

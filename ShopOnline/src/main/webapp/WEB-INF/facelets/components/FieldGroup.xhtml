@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:test="http://medecision.com/alineo/taglib/test"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<head>
+		<title>Test</title>
+		<link rel="stylesheet" type="text/css"
+			href="./xmlhttp/css/rime/rime.css" />
+	</head>
+	<body>
+		<ui:component rendered="#{empty rendered or rendered}">
+			<!-- <c:if test="#{not empty id}">
+				<f:attribute name="id" value="#{id}" />
+			</c:if> -->
+			<c:if test="#{empty hasEditButton}">
+				<c:set var="hasEditButton" value="#{false}" />
+			</c:if>
+			<ice:panelGroup styleClass="field-group-header">
+				<ui:insert name="header">
+					<ice:outputText value="#{name}" styleClass="field-group-title" />
+
+					<!-- <ice:commandLink value="Edit" immediate="true"
+						styleClass="editLink" rendered="#{hasEditButton}">
+						<f:setPropertyActionListener target="#{editable}" value="#{true}" />
+					</ice:commandLink> -->
+				</ui:insert>
+			</ice:panelGroup>
+			<ice:panelGroup styleClass="field-group clearfix #{styleClass}">
+				<ui:insert />
+			</ice:panelGroup>
+		</ui:component>
+	</body>
+</html>

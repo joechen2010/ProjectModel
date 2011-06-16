@@ -1,0 +1,58 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<div class="bcr" id="bcr">
+		<div class="bcr_right_end_cap"></div>
+		<ul>
+			<ice:panelSeries value="#{BreadCrumbBean.breadCrumbHistory}"
+				var="breadCrumb">
+				<ice:panelGroup rendered="#{breadCrumb.isFirst}">
+					<li class="first">
+						<ice:commandLink
+							value="#{BreadCrumbBean.firstBreadCrumb.displayText}"
+							action="#{BreadCrumbBean.executeBreadCrumbNavigation}"
+							actionListener="#{BreadCrumbBean.setRequestAttributes}">
+							<f:attribute name="actionMethod"
+								value="#{BreadCrumbBean.firstBreadCrumb.bindingMethod}" />
+							<f:attribute name="params"
+								value="#{BreadCrumbBean.firstBreadCrumb.params}" />
+						</ice:commandLink>
+						<div class="off"></div>
+						<div class="over"></div>
+					</li>
+				</ice:panelGroup>
+				<ice:panelGroup rendered="#{breadCrumb.isMiddleCrumb}">
+					<li>
+						<ice:commandLink value="#{breadCrumb.displayText}"
+							action="#{BreadCrumbBean.executeBreadCrumbNavigation}"
+							actionListener="#{BreadCrumbBean.setRequestAttributes}">
+							<f:attribute name="actionMethod"
+								value="#{breadCrumb.bindingMethod}" />
+							<f:attribute name="params" value="#{breadCrumb.params}" />
+						</ice:commandLink>
+						<div class="off"></div>
+						<div class="over"></div>
+					</li>
+				</ice:panelGroup>
+				<ice:panelGroup rendered="#{breadCrumb.isLast}">
+					<li class="on">
+						<a> <ice:outputText
+								value="#{BreadCrumbBean.lastBreadCrumb.displayText}" /> </a>
+						<div></div>
+					</li>
+				</ice:panelGroup>
+				<ice:panelGroup rendered="#{breadCrumb.isOnly}">
+					<li class="on">
+						<a> <ice:outputText
+								value="#{BreadCrumbBean.lastBreadCrumb.displayText}" /> </a>
+						<div></div>
+					</li>
+				</ice:panelGroup>
+			</ice:panelSeries>
+		</ul>
+	</div>
+</ui:composition>

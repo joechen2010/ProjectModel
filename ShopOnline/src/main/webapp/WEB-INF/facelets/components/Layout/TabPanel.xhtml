@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:composition>
+		<div class="tabs">
+		   <ice:panelGrid styleClass="tabGrid" columns="2" cellpadding="0" cellspacing="0" 
+			     		  columnClasses="tabGridCol1,tabGridCol2" id="tabGrid">
+			<!-- Tabs -->
+			<ice:column>
+				<ul>
+					<ui:insert/>
+				</ul>
+			</ice:column>
+			<!-- Links (change owner/print summary...) -->
+			<ice:column>                                     
+	            <ice:panelGrid style="margin-right: 8px;" columns="3" columnClasses="taskListLink,taskListLink" id="taskOptionsGrid">
+	                <ice:column>
+	                    <ice:outputText id="changeownerLinkDis" value="Change Owner" styleClass="taskListLinkDis" 
+	                                    rendered="#{!bean.renderChangeOwnerButton &amp;&amp; !bean.fromTopicsTab}"/>
+	                    <ice:commandLink actionListener="#{bean.openOwnerShip}" id="changeownerLink"
+	                                     value="Change Owner" rendered="#{bean.renderChangeOwnerButton &amp;&amp; !bean.fromTopicsTab}"/>
+	                </ice:column>
+	                <ice:column>
+	                    <ice:outputText id="optionsSeperator" value="|" rendered="#{!bean.fromTopicsTab}"/>
+	                </ice:column>
+	                <ice:column>
+	                    <ice:commandLink action="#{bean.openPrintSummaryReport}" id="printsummarylink"
+	                                     value="Print Summary" rendered="#{bean.hasRows}" />
+	                    <ice:outputText  id="printsummarylinkDis" styleClass="taskListLinkDis"
+	                                     value="Print Summary" rendered="#{!bean.hasRows}" />
+	                </ice:column>
+	            </ice:panelGrid>
+            </ice:column>
+			</ice:panelGrid>
+		</div>	   
+	</ui:composition>
+    
+</html>

@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd' xmlns='http://maven.apache.org/POM/4.0.0'>
+  <parent>
+    <artifactId>sql-parent</artifactId>
+    <groupId>com.joe</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
+  
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.joe</groupId>
+  <artifactId>install-sql</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>install-sql</name>
+  
+  
+  <profiles>
+  
+    
+    
+    <profile>
+      <id>if-dbms-is-oracle</id>
+      <activation>
+        <property>
+          <name>dbms</name>
+          <value>oracle</value>
+        </property>
+      </activation>
+      <modules>
+        <module>install-oracle-sql</module>
+      </modules>
+    </profile>
+    
+	<profile>
+      <id>if-dbms-is-mssql</id>
+      <activation>
+        <property>
+          <name>dbms</name>
+          <value>mssql</value>
+        </property>
+      </activation>
+      <modules>
+        <module>install-mssql-sql</module>
+      </modules>
+    </profile>  
+  </profiles>
+  
+</project>

@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:composition>
+		<ice:panelPopup id="modalErrorPop" draggable="false" modal="false"
+			visible="#{MessagesSupportBean.displayWindowMaximized}"
+			styleClass="messagesPanel">
+			<f:facet name="header">
+				<ice:panelGrid columns="2" styleClass="popupHeaderGrid"
+					id="popUpGrid"
+					columnClasses="popupHeaderGridCol1,popupHeaderGridCol2">
+					<ice:column>
+						<ice:outputText id="messagesOutputHeader" value="Messages" />
+					</ice:column>
+					<ice:column>
+						<ice:panelGroup>
+							<ice:commandButton id="minimizeMessagePopupWindowButton"
+								image="/css/css-images/PnlHdr_down.gif"
+								action="#{MessagesSupportBean.minimizeWindow}" immediate="true"
+								alt="Hide Messages" title="Hide Messages"></ice:commandButton>
+						</ice:panelGroup>
+					</ice:column>
+				</ice:panelGrid>
+			</f:facet>
+			<f:facet name="body">
+				<ice:panelGroup id="msgPanelPopupBodyPanel">
+					<div class="errorMessagesPopUpDiv">
+						<ice:panelGroup id="statusMessages" immediate="true">
+							<div class="iceMessages">
+								<ice:outputText value="#{MessagesSupportBean.messagesFromContext}" />
+								<ice:panelGroup rendered="#{MessagesSupportBean.error or MessagesSupportBean.warning}">
+									<ice:outputText rendered="#{MessagesSupportBean.error}" style="font-size: 12px; COLOR: #FF0000; font-family: verdana; font-weight: bold;" value="Errors" />
+									<ice:outputText rendered="#{MessagesSupportBean.warning}" style="font-size: 12px; color: #EEAD0E; font-family: verdana; font-weight: bold;" value="Warnings" />
+									<br />
+									<br />
+									<ice:outputText styleClass="textStyle" value="#{MessagesSupportBean.message}" escape="false" />
+								</ice:panelGroup>
+								<ice:panelGroup rendered="#{! (MessagesSupportBean.error or MessagesSupportBean.warning) }">
+									<ice:outputText style="color:black;font-size: 12px;"  value="#{MessagesSupportBean.message}" escape="false" />
+								</ice:panelGroup>
+								
+							</div>
+						</ice:panelGroup>
+					</div>
+				</ice:panelGroup>
+			</f:facet>
+		</ice:panelPopup>
+		<ice:panelPopup id="modalErrorPopMinimized" draggable="false"
+			modal="false" visible="#{MessagesSupportBean.displayWindowMinimized}"
+			style="z-index: 30000; bottom: 0%; left: 0%; position: fixed; width: 9%;">
+			<f:facet name="header">
+				<ice:panelGrid columns="2" styleClass="popupHeaderGrid"
+					id="popUpGridMinimized"
+					columnClasses="popupHeaderGridCol1,popupHeaderGridCol2">
+					<ice:column>
+						<ice:outputText id="messagesOutputHeaderMinimized"
+							value="Messages" />
+					</ice:column>
+					<ice:column>
+						<ice:panelGroup>
+							<ice:commandButton id="maximizeMessagePopupWindowButton"
+								image="/css/css-images/PnlHdr_up.gif"
+								action="#{MessagesSupportBean.maximizeWindow}" immediate="true"
+								alt="View Messages" title="View Messages"></ice:commandButton>
+						</ice:panelGroup>
+					</ice:column>
+				</ice:panelGrid>
+			</f:facet>
+			<f:facet name="body">
+			</f:facet>
+		</ice:panelPopup>
+	</ui:composition>
+
+
+</html>

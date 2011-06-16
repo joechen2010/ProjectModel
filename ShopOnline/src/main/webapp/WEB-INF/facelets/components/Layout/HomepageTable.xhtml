@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:alineo="http://medecision.com/alineo/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<head>
+		<title>alineo</title>
+	</head>
+	<body>
+		<ui:composition>
+			
+			<alineo:dynamicTable var="#{var}" styleClass="taskGrid"
+				firstColClasses="requestListTableSelectCol requestListTableIconCol"
+				lastColClasses="requestListTableGotoCol" headerClasses="#{headerClasses}"
+				tableModel="#{bean.dataTable}">
+				<ui:define name="first-cols">
+					<alineo:fancyColumn name="All" style="text-align:left;width:0;max-width:18px;"
+
+						firstStyle="margin-left:2px;">
+
+						<ui:define name="rowSelector">
+							<ice:rowSelector id="selectedRow" immediate="true"
+								dblClickDelay="300"
+								multiple="#{bean.hasChangeOwnerPermission}"
+								toggleOnInput="false" preStyleOnSelection="true"
+								value="#{__obj.selected}"
+								clickListener="#{detailBean.openDetailPopup}"
+								clickAction ="#{bean.showOrHideContactButton}" />
+						</ui:define>
+						<ui:define name="header">
+							<ice:panelGroup
+								rendered="#{bean.hasChangeOwnerPermission}"
+								id="checkAlldiv" style="margin-top: 2px;">
+								<ice:commandButton
+									image="#{(bean.dataTable.allSelected and alineo:length(bean.dataTable.filteredRows) > 0) ? '../images/checkbox_act.png' : '../images/checkbox.png'}"
+									action="#{bean.toggleAllSelected}" />
+							</ice:panelGroup>
+						</ui:define>
+						<ui:define name="cell">
+							<ice:panelGroup
+								rendered="#{bean.hasChangeOwnerPermission}"
+								id="checboxdiv" style="margin-top: 2px;width:18px;">
+								<ice:graphicImage value="/images/checkbox.png"
+									rendered="#{!__obj.selected}" />
+								<ice:graphicImage value="/images/checkbox_act.png"
+									rendered="#{__obj.selected}" />
+							</ice:panelGroup>
+							<ice:outputText id="seperator" value=" "
+								rendered="#{!bean.hasChangeOwnerPermission}" />
+						</ui:define>
+					
+					</alineo:fancyColumn>
+					
+
+				</ui:define>
+				<ui:define name="second-cols">
+					<alineo:fancyColumn firstStyle="text-align:center;width:#{arrowHeaderWidth};max-width:#{arrowHeaderWidth};">
+						<ui:define name="cell">
+							<ice:panelGroup style="max-width:#{arrowWidth};">
+								<ui:insert name="secondCol" />
+							</ice:panelGroup>
+						</ui:define>
+					</alineo:fancyColumn>
+				</ui:define>
+				<ui:define name="cmv-cols">
+					<alineo:fancyColumn firstStyle="width:35px;max-width:33px;">
+					<ui:define name="header">
+							<ice:panelGroup style="text-align:center;width:20px;" styleClass="strong arrow whiteSpace">
+														<ice:outputText nospan="true" value="CMV" />
+								</ice:panelGroup>
+					</ui:define>
+						<ui:define name="cell">
+							<div style="width:20px;">
+							<center>
+								<span class="launchArrow">
+									<ui:insert name="gotoLink" />
+								</span>
+							</center>
+							</div>
+						</ui:define>
+					</alineo:fancyColumn>
+				</ui:define>
+				
+				<ui:define name="workflow-cols">
+					<ui:insert name="gotoWorkFlow"/>
+				</ui:define>
+			
+			</alineo:dynamicTable>
+		</ui:composition>
+	</body>
+</html>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:test="http://medecision.com/alineo/taglib/test"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<head>
+		<title>Test</title>
+		<link rel="stylesheet" type="text/css"
+			href="./xmlhttp/css/rime/rime.css" />
+	</head>
+	<body>
+		<ui:component>
+			<ice:panelPopup draggable="false" modal="true" styleClass="#{styleClass} detailPopUp "
+				rendered="#{handler.visible}" visible="#{handler.visible}"
+				autoCentre="true">
+				<f:facet name="header">
+					<ice:panelGroup>
+						<ice:outputText value="#{name}" style="float:left"/>
+						<ice:commandLink style="float:right" actionListener="#{handler.close}" value="Close" />
+					</ice:panelGroup>
+				</f:facet>
+				<f:facet name="body">
+					<ice:panelGroup>
+						<ui:insert />
+					</ice:panelGroup>
+				</f:facet>
+			</ice:panelPopup>
+		</ui:component>
+	</body>
+</html>

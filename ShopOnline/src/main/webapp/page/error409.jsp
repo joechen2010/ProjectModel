@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<%@ page language="java" pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://java.sun.com/jsf/html" prefix="h" %>
+<%@ taglib uri="http://java.sun.com/jsf/core" prefix="f" %>
+
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<%@page import="com.med.security.authenticate.AuthenticationManager"%>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  	<head>
+<%
+    String loginPage = path + "/login.faces";
+    AuthenticationManager am = AuthenticationManager.getInstance();
+    if (am.ssoEnabled()) {
+    	loginPage = path + "/altLogin.faces";
+    }
+%>
+  <base href="<%=basePath%>"/>
+    <title>Alineo&#8482; by MEDecision</title>
+    <meta http-equiv="pragma" content="no-cache">
+	<meta http-equiv="cache-control" content="no-cache">
+	<meta http-equiv="expires" content="0">    
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta HTTP-EQUIV="REFRESH" content="5; url=<%=loginPage%>">
+	<link href="utils/screen_logon.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="utils/header_logon.css" media="screen" rel="stylesheet" type="text/css" >
+	<link href="utils/style.css" rel="stylesheet" type="text/css">
+	<script language="javascript" src="js/lib/jquery-compressed.js"></script>
+	<script language="javascript" src="js/login.js"></script>
+<%@ include file="genericHeaderInclude.jsp" %>
+</head>
+  
+<body onload="return oamSubmitForm('mainForm','mainForm:submitbutton');">
+<f:view>
+<h:form id="mainForm">
+<div class="hdr">
+	<div class="hdr_queue_utility">
+	<span class="hdr_home_link">Medecision</span>	</div>
+</div>
+<div class="cont">
+	<div class="cont_area">
+	<ul class="logon">
+		<li class="logon_left" style="padding-left:250px;">
+			<dl>
+				<dt class="logon_head">
+					<div style="text-align:center;padding-top:6px"><font class="subhead"><B>Session timed out</B></font></div>
+				</dt>
+				<dd style="text-align:center"><FONT CLASS="ttext">Your Alineo&#8482; session has timed out.</FONT></dd>
+				<dd style="text-align:center"><FONT CLASS="ttext">You should be redirected to the login page in 5 seconds.</FONT></dd>
+				<dd style="text-align:center">If Not, Click <a name="login" href="<%=loginPage%>" class="admin">here</a> to return to login</dd>
+				<dt class="logon_foot"></dt>
+			</dl>
+		</li>
+	</ul>
+	</div>
+</div>
+</h:form>
+</f:view>
+  </body>
+</html>

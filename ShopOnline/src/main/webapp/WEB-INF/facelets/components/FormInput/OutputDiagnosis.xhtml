@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:alineo="http://medecision.com/alineo/taglib">
+
+	<ui:composition>
+		<table>
+			<tr>
+				<td style="width: 15px">
+					<ice:graphicImage value="./images/req_dx_primary.png"
+						rendered="#{not empty primary and primary}" />
+				</td>
+				<td style="">
+					<ice:outputText styleClass="formLabelText" value="#{value.code}" />
+					<ice:outputText value=" - #{value.description}" />
+				</td>
+			</tr>
+		</table>
+	</ui:composition>
+
+</html>

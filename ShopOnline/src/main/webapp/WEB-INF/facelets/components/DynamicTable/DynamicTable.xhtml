@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:test="http://medecision.com/alineo/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<head>
+		<title>Test</title>
+		<ice:outputStyle href="${request.contextPath}/css/compatible.css" />
+	</head>
+	<body>
+		<ui:composition>
+			<c:if test="#{empty tooltipVisible}">
+				<c:set var="tooltipVisible" value="false" />
+			</c:if>
+
+			<!-- <test:fieldGroup name="Filters" tableId="table_filters"
+				rendered="#{fn:length(tableModel.filters) > 0}">
+				<ice:panelGrid style="width: 100%"
+					columns="#{fn:length(tableModel.filters) + 1}">
+					<c:forEach items="#{tableModel.filters}" var="f">
+						<ui:fragment binding="#{f.filterComponent}" />
+					</c:forEach>
+					<ice:panelGroup style="float:right">
+						<ice:commandLink actionListener="#{tableModel.clearFilters}"
+							value="Clear Filters" />
+						
+					</ice:panelGroup>
+				</ice:panelGrid>
+			</test:fieldGroup>
+			 -->
+			<test:fancyTable var="#{var}" styleClass="#{styleClass}" rows="#{tableModel.dataModel}"
+				tooltipVisible="#{tooltipVisible}" infoVisible="false"
+				sortColumn="#{tableModel.sortKey}"
+				sortAscending="#{tableModel.sortAscending}"
+				numRows="#{tableModel.rowsPerPage}" 
+				>
+				<ui:define name="columns">
+					<ui:insert name="first-cols" />
+					<ui:insert name="cmv-cols" />
+					<ui:insert name="workflow-cols" />
+					<ui:insert name="second-cols" />
+					<c:forEach items="#{tableModel.columns}" var="c">
+							<test:fancyColumn name="#{c.name}" key="#{c.key}"
+							visible="#{c.visible}" sortable="#{c.sortable}" firstStyle="#{c.cellStyleClass}">
+							<ui:define name="header">
+								<c:if test="#{not empty c.filter}">
+									<ui:fragment binding="#{c.filter.filterComponent}" />
+								</c:if>
+							</ui:define>
+							<ui:define name="cell">
+								<ice:panelGroup style="#{c.cellStyleClass}">
+									<ice:outputText nospan="true"
+										escape="false" value="#{test:format(__obj.data[c.key], c.format)}" />
+								</ice:panelGroup>
+							</ui:define>
+							</test:fancyColumn>
+					</c:forEach>
+				</ui:define>
+				<ui:define name="tooltipContents">
+					<ui:insert name="tooltipContents" />
+				</ui:define>
+			</test:fancyTable>
+		</ui:composition>
+	</body>
+</html>

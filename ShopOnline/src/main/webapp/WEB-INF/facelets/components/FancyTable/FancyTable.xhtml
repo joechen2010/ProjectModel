@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:test="http://medecision.com/alineo/taglib"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	
+	<ui:component>
+		<c:set var="saveRows" value="true" />
+		<c:if test="#{empty numRows or numRows eq -1}">
+			<c:set var="numRows" value="25" />
+			<c:set var="saveRows" value="false" />
+		</c:if>
+
+		<c:if test="#{empty id}">
+			<c:set var="id" value="listTable" />
+		</c:if>
+		<c:if test="#{empty columnClasses}">
+			<c:set var="columnClasses" value="" />
+		</c:if>
+		<c:if test="#{empty columnWidths}">
+			<c:set var="columnWidths" value="" />
+		</c:if>
+		<c:if test="#{empty headerClasses}">
+			<c:set var="headerClass" value="dataTableHeader" />
+			<c:set var="headerClasses" value="" />
+		</c:if>
+		<c:if test="#{! (empty headerClasses) }">
+			<c:set var="headerClass" value="" />
+		</c:if>
+		<c:if test="#{empty firstRow}">
+			<c:set var="firstRow" value="0" />
+		</c:if>
+		<c:if test="#{empty showPageControls}">
+			<c:set var="showPageControls" value="true" />
+		</c:if>
+		<c:if test="#{empty showPageControlsRight}">
+			<c:set var="showPageControlsRight" value="false" />
+		</c:if>
+		<c:if test="#{empty rendered}">
+		  <c:set var="rendered" value="true"/>
+		</c:if>		
+		
+
+		<ice:panelGroup>
+		
+			<c:if test="#{(empty infoVisible or infoVisible) and !showPageControlsRight}">
+				<test:fancyTableInfo tableId="#{id}" />
+			</c:if>
+			<c:if test="#{(empty infoVisible or infoVisible) and showPageControlsRight}">	
+				<ice:panelGrid columns="2" style="width:100%;" columnClasses="infoClass, navClass">
+					<ice:column>			
+						<test:fancyTableInfo tableId="#{id}" loc="top"/>
+					</ice:column>
+					<ice:column>
+						<test:fancyTableNav tableId="#{id}" loc="rightTop"/>
+					</ice:column>
+				</ice:panelGrid>
+			</c:if>
+							
+			<center>
+				
+				<div class="taskDiv">
+					<div class="headerBg">&nbsp;</div>
+					<div class="divTable">
+					<ice:dataTable id="#{id}" styleClass="#{styleClass}"
+						var="__obj" value="#{rows}" varStatus="status"
+						rows="#{numRows}" sortColumn="#{sortColumn}"
+						first="#{firstRow}"
+						headerClass="#{headerClass}"
+						headerClasses="#{headerClasses}"
+						columnClasses="#{columnClasses}"
+						columnWidths="#{columnWidths}"
+						sortAscending="#{sortAscending}"
+						rendered="#{rendered}">
+						<c:set var="#{var}" value="#{__obj}" />
+						<ui:insert name="columns"></ui:insert>
+					</ice:dataTable>
+					</div>
+				</div>
+			</center>
+			<c:if test="#{showPageControls and !showPageControlsRight}">
+				<test:fancyTableNav tableId="#{id}" />
+			</c:if>
+			<c:if test="#{empty tooltipVisible or tooltipVisible}">
+				<test:fancyTableTooltip />
+			</c:if>
+			
+			<c:if test="#{(empty infoVisible or infoVisible) and showPageControlsRight}">	
+				<ice:panelGrid columns="2" style="width:100%;" columnClasses="infoClass, navClass">
+					<ice:column>			
+						<test:fancyTableInfo tableId="#{id}" loc="bottom"/>
+					</ice:column>
+					<ice:column>
+						<test:fancyTableNav tableId="#{id}" loc="rightBottom"/>
+					</ice:column>
+				</ice:panelGrid>
+			</c:if>
+		</ice:panelGroup>
+	</ui:component>
+
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:test="http://medecision.com/alineo/taglib/test"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+	<head>
+		<title>Test</title>
+		<link rel="stylesheet" type="text/css"
+			href="./xmlhttp/css/rime/rime.css" />
+	</head>
+	<body>
+		<ui:composition>
+			<test:fancyTable var="n" rows="#{notes}"
+				width="100%" tooltipVisible="false" infoVisible="false"
+				visible="#{fn:length(notes) > 0}">
+				<ui:define name="columns">
+					<test:fancyColumn style="width: 120px" name="Date &amp; Time"
+						datePattern="dd/MM/yyyy hh:mm" value="#{n.creation}" />
+					<test:fancyColumn style="width: 120px" name="User"
+						value="#{n.user}" />
+					<test:fancyColumn name="Note" value="#{n.text}" />
+				</ui:define>
+			</test:fancyTable>
+		</ui:composition>
+	</body>
+</html>

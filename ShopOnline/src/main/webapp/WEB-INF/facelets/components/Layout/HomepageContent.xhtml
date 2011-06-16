@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:alineo="http://medecision.com/alineo/taglib"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+	<ui:composition>
+
+		<div class="homepageContent">
+			<div class="homepageContentHeader">
+				<div class="borderedHeader60px">
+					<ice:panelGrid columns="3" width="100%" cellpadding="0"
+						cellspacing="0">
+						<ice:column>
+							<div class="borderedHeaderLeft60px" />
+						</ice:column>
+						<ice:column>
+							<ice:panelGrid columns="4" styleClass="homepageHeaderGrid"
+								id="headerGrid"
+								columnClasses="homepageHeaderGridCol2, homepageHeaderGridCol3,homepageHeaderGridCol4">
+								<ice:column>
+									<alineo:ownerSelection id="selectedOwnerId"
+										value="#{bean.selectedOwnerID}"
+										valueChangeListener="selectedOwnerValueChangeListener"
+										bean="#{bean}" label="User/Dept: " selections="all" />
+								</ice:column>
+								<ice:column>
+									<alineo:selectDateRange bean="#{bean}"
+										filterTypeValueChangeListener="dateFilterTypeValueChangeListener"
+										dateTypeValueChangeListener="dateTypeValueChangeListener"
+										refreshAction="refreshData" filterType="#{bean.dateFilterType}"
+										toDate="#{bean.toDate}" fromDate="#{bean.fromDate}"
+										type="#{bean.activeTab}" numOverdue="#{bean.numOverdue}" 
+										rangeEffect="#{bean.dateRangeEffect}"
+										dateType="#{bean.dateType}" />
+								</ice:column>
+								<ice:column>
+									<div style="margin-top: 10px;">
+										<span class="taskListLink"> 
+											<ice:commandLink
+												value="Reset" id="clearFilterLink"
+												action="#{bean.clearFilters}" /> 
+										</span>
+									</div>
+								</ice:column>
+							</ice:panelGrid>
+						</ice:column>
+						<ice:column>
+							<div class="borderedHeaderRight60px" />
+						</ice:column>
+					</ice:panelGrid>
+				</div>
+			</div>
+			<alineo:borderPanel>
+				<div class="homepageContentContainer">
+					<alineo:tabPanel>
+						<alineo:tab id="tasksTabLink"
+							label="Tasks#{bean.activeTab eq 'tasks'? ' (' : ''}#{bean.activeTab eq 'tasks'? (fn:length(bean.dataTable.filteredRows)) : ''}#{bean.activeTab eq 'tasks'? ')' : ''}"
+							bean="#{HomepageNavigationBean}" action="openHomepageTasks"
+							class="#{bean.activeTab eq 'tasks'? 'active' : ''}" />
+						<alineo:tab id="programTabLink"
+							label="Programs#{bean.activeTab eq 'programs'? ' (' : ''}#{bean.activeTab eq 'programs'? (fn:length(bean.dataTable.filteredRows)) : ''}#{bean.activeTab eq 'programs'? ')' : ''}"
+							bean="#{HomepageNavigationBean}" action="openHomepagePrograms"
+							class="#{bean.activeTab eq 'programs'? 'active' : ''}" />
+						<alineo:tab id="requestTabLink"
+							label="Requests#{bean.activeTab eq 'requests'? ' (' : ''}#{bean.activeTab eq 'requests'? (fn:length(bean.dataTable.filteredRows)) : ''}#{bean.activeTab eq 'requests'? ')' : ''}"
+							bean="#{HomepageNavigationBean}" action="openHomepageRequests"
+							class="#{bean.activeTab eq 'requests'? 'active' : ''}" />
+						<alineo:tab id="topicsTabLink"
+							label="Interaction Topics#{bean.activeTab eq 'topics'? ' (' : ''}#{bean.activeTab eq 'topics'? (fn:length(bean.dataTable.filteredRows)) : ''}#{bean.activeTab eq 'topics'? ')' : ''}"
+							bean="#{HomepageNavigationBean}" action="openHomepageInteractionTopics"
+							class="#{bean.activeTab eq 'topics'? 'active' : ''}" />
+					</alineo:tabPanel>
+					<!-- Links (change owner/print summary...) -->
+					<br />
+					<ui:insert />
+				</div>
+			</alineo:borderPanel>
+			<div class="borderedFooter">
+				<div class="borderedFooterLeft"></div>
+				<div class="borderedFooterRight"></div>
+			</div>
+		</div>
+	</ui:composition>
+
+</html>

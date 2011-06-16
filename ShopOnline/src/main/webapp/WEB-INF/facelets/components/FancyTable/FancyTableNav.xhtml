@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:alineo="http://medecision.com/alineo/taglib">
+
+	<ui:composition>
+		<c:if test="#{empty loc }">
+			<c:set var="loc" value="" />
+		</c:if>
+	
+		<ice:panelGroup rendered="#{numRows lt alineo:length(rows) }">
+			<center>
+				<ice:dataPaginator for="#{tableId}" fastStep="2" paginator="true"
+					paginatorMaxPages="4">
+					<f:facet name="first">
+						<ice:graphicImage id="#{tableId}_#{loc}_firstpage_1"
+							url="/css/css-images/arrow-first.gif" style="border:none;"
+							title="First Page" />
+					</f:facet>
+					<f:facet name="last">
+						<ice:graphicImage id="#{tableId}_#{loc}_lastpage_1"
+							url="/css/css-images/arrow-last.gif" style="border:none;"
+							title="Last Page" />
+					</f:facet>
+					<f:facet name="previous">
+						<ice:graphicImage id="#{tableId}_#{loc}_previouspage_1"
+							url="/css/css-images/arrow-previous.gif" style="border:none;"
+							title="Previous Page" />
+					</f:facet>
+					<f:facet name="next">
+						<ice:graphicImage id="#{tableId}_#{loc}_nextpage_1"
+							url="/css/css-images/arrow-next.gif" style="border:none;"
+							title="Next Page" />
+					</f:facet>
+					<f:facet name="fastforward">
+						<ice:graphicImage id="#{tableId}_#{loc}_fastforward_1"
+							url="/css/css-images/arrow-ff.gif" style="border:none;"
+							title="Forward 3" />
+					</f:facet>
+					<f:facet name="fastrewind">
+						<ice:graphicImage id="#{tableId}_#{loc}_fastrewind_1"
+							url="/css/css-images/arrow-fr.gif" style="border:none;"
+							title="Back 3" />
+					</f:facet>
+
+				</ice:dataPaginator>
+			</center>
+			
+		</ice:panelGroup>
+
+	</ui:composition>
+
+</html>

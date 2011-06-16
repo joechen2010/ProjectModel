@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:test="http://medecision.com/alineo/taglib/test"
+	xmlns:c="http://java.sun.com/jstl/core">
+	<head>
+		<title>Test</title>
+		<link rel="stylesheet" type="text/css"
+			href="./xmlhttp/css/rime/rime.css" />
+	</head>
+	<body>
+
+		<ui:component rendered="#{empty rendered or rendered}">
+			<table cellspacing="0" cellpadding="0"
+				style="position: relative; width: 650px;"
+				class="worksheet right_panel">
+				<tr class="top">
+					<td colspan="3" class="middle">
+						<div class="left"></div>
+						<h3 class="right_panel_header">
+							<ice:outputText value="#{name}" nospan="true"/>
+						</h3>
+
+						<div class="right"></div>
+
+						<div class="required_key_text">
+							<ice:outputText value="Required" nospan="true"/>
+						</div>
+						<div class="required_key_star"></div>
+
+					</td>
+				</tr>
+				<tr class="center">
+					<td colspan="3">
+						<table cellspacing="0" cellpadding="0" style="position: relative;"
+							class="worksheet_data_container">
+
+							<tr>
+								<td class="left">&amp;nbsp;</td>
+								<td class="middle">
+									<!-- <table cellspacing="0" cellpadding="0" class="worksheet_form">
+									
+									</table>-->
+									<ui:insert/>
+								</td>
+								<td class="right">&amp;nbsp;</td>
+							</tr>
+						</table>
+
+					</td>
+				</tr>
+				<tr class="bottom">
+					<td class="middle">
+						<div class="left"></div>
+						<div class="right"></div>
+					</td>
+				</tr>
+			</table>
+		</ui:component>
+	</body>
+</html>

@@ -1,0 +1,4 @@
+DO NOT manually add another release's SQL changes directly into the core SQL scripts of the next release. 
+That would make it very difficult to trace when/why the core sql was changed when tracking down problems.
+
+These files are intended to represent the state of the preceding release at the time the new release is started.

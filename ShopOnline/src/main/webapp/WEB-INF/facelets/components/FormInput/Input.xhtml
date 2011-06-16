@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:c="http://java.sun.com/jstl/core"
+	xmlns:med="http://medecision.com/alineo/taglib">
+		<f:subview>
+			<c:if test="#{empty required}">
+				<c:set var="required" value="#{false}" />
+			</c:if>
+			<c:if test="#{empty disabled}">
+				<c:set var="disabled" value="#{false}"></c:set>
+			</c:if>
+			<c:if test="#{empty editable}">
+				<c:set var="editable" value="#{true}"></c:set>
+			</c:if>
+			<ui:insert name="vars" />
+			<table class="form-row">
+				<tr>
+					<td class="form-label-cell" style="">
+						<ui:insert name="label">
+							<ice:outputLabel style="#{labelStyle}"
+								styleClass="formLabelText #{required and editable? 'required': ''} #{(not required) and editable? 'unrequired': ''}"
+								value="#{name}:" for="input" />
+						</ui:insert>
+					</td>
+					<td class="form-input">
+						<table width="100%">
+							<tr>
+								<td>
+									<ice:panelGroup rendered="#{editable}">
+										<ui:insert name="input" />
+									</ice:panelGroup>
+									<ice:panelGroup rendered="#{not editable}">
+										<ui:insert name="output">
+											<ice:outputText value="#{value}" />
+										</ui:insert>
+									</ice:panelGroup>
+								</td>
+								<td>
+									<ice:message for="input" />
+									<br />
+									<ui:insert name="messages" />
+								</td>
+							</tr>
+						</table>
+					</td>
+
+				</tr>
+			</table>
+		</f:subview>
+</ui:composition>
