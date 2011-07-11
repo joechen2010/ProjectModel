@@ -26,7 +26,7 @@ public class FiveMillion
 	final static String[] blue = {"01","02","03","04","05","06","07","08","09","10","11","12","13","14","15","16"};
 	//String nameStr = "新浪专家大尉,温柔刀客,东方花琦";
 	//String nameStr = ",赵蕾,旋木,阿勇,彩民周刊专家";
-	String nameStr = "专家小宋,风行者,云网智者,华彩朋哥,欧阳纤,华彩老田";
+	String nameStr = "";
 	//String nameStr = "华彩朋哥,欧阳纤,华彩老田";
 	//String nameStr = "云网智者,筱杉,黑蝴蝶,深圳晶报,阿勇,彩民周刊专家";
 	//String nameStr = "温柔刀客,新浪专家大尉,筱杉,黑蝴蝶,深圳晶报,东方花琦,阿勇,彩民周刊专家";
@@ -215,6 +215,13 @@ public class FiveMillion
     }
     
     private void doInForecast() throws IOException{
+    	System.out.println("输入专家名字： 华彩朋哥,欧阳纤,华彩老田");
+	   	BufferedReader in2 = new BufferedReader( new InputStreamReader(System.in));
+	   	 String input;
+		try {
+			input = in2.readLine();
+			nameStr = input;
+		}catch(Exception e){}
     	removedForecasts();
     	doAnd500();
     	System.out.println("500交并: "+(andOr500.split(" ")).length +"个>  "+andOr500);
