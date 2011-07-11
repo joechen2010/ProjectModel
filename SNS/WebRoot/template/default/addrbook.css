@@ -1,0 +1,33 @@
+*{padding:0;margin:0;}
+.addr_content{ float: left; margin: 0 15px 0 0; width: 645px; overflow: hidden;}
+.clearfix{zoom:1;}
+.clearfix:after{content:"";display:block;clear:both;}
+.tel_list{clear:both;border-top:1px dotted #E0E0E0;}
+.tel_list li{border-bottom:1px dotted #E0E0E0;padding:8px 0 5px 0;}
+.tel_list .tel_info{float:right;width:580px;}
+.tel_list .tel_info .friend_name .emlink{font-size:14px;margin-right:20px;}
+.tel_list .tel_info .friend_name .icon_invite{margin-right:3px;}
+.tel_list .tel_info .friend_name{color:#000;float:left;}
+.tel_list .tel_info  .info_content .address_block{clear:both;}
+.tel_list .tel_info  .info_content{margin-top:5px;}
+.tel_list .tel_info  .info_content p{float:left;line-height:15px;font-family:Verdana,Arial,Helvetica,sans-serif;}
+.tel_list .tel_info  .info_content p span{color:#a5a5a5;font-family:Tahoma;}
+.tel_list .tel_info  .info_content .info_1th{width:160px;}
+.tel_list .tel_info  .info_content .info_2th{width:230px;margin-right:5px;overflow:hidden;}
+.tel_list .tel_info  .info_content .info_2th .info_email{font-family:Tahoma;display:block;color:#000000;width:175px;overflow:hidden;margin:-21px 0 0 50px}
+.tel_list .tel_info  .info_content .info_2th .c_tx2{padding:10px 0 10px 10px;}
+.tel_list .tel_info  .info_content .info_1th .input_tx2,.tel_list .tel_info  .info_content .info_2th .input_tx2{margin:10px 5px 0 0;width:132px;}
+.tel_list .tel_info  .info_content .info_3th .select{margin:10px 2px 0 0;width:48px;_width:47px;}
+.tel_list .tel_info  .info_content .info_1th .input_tx2{width:130px;}
+.tel_list .tel_info  .info_content .info_1th .ctrl,.tel_list .tel_info  .info_content .info_2th .ctrl,.tel_list .tel_info  .info_content .info_3th .ctrl{margin:5px 5px 10px 50px;display:block;}
+.tel_list .tel_info  .info_content .info_1th .ctrl{margin-left:40px;}
+.tel_list .tel_info  .info_content .info_3th .ctrl{margin-left:52px;_margin-left:54px;}
+.tel_list .tel_info  .info_content .info_1th .ctrl .c_tx2,.tel_list .tel_info  .info_content .info_2th .ctrl .c_tx2,.tel_list .tel_info  .info_content .info_3th .ctrl .c_tx2{padding:0;}
+.tel_list .tel_info  .info_content .info_1th .bt_tx2,.tel_list .tel_info  .info_content .info_2th .bt_tx2,.tel_list .tel_info  .info_content .info_3th .bt_tx2{margin-right:0px;*margin-right:5px;background-position:0 -56px;width:36px;}
+.tel_list .tel_info  .info_content .info_1th .bt_tx_c2,.tel_list .tel_info  .info_content .info_2th .bt_tx_c2,.tel_list .tel_info  .info_content .info_3th .bt_tx_c2{background-position:-40px -56px;width:36px;}
+.tel_list .tel_info  .info_content .info_3th{width:185px;}
+
+.layer_box_tips1{padding:20px 70px; background:#FFFFFF url(../../image/box_tips.png) no-repeat 20px 20px;}
+.layer_box_tips2{padding:20px 30px; background:#FFFFFF;}
+.layer_box_buttom{width:350px; text-align:right; padding:10px;}
+.caplayer{position:absolute; z-index:49; left:0px; top:0px; filter:alpha(opacity=10); visibility:hidden;}

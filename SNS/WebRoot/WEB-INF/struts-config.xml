@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+
+<struts-config>
+	<data-sources />
+
+	<form-beans>
+		<form-bean name="spaceForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="newvideopic" type="org.apache.struts.upload.FormFile" />
+		</form-bean>
+		<form-bean name="eventclassForm" type="org.apache.struts.action.DynaActionForm">
+			<form-property name="poster" type="org.apache.struts.upload.FormFile" />
+		</form-bean>
+	</form-beans>
+
+	<global-exceptions />
+
+	<global-forwards>
+		<forward name="cpmessage" path="/admin/message.jsp" />
+		<forward name="showmessage" path="/template/default/showmessage.jsp" />
+	</global-forwards>
+
+	<action-mappings>
+		<!-- admin -->
+		<action path="/admin/ad" type="cn.jcenterhome.web.action.admin.AdAction" scope="request"
+			validate="false">
+			<forward name="ad" path="/admin/ad.jsp" />
+		</action>
+		<action path="/admin/album" type="cn.jcenterhome.web.action.admin.AlbumAction" scope="request"
+			validate="false">
+			<forward name="album" path="/admin/album.jsp" />
+		</action>
+		<action path="/admin/app" type="cn.jcenterhome.web.action.admin.AppAction" scope="request"
+			validate="false">
+			<forward name="app" path="/admin/app.jsp" />
+		</action>
+		<action path="/admin/backup" type="cn.jcenterhome.web.action.admin.BackupAction" scope="request"
+			validate="false">
+			<forward name="backup" path="/admin/backup.jsp" />
+		</action>
+		<action path="/admin/block" type="cn.jcenterhome.web.action.admin.BlockAction" scope="request"
+			validate="false">
+			<forward name="block" path="/admin/block.jsp" />
+		</action>
+		<action path="/admin/blog" type="cn.jcenterhome.web.action.admin.BlogAction" scope="request"
+			validate="false">
+			<forward name="blog" path="/admin/blog.jsp" />
+		</action>
+		<action path="/admin/cache" type="cn.jcenterhome.web.action.admin.CacheAction" scope="request"
+			validate="false">
+			<forward name="cache" path="/admin/cache.jsp" />
+		</action>
+		<action path="/admin/censor" type="cn.jcenterhome.web.action.admin.CensorAction" scope="request"
+			validate="false">
+			<forward name="censor" path="/admin/censor.jsp" />
+		</action>
+		<action path="/admin/click" type="cn.jcenterhome.web.action.admin.ClickAction" scope="request"
+			validate="false">
+			<forward name="click" path="/admin/click.jsp" />
+		</action>
+		<action path="/admin/comment" type="cn.jcenterhome.web.action.admin.CommentAction" scope="request"
+			validate="false">
+			<forward name="comment" path="/admin/comment.jsp" />
+		</action>
+		<action path="/admin/config" type="cn.jcenterhome.web.action.admin.ConfigAction" scope="request"
+			validate="false">
+			<forward name="config" path="/admin/config.jsp" />
+		</action>
+		<action path="/admin/credit" type="cn.jcenterhome.web.action.admin.CreditAction" scope="request"
+			validate="false">
+			<forward name="credit" path="/admin/credit.jsp" />
+		</action>
+		<action path="/admin/cron" type="cn.jcenterhome.web.action.admin.CronAction" scope="request"
+			validate="false">
+			<forward name="cron" path="/admin/cron.jsp" />
+		</action>
+		<action path="/admin/doing" type="cn.jcenterhome.web.action.admin.DoingAction" scope="request"
+			validate="false">
+			<forward name="doing" path="/admin/doing.jsp" />
+		</action>
+		<action path="/admin/event" type="cn.jcenterhome.web.action.admin.EventAction" scope="request"
+			validate="false">
+			<forward name="event" path="/admin/event.jsp" />
+		</action>
+		<action path="/admin/feed" type="cn.jcenterhome.web.action.admin.FeedAction" scope="request"
+			validate="false">
+			<forward name="feed" path="/admin/feed.jsp" />
+		</action>
+		<action path="/admin/index" type="cn.jcenterhome.web.action.admin.IndexAction" scope="request"
+			validate="false">
+			<forward name="index" path="/admin/index.jsp" />
+		</action>
+		<action path="/admin/log" type="cn.jcenterhome.web.action.admin.LogAction" scope="request"
+			validate="false">
+			<forward name="log" path="/admin/log.jsp" />
+		</action>
+		<action path="/admin/mtag" type="cn.jcenterhome.web.action.admin.MtagAction" scope="request"
+			validate="false">
+			<forward name="mtag" path="/admin/mtag.jsp" />
+		</action>
+		<action path="/admin/network" type="cn.jcenterhome.web.action.admin.NetworkAction" scope="request"
+			validate="false">
+			<forward name="network" path="/admin/network.jsp" />
+		</action>
+		<action path="/admin/pic" type="cn.jcenterhome.web.action.admin.PicAction" scope="request"
+			validate="false">
+			<forward name="pic" path="/admin/pic.jsp" />
+		</action>
+		<action path="/admin/poll" type="cn.jcenterhome.web.action.admin.PollAction" scope="request"
+			validate="false">
+			<forward name="poll" path="/admin/poll.jsp" />
+		</action>
+		<action path="/admin/gift" type="cn.jcenterhome.web.action.admin.GiftAction" scope="request"
+			validate="false">
+			<forward name="gift" path="/admin/gift.jsp" />
+		</action>
+		<action path="/admin/post" type="cn.jcenterhome.web.action.admin.PostAction" scope="request"
+			validate="false">
+			<forward name="post" path="/admin/post.jsp" />
+		</action>
+		<action path="/admin/privacy" type="cn.jcenterhome.web.action.admin.PrivacyAction" scope="request"
+			validate="false">
+			<forward name="privacy" path="/admin/privacy.jsp" />
+		</action>
+		<action path="/admin/profield" type="cn.jcenterhome.web.action.admin.ProfieldAction" scope="request"
+			validate="false">
+			<forward name="profield" path="/admin/profield.jsp" />
+		</action>
+		<action path="/admin/profilefield" type="cn.jcenterhome.web.action.admin.ProfilefieldAction"
+			scope="request" validate="false">
+			<forward name="profilefield" path="/admin/profilefield.jsp" />
+		</action>
+		<action path="/admin/report" type="cn.jcenterhome.web.action.admin.ReportAction" scope="request"
+			validate="false">
+			<forward name="report" path="/admin/report.jsp" />
+		</action>
+		<action path="/admin/share" type="cn.jcenterhome.web.action.admin.ShareAction" scope="request"
+			validate="false">
+			<forward name="share" path="/admin/share.jsp" />
+		</action>
+		<action path="/admin/sitefeed" type="cn.jcenterhome.web.action.admin.SitefeedAction" scope="request"
+			validate="false">
+			<forward name="sitefeed" path="/admin/sitefeed.jsp" />
+		</action>
+		<action path="/admin/space_manage" type="cn.jcenterhome.web.action.admin.SpaceManageAction"
+			scope="request" validate="false">
+			<forward name="space_manage" path="/admin/space_manage.jsp" />
+		</action>
+		<action path="/admin/space" type="cn.jcenterhome.web.action.admin.SpaceAction" scope="request"
+			name="spaceForm" validate="false">
+			<forward name="space" path="/admin/space.jsp" />
+			<forward name="space_manage" path="/admin/space_manage.jsp" />
+		</action>
+		<action path="/admin/eventclass" type="cn.jcenterhome.web.action.admin.EventClassAction"
+			name="eventclassForm" validate="false" scope="request">
+			<forward name="eventclass" path="/admin/eventclass.jsp"></forward>
+		</action>
+		<action path="/admin/spam" type="cn.jcenterhome.web.action.admin.SpamAction" scope="request"
+			validate="false">
+			<forward name="spam" path="/admin/spam.jsp" />
+		</action>
+		<action path="/admin/stat" type="cn.jcenterhome.web.action.admin.StatAction" scope="request"
+			validate="false">
+			<forward name="stat" path="/admin/stat.jsp" />
+		</action>
+		<action path="/admin/tag" type="cn.jcenterhome.web.action.admin.TagAction" scope="request"
+			validate="false">
+			<forward name="tag" path="/admin/tag.jsp" />
+		</action>
+		<action path="/admin/task" type="cn.jcenterhome.web.action.admin.TaskAction" scope="request"
+			validate="false">
+			<forward name="task" path="/admin/task.jsp" />
+		</action>
+		<action path="/data" type="cn.jcenterhome.web.action.DataAction" parameter="action" scope="request"
+			validate="false" />
+
+		<action path="/admin/template" type="cn.jcenterhome.web.action.admin.TemplateAction" scope="request"
+			validate="false">
+			<forward name="template" path="/admin/template.jsp" />
+		</action>
+		<action path="/admin/thread" type="cn.jcenterhome.web.action.admin.ThreadAction" scope="request"
+			validate="false">
+			<forward name="thread" path="/admin/thread.jsp" />
+		</action>
+		<action path="/admin/userapp" type="cn.jcenterhome.web.action.admin.UserAppAction" scope="request"
+			validate="false">
+			<forward name="userapp" path="/admin/userapp.jsp" />
+		</action>
+		<action path="/admin/usergroup" type="cn.jcenterhome.web.action.admin.UserGroupAction" scope="request"
+			validate="false">
+			<forward name="usergroup" path="/admin/usergroup.jsp" />
+		</action>
+		<action path="/admin/ip" type="cn.jcenterhome.web.action.admin.IpAction" scope="request"
+			validate="false">
+			<forward name="ip" path="/admin/ip.jsp" />
+		</action>
+		<action path="/admin/hotuser" type="cn.jcenterhome.web.action.admin.HotUserAction" scope="request"
+			validate="false">
+			<forward name="hotuser" path="/admin/hotuser.jsp" />
+		</action>
+		<action path="/admin/magic" type="cn.jcenterhome.web.action.admin.MagicAction" scope="request"
+			validate="false">
+			<forward name="magic" path="/admin/magic.jsp" />
+		</action>
+		<action path="/admin/magiclog" type="cn.jcenterhome.web.action.admin.MagicLogAction" scope="request"
+			validate="false">
+			<forward name="magiclog" path="/admin/magiclog.jsp"></forward>
+		</action>
+		<!-- user -->
+		<action path="/admincp" type="cn.jcenterhome.web.action.AdmincpAction" scope="request"
+			validate="false" />
+		<action path="/cp" type="cn.jcenterhome.web.action.CpAction" scope="request" validate="false" />
+		<action path="/do" type="cn.jcenterhome.web.action.DoAction" scope="request" validate="false" />
+		<action path="/magic" type="cn.jcenterhome.web.action.MagicAction" scope="request" validate="false" />
+		<action path="/space" type="cn.jcenterhome.web.action.SpaceAction" scope="request" validate="false" />
+		<action path="/other" type="cn.jcenterhome.web.action.OtherAction" scope="request" validate="false"
+			parameter="action" />
+	</action-mappings>
+
+	<message-resources parameter="cn.jcenterhome.web.ApplicationResources" />
+</struts-config>

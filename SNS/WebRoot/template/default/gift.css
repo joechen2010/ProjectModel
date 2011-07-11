@@ -1,0 +1,77 @@
+
+
+
+#giftContent {margin-left:20px;}
+	#giftContent .subTitle {font-weight:bold;margin:22px 0 8px -20px;}
+
+
+#giftTo {margin-left:20px;}
+
+
+#giftBox {margin-left:20px;width:650px;}
+	#giftBoxHeader {background:url("image/gift_tabbg.gif") repeat-x;height:25px;}
+		#giftBoxHeader ul {float:left;margin:6px 0 0 6px;}
+			#giftBoxHeader ul li {float:left;margin-right:5px;text-align:center;}
+			#giftBoxHeader ul li a {line-height:19px;display:block;width:68px;background:url("image/gift_menubg.gif") no-repeat;}
+			#giftBoxHeader ul li .active {background:url("image/gift_menuover.gif") no-repeat;color:#333333;}
+		#feesAdd {float:right;margin:2px 5px;display:none;}
+			#feesAdd span {color:#FF6600;}
+			#feesAdd a {background:url("image/gift_butt_pay.gif") no-repeat;display:inline-block;width:73px;height:21px;text-align:center;}
+	#giftBoxContent {border-width:0 1px 1px 1px;padding:10px 20px;}
+		#feesCategory {display:none;}
+			#feesCategory ul {float:left;}
+				#feesCategory ul li {float:left;margin-right:5px;}
+				#feesCategory ul li a {text-decoration:underline;display:block;width:37px;height:20px;text-align:center;}
+				#feesCategory ul li .active {background:url("image/gift_nav_bg.gif") no-repeat;display:block;width:37px;height:20px;text-align:center;color:#FFFFFF;text-decoration:none;}
+		#giftMemo {color:#666666;float:right;}
+			#giftMemo a {text-decoration:underline;}
+			#feeOrder {display:none;}
+				#feeOrder span {color:#DDDDDD;}
+			#advTips {display:none;}
+				#advTips span {color:#FF6600;font-weight:bold;}
+		#giftData {clear:both;padding-top:15px;}
+			#giftData .item {float:left;width:120px;margin-bottom:16px;}
+				#giftData .item .itemSel {float:left;margin-top:28px;}
+				#giftData .item .itemDetail {float:left;margin-left:2px;text-align:center;}
+					#giftData .item .itemDetail .detailName {display:block;color:#999999;margin-top:5px;}
+					#giftData .item .itemDetail .detailPrice {display:block;color:#CCCCCC;}
+		#giftPage {clear:both;border:1px solid #999999;height:19px;}
+
+
+#giftPs {margin-left:20px;clear:both;}
+	#message {color:#333333;width:438px;height:72px;}
+	#remainderTips {margin-left:260px;}
+	#giftOption {margin:8px 0;}
+		#regular {display:none;}
+	#seccode {margin-bottom:5px;}
+	#seccode span {display:block;margin-top:2px;}
+		
+		
+
+
+#listTitle {margin-left:15px;color:#666666;}
+	#listTitle span {color:#333333;}
+
+#listData {margin-left:15px;}
+	#listData .item {float:left;width:120px;text-align:center;margin-top:15px;}
+		#listData .itemImg {width:70px;margin-left:27px;float:left;}
+		#listData .itemDel {float:right;display:none;}
+			#listData .itemDel a {display:inline-block;height:7px;width:6px;background:url(image/gift_del.gif) no-repeat}
+		#listData .itemDetail {clear:both;padding-top:8px;color:#666666;}
+		#listData .itemNew {font-weight:bold;color:black;}
+		#listData .itemDetail a {text-decoration:underline;}
+		#listData .itemDetail span {font-size:10px;color:#999999;}
+	
+		.pagePos {clear:both;padding-top:10px;}
+		
+		
+
+
+#setTitle {margin-left:15px;font-weight:bold;}
+
+#setBody {margin-top:20px;margin-left:10px;}
+	#bodyCheck {float:left;width:200px;}
+	#bodyPreview {float:left;width:200px;}
+		.space_avatar {text-align:center;}
+		.spacemenu_list li {float:left;padding:2px 0;width:48%;}
+	#bodyButton {clear:left;}

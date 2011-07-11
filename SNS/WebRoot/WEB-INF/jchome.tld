@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+	@(#)$Id: jchome.tld,v 1.3 2010/09/08 15:00:49 cvsroot Exp $
+	
+	[JavaCenter Home] Copyright 2007-2010 JspRun! Inc. All rights reserved.
+	This is NOT a freeware, Use is subject to license terms.
+-->
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-jsptaglibrary_2_0.xsd"
+	version="2.0">
+
+	<description>jchome 2.0 core library</description>
+	<display-name>jchome core</display-name>
+	<tlib-version>1.0</tlib-version>
+	<short-name>jch</short-name>
+	<uri>http://jchome.jsprun.com/jch</uri>
+	
+	<!--格式化时间的标签-->
+	<tag>
+		<description>The Tags used for formatting time</description>
+		<name>date</name>
+		<tag-class>cn.jcenterhome.taglib.Date</tag-class>
+		<body-content>empty</body-content>
+		<attribute>
+			<description>Time Formate</description>
+			<name>dateformat</name>
+			<required>false</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Timestamp</description>
+			<name>timestamp</name>
+			<required>true</required>
+			<rtexprvalue>true</rtexprvalue>
+		</attribute>
+		<attribute>
+			<description>Use resource file to formatting time</description>
+			<name>format</name>
+			<required>false</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+
+	<function>
+		<description>编码 URL 字符串</description>
+		<name>urlEncoder</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>java.lang.String urlEncode(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<description>把一些预定义的字符转换为 HTML 实体</description>
+		<name>htmlSpecialChars1</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>java.lang.String htmlSpecialChars(java.lang.String)</function-signature>
+	</function>
+
+	<function>
+		<description>把一些预定义的字符转换为 HTML 实体</description>
+		<name>htmlSpecialChars2</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			java.lang.String htmlSpecialChars(java.lang.String,int)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>获取正确模板页面地址,第一个参数是sConfig信息,第二个参数是sGlobal信息,第三个参数是页面名字</description>
+		<name>template</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			java.lang.String template(java.util.Map,java.util.Map,java.lang.String)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>检查数组中是否存在某个值,第一个参数数组,第二个参数搜索的值</description>
+		<name>inArray</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>java.lang.Boolean in_array(java.lang.Object,java.lang.Object)</function-signature>
+	</function>
+
+	<function>
+		<description>显示小头像</description>
+		<name>avatar1</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			java.lang.String avatar(java.lang.Integer,java.util.Map,java.util.Map)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>显示其它头像</description>
+		<name>avatar2</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			java.lang.String avatar(java.lang.Integer,java.lang.String,boolean,java.util.Map,java.util.Map)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>检查对象是否为空</description>
+		<name>jchEmpty</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>java.lang.Boolean empty(java.lang.Object)</function-signature>
+	</function>
+
+	<function>
+		<description>产生form提交防伪码</description>
+		<name>formHash</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			java.lang.String formHash(java.util.Map,java.util.Map,boolean)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>获取随机字符串</description>
+		<name>getRandStr</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>java.lang.String getRandStr(int,boolean)</function-signature>
+	</function>
+
+	<function>
+		<description>产生一个随机数</description>
+		<name>rand</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>int rand(int,int)</function-signature>
+	</function>
+
+	<function>
+		<description>格式化时间</description>
+		<name>sgmdate</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			java.lang.String sgmdate(javax.servlet.http.HttpServletRequest,java.lang.String, int,boolean)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>判断变量是否是数字</description>
+		<name>isNumeric</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>boolean isNumeric(java.lang.Object)</function-signature>
+		<example>${jch:isNumeric(obj)}</example>
+	</function>
+
+	<function>
+		<description>显示进程处理时间</description>
+		<name>debugInfo</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>java.lang.String debugInfo(java.util.Map,java.util.Map)</function-signature>
+	</function>
+
+	<function>
+		<description>整理feed</description>
+		<name>mkFeed</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			java.util.Map mkFeed(java.util.Map, java.util.Map, javax.servlet.http.HttpServletRequest,
+			java.util.Map, java.lang.Object)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>检测权限</description>
+		<name>checkPerm</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			boolean checkPerm(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse,
+			java.lang.String)
+		</function-signature>
+	</function>
+
+	<function>
+		<description>验证问答</description>
+		<name>question</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>
+			String question(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+		</function-signature>
+	</function>
+	
+	<function>
+		<description>显示广告</description>
+		<name>showAdById</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>String showAdById(java.lang.Object)</function-signature>
+	</function>
+	
+	<function>
+		<description>显示广告</description>
+		<name>showAd</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>String showAd(java.util.Map)</function-signature>
+	</function>
+	
+	<function>
+		<description>数据调用</description>
+		<name>showData</name>
+		<function-class>cn.jcenterhome.util.Common</function-class>
+		<function-signature>void showData(javax.servlet.http.HttpServletRequest,java.lang.String)</function-signature>
+	</function>
+</taglib>
