@@ -1,0 +1,216 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"		 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.</groupId>
+	<artifactId>SNS</artifactId>
+	<packaging>war</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<name>SNS</name>
+	<url>http://www.SNS.com.cn</url>
+	
+	
+	<repositories>
+		<repository>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>central</id>
+			<name>Maven Repository Switchboard</name>
+			<url>http://repo1.maven.org/maven2</url>
+		</repository>
+		
+		<repository>
+	         <id>snapshots</id>
+	         <url>http://anonsvn.icefaces.org/repo/maven2/snapshots</url>
+   		</repository>
+		   
+		<repository>
+			<id>mvnrepository</id>
+			<name>mvnrepository</name>
+			<url>http://mvnrepository.com/artifact</url>
+		</repository>
+		
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<name>Java.net</name>
+			<url>http://download.java.net/maven/2/</url>
+			<layout>default</layout>
+		</repository>
+		
+		<repository>
+			<id>repository.jboss.org</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/maven2</url>
+		</repository>
+		<repository>
+		   <id>gwt-maven</id>
+		   <url>http://gwt-maven.googlecode.com/svn/trunk/mavenrepo/</url>
+		</repository>
+		<repository>
+			<id>repository.codehaus.org</id>
+			<name>Codehaus Repository</name>
+			<url>http://repository.codehaus.org/</url>
+		</repository>
+		<repository>  
+		    <id>prime-repo</id>  
+		    <name>Prime Technology Maven Repository</name>  
+		    <url>http://repository.prime.com.tr</url>  
+		    <layout>default</layout>  
+		</repository>  
+		<repository>
+         <releases>
+            <enabled>true</enabled>
+         </releases>
+         <id>bonecp-repo</id>
+         <name>BoneCP Repository</name>
+         <url>http://jolbox.com/bonecp/downloads/maven</url>
+      </repository>
+	</repositories>
+	  
+	  <properties>
+		<springVersion>3.0.0.RELEASE</springVersion>
+		<myFacesCoreVersion>1.2.8</myFacesCoreVersion>
+		<iceVersion>2.0.0</iceVersion>
+		<hibernateVersion>3.5.6-Final</hibernateVersion>
+		<javaVersion>1.6</javaVersion>
+		<ojdbc6.version>11.2.0.1.0</ojdbc6.version>
+    	<jtds.version>1.2.4</jtds.version>
+    	<cxf.version>2.2.2</cxf.version>
+	</properties>
+  
+	<reporting>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>dependencies</report>
+							<report>project-team</report>
+							<report>summary</report>
+							<report>license</report>
+							<report>scm</report>
+							<report>issue-tracking</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.4.3</version>
+				<configuration>
+					<parallel>tests</parallel>
+					<threadCount>1</threadCount>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-report-plugin</artifactId>
+				<version>2.4.3</version>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>2.3</version>
+				<configuration>
+					<linkXref>false</linkXref>
+					<sourceEncoding>utf-8</sourceEncoding>
+					<minimumTokens>100</minimumTokens>
+					<targetJdk>${javaVersion}</targetJdk>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<configuration>
+					<jdk>${javaVersion}</jdk>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	</reporting>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.0.2</version>
+				<configuration>
+					<source>${javaVersion}</source>
+					<target>${javaVersion}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<configuration>
+					<targetPercentage>9%</targetPercentage>
+					<jdk>${javaVersion}</jdk>
+					<executions>
+						<execution>
+							<phase>verify</phase>
+							<goals>
+								<goal>instrument</goal>
+								<goal>check</goal>
+							</goals>
+						</execution>
+					</executions>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<configuration>
+					<wtpversion>1.5</wtpversion>
+					<additionalProjectFacets>
+						<jst.java>6.0</jst.java>
+						<jst.web>2.5</jst.web>
+					</additionalProjectFacets>
+					<additionalBuildcommands>
+						<buildcommand>org.eclipse.wst.common.project.facet.core.builder</buildcommand>
+						<buildcommand>org.eclipse.wst.validation.validationbuilder</buildcommand>
+						<buildcommand>org.springframework.ide.eclipse.core.springbuilder</buildcommand>
+					</additionalBuildcommands>
+					<additionalProjectnatures>
+						<projectnature>org.eclipse.wst.common.project.facet.core.nature</projectnature>
+						<projectnature>org.eclipse.wst.common.modulecore.ModuleCoreNature</projectnature>
+						<projectnature>org.springframework.ide.eclipse.core.springnature</projectnature>
+					</additionalProjectnatures>
+				</configuration>
+    		</plugin>
+    		<plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.0.4</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>jar</goal>
+                            <goal>test-jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		
+  </dependencies>
+
+
+
+</project>
