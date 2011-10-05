@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===================================================================== -->
+<!--  jTDS for MS SQL Server 2005 Datasource                               -->
+<!-- ===================================================================== -->
+
+  <!-- ======================================================================-->
+  <!--  the driver is available here  -->
+  <!-- http://jtds.sourceforge.net -->
+  <!-- ===================================================================== -->
+
+<datasources>
+  <xa-datasource>
+    <jndi-name>AlineoSQLServerXA</jndi-name>
+    <xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerDriver</xa-datasource-class>
+    <xa-datasource-property name="ServerName">localhost</xa-datasource-property>
+    <xa-datasource-property name="DatabaseName">anaconda</xa-datasource-property>
+    <xa-datasource-property name="User">sa</xa-datasource-property>
+    <xa-datasource-property name="Password">SYSTEM</xa-datasource-property>
+
+    <!-- 
+     When set to true, emulate XA distributed transaction support, when set to false use experimental 
+     true distributed transaction support. True distributed transaction support is only available for 
+     SQL Server 2000 and requires the installation of an external stored procedure in the target server 
+    (see the README.XA file in the distribution for details).
+    -->
+    <xa-datasource-property name="XaEmulation">true</xa-datasource-property>
+
+    <track-connection-by-tx>true</track-connection-by-tx>
+
+    <!-- optional parameters -->
+    <transaction-isolation>TRANSACTION_READ_COMMITTED</transaction-isolation>
+    <min-pool-size>10</min-pool-size>
+    <max-pool-size>30</max-pool-size>
+    <idle-timeout-minutes>15</idle-timeout-minutes>
+    <blocking-timeout-millis>5000</blocking-timeout-millis>    
+    <new-connection-sql>select 1</new-connection-sql>
+    <check-valid-connection-sql>select 1</check-valid-connection-sql>
+    <set-tx-query-timeout></set-tx-query-timeout>
+    <metadata>
+      <type-mapping>MS SQLSERVER2008</type-mapping>
+    </metadata>
+  </xa-datasource>
+
+</datasources>

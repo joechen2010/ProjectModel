@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 112
+/svn/portletfaces/!svn/ver/1022/portlets/examples/jsf2-portlet/trunk/src/main/java/org/portletfaces/example/bean
+END
+ApplicantBackingBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 138
+/svn/portletfaces/!svn/ver/1022/portlets/examples/jsf2-portlet/trunk/src/main/java/org/portletfaces/example/bean/ApplicantBackingBean.java
+END
+PortletPreferencesBackingBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 146
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/java/org/portletfaces/example/bean/PortletPreferencesBackingBean.java
+END
+ApplicantModelBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 135
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/java/org/portletfaces/example/bean/ApplicantModelBean.java
+END
+ListModelBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 130
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/java/org/portletfaces/example/bean/ListModelBean.java
+END

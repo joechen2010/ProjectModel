@@ -1,0 +1,155 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+	<organization>
+		<name>portletfaces.org</name>
+		<url>http://www.portletfaces.org</url>
+	</organization>
+	<groupId>org.portletfaces.examples</groupId>
+	<artifactId>jsf2-portlet</artifactId>
+	<name>${project.artifactId}</name>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+
+	<scm>
+		<developerConnection>scm:svn:http://svn.portletfaces.org/svn/portletfaces/portlets/examples/jsf2-portlet/trunk</developerConnection>
+		<url>http://svn.portletfaces.org/svn/portletfaces/portlets/examples/jsf2-portlet/trunk</url>
+	</scm>
+
+	<distributionManagement>
+		<repository>
+			<id>portletfaces-deploy-id</id>
+			<url>${portletfaces-deploy-path-releases}</url>
+		</repository>
+		<snapshotRepository>
+			<id>portletfaces-deploy-id</id>
+			<url>${portletfaces-deploy-path-snapshots}</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<issueManagement>
+		<system>Atlassian JIRA</system>
+		<url>http://jira.portletfaces.org</url>
+	</issueManagement>
+
+	<ciManagement>
+		<system>Atlassian Bamboo</system>
+		<url>http://bamboo.portletfaces.org</url>
+	</ciManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>javax.el</groupId>
+			<artifactId>el-api</artifactId>
+			<version>1.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+			<version>2.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+			<version>2.0.4-b06</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.portlet</groupId>
+			<artifactId>portlet-api</artifactId>
+			<version>2.0.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-el</artifactId>
+			<version>2.0.0.GA</version>
+			<exclusions>
+				<exclusion>
+					<groupId>javax.el</groupId>
+					<artifactId>el-api</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.portletfaces</groupId>
+			<artifactId>portletfaces-bridge</artifactId>
+			<version>2.0.0</version>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.portletfaces</groupId>-->
+<!--			<artifactId>bridge-extension-test</artifactId>-->
+<!--			<version>2.0.0-RC1</version>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.portletfaces.alloy.faces</groupId>
+			<artifactId>alloyfaces</artifactId>
+			<version>1.0.1.0-BETA2</version>
+		</dependency>
+		<!-- BEGIN: Required for bridge:inputFile -->
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>1.3.2</version>
+		</dependency>
+		<!-- END: Required for bridge:inputFile -->
+
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<encoding>UTF-8</encoding>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.1.1</version>
+				<configuration>
+					<archive>
+						<manifest>
+							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>2.1</version>
+				<configuration>
+					<tagBase>http://svn.portletfaces.org/svn/portletfaces/portlets/examples/jsf2-portlet/tags</tagBase>
+					<branchBase>http://svn.portletfaces.org/svn/portletfaces/portlets/examples/jsf2-portlet/branches</branchBase>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<repositories>
+		<repository>
+			<id>maven2-repository.dev.java.net</id>
+			<url>http://download.java.net/maven/2</url>
+		</repository>
+		<repository>
+			<id>maven2-repository.jboss.org</id>
+			<url>http://repository.jboss.org/maven2</url>
+		</repository>
+		<repository>
+			<id>maven2-repository-portletfaces.org</id>
+			<url>http://repository.portletfaces.org/content/repositories/portletfaces-releases</url>
+		</repository>
+	</repositories>
+</project>

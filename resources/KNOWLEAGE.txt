@@ -1,0 +1,736 @@
+git init
+git remote add origin git@p4.grt.bz:cobra.git
+git pull origin master
+git status
+git pull
+git branch --track request_move remotes/origin/request_move
+git checkout request_move
+================================
+================================
+===========delete================================
+
+Welcome to Git (version 1.6.5.1-preview20091022)
+
+
+Run 'git help git' to display the help index.
+Run 'git help <command>' to display help for specific commands.
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ gitk --all
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ git branch -d LetterDB
+Deleted branch LetterDB (was 3621dcf).
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ git branch --track letterDB remotes/origin/master
+Branch letterDB set up to track remote branch master from origin.
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ gitk --all
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ git checkout letterDB
+Switched to branch 'letterDB'
+
+jefferson@MED5-0KM6CVQRZT /d/boa (letterDB)
+$ git push origin master:refs/heads/letterDB
+git@p4.grt.bz's password:
+Counting objects: 858, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (310/310), done.
+Writing objects: 100% (641/641), 289.87 KiB, done.
+Total 641 (delta 299), reused 433 (delta 191)
+To git@p4.grt.bz:boa.git
+ * [new branch]      master -> letterDB
+
+jefferson@MED5-0KM6CVQRZT /d/boa (letterDB)
+$ gitk --all
+
+jefferson@MED5-0KM6CVQRZT /d/boa (letterDB)
+$ git checkout master
+Switched to branch 'master'
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ git branch -d letterDB
+Deleted branch letterDB (was 3621dcf).
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ git branch -a
+  ClientLetter
+* master
+  remotes/origin/ClientLetter
+  remotes/origin/letterDB
+  remotes/origin/master
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ git branch --track letterDB remotes/origin/letterDB
+Branch letterDB set up to track remote branch letterDB from origin.
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ gitk --all
+
+jefferson@MED5-0KM6CVQRZT /d/boa (master)
+$ git checkout letterDB
+Switched to branch 'letterDB'
+
+jefferson@MED5-0KM6CVQRZT /d/boa (letterDB)
+$
+
+#       deleted:    Jaguar/Sql/pom.xml
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+=================================================
+===================================================
+========================================================
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git status
+# On branch ClientLetter
+# Changed but not updated:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/facade/impl/ClientLetterFacadeImpl.java
+#       modified:   Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/service/impl/ClientLetterService.java
+#       modified:   Jaguar/Alineo/alineo/src/main/java/com/med/clientletter/jsf/view/ClientLetterView.java
+#       modified:   Jaguar/Alineo/alineo/src/main/resources/springConfig/applicationContext.xml
+#       modified:   Jaguar/Alineo/pom.xml
+#       modified:   Jaguar/Integrate/InterfaceLayouts/CL_AlineoMapping.xls
+#       deleted:    Jaguar/Sql/pom.xml
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git diff
+diff --git a/Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/facade/impl/ClientLetterFacadeImpl.java b/Jaguar/Aliindex 1ad3fad..b09da2d 100644
+
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ gitk --all
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git status
+# On branch ClientLetter
+# Changed but not updated:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/facade/impl/ClientLetterFacadeImpl.java
+#       modified:   Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/service/impl/ClientLetterService.java
+#       modified:   Jaguar/Alineo/alineo/src/main/java/com/med/clientletter/jsf/view/ClientLetterView.java
+#       modified:   Jaguar/Alineo/alineo/src/main/resources/springConfig/applicationContext.xml
+#       modified:   Jaguar/Alineo/pom.xml
+#       deleted:    Jaguar/Sql/pom.xml
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git push origin ClientLetter
+git@p4.grt.bz's password:
+To git@p4.grt.bz:boa.git
+ ! [rejected]        ClientLetter -> ClientLetter (non-fast forward)
+error: failed to push some refs to 'git@p4.grt.bz:boa.git'
+To prevent you from losing history, non-fast-forward updates were rejected
+Merge the remote changes before pushing again.  See the 'non-fast forward'
+section of 'git push --help' for details.
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ gitk --all
+
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ gitk --all
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git branch -a
+* ClientLetter
+  merger
+  remotes/origin/ClientLetter
+  remotes/origin/awfCL
+  remotes/origin/letterDB
+  remotes/origin/master
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git pull
+git@p4.grt.bz's password:
+remote: Counting objects: 176, done.
+remote: Compressing objects: 100% (63/63), done.
+remote: Total 92 (delta 34), reused 0 (delta 0)
+Unpacking objects: 100% (92/92), done.
+From p4.grt.bz:boa
+   3771c16..a04b99f  ClientLetter -> origin/ClientLetter
+ * [new branch]      MSL-023    -> origin/MSL-023
+   2330e7f..4c19b8f  awfCL      -> origin/awfCL
+   d6d688e..dfb7477  master     -> origin/master
+You asked me to pull without telling me which branch you
+want to merge with, and 'branch.ClientLetter.merge' in
+your configuration file does not tell me either.        Please
+specify which branch you want to merge on the command line and
+try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) for details.
+
+If you often merge with the same branch, you may want to
+configure the following variables in your configuration
+file:
+
+    branch.ClientLetter.remote = <nickname>
+    branch.ClientLetter.merge = <remote-ref>
+    remote.<nickname>.url = <url>
+    remote.<nickname>.fetch = <refspec>
+
+See git-config(1) for details.
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git branch -a
+* ClientLetter
+
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git checkout MSL-023
+error: pathspec 'MSL-023' did not match any file(s) known to git.
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git checkout -b MSL-023
+M       Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/facade/impl/ClientLetterFacadeImpl.java
+M       Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/service/impl/ClientLetterService.java
+M       Jaguar/Alineo/alineo/src/main/java/com/med/clientletter/jsf/view/ClientLetterView.java
+M       Jaguar/Alineo/alineo/src/main/resources/springConfig/applicationContext.xml
+Switched to a new branch 'MSL-023'
+
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ gitk --all
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ gitk
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git status
+# On branch MSL-023
+# Changed but not updated:
+#   (use "git add/rm <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/facade/impl/ClientLetterFacadeImpl.java
+#       modified:   Jaguar/Alineo/alineo-core/src/main/java/com/med/clientletter/service/impl/ClientLetterService.java
+#       modified:   Jaguar/Alineo/alineo/src/main/java/com/med/clientletter/jsf/view/ClientLetterView.java
+#       modified:   Jaguar/Alineo/alineo/src/main/resources/springConfig/applicationContext.xml
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git checkout .
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git status
+# On branch MSL-023
+nothing to commit (working directory clean)
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git branch -a
+  ClientLetter
+* MSL-023
+  merger
+  remotes/origin/ClientLetter
+  remotes/origin/MSL-023
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git checkout ClientLetter
+Switched to branch 'ClientLetter'
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git branch -D MSL-023
+Deleted branch MSL-023 (was 9634304).
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git pull
+git@p4.grt.bz's password:
+You asked me to pull without telling me which branch you
+want to merge with, and 'branch.ClientLetter.merge' in
+your configuration file does not tell me either.        Please
+specify which branch you want to merge on the command line and
+try again (e.g. 'git pull <repository> <refspec>').
+See git-pull(1) for details.
+
+If you often merge with the same branch, you may want to
+configure the following variables in your configuration
+file:
+
+    branch.ClientLetter.remote = <nickname>
+    branch.ClientLetter.merge = <remote-ref>
+    remote.<nickname>.url = <url>
+    remote.<nickname>.fetch = <refspec>
+
+See git-config(1) for details.
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (ClientLetter)
+$ git checkout remotes/origin/MSL-023
+Note: moving to 'remotes/origin/MSL-023' which isn't a local branch
+If you want to create a new branch from this checkout, you may do so
+(now or later) by using -b with the checkout command again. Example:
+  git checkout -b <new_branch_name>
+HEAD is now at d6d688e... baseline update
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa ((d6d688e...))
+$ git checkout -b MSL-023
+Switched to a new branch 'MSL-023'
+
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git status
+# On branch MSL-023
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Integrate/InterfaceLayouts/CL_AlineoMapping.xls
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git add .
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ gitk
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git commit -m "#BOA-194  MEDecision -- Alineo-2.2_BOA: Update CL_AlineoMapping.x
+ls"
+[MSL-023 63c949b] #BOA-194  MEDecision -- Alineo-2.2_BOA: Update CL_AlineoMapping.xls
+ 1 files changed, 0 insertions(+), 0 deletions(-)
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ git push origin MSL-023
+git@p4.grt.bz's password:
+Counting objects: 11, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (5/5), done.
+Writing objects: 100% (6/6), 10.13 KiB, done.
+Total 6 (delta 4), reused 0 (delta 0)
+To git@p4.grt.bz:boa.git
+   d6d688e..63c949b  MSL-023 -> MSL-023
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/boa (MSL-023)
+$ gitk
+
+=========================================================================
+=========================================================================
+=========================================================================
+=========================================================================
+
+git log --stat --summary
+gitk --all
+git pull origin ClientLetter
+
+Please purge your local refs by 'git remote prune origin'.
+
+
+========================================================
+=================================================================
+
+$ git init
+Initialized empty Git repository in D:/boa/.git/
+
+$ git config user.name
+jefferson
+
+$ git config user.email
+jzhou@med.grt.bz
+
+$ git config core.autocrlf
+false
+
+$ mkdir ~/.ssh
+
+$ git remote add origin git@p4.grt.bz:boa.git
+
+$ git pull
+
+$ gitk --all
+
+$ git branch -a
+  remotes/origin/ClientLetter
+  remotes/origin/master
+
+$ git checkout remotes/origin/ClientLetter
+
+$ git checkout -b ClientLetter
+Switched to a new branch 'ClientLetter'
+
+$ gitk --all
+
+$ git status
+# On branch ClientLetter
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Alineo/pom.xml
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+$ git diff
+diff --git a/Jaguar/Alineo/pom.xml b/Jaguar/Alineo/pom.xml
+index 0769cc3..6a61b53 100644
+--- a/Jaguar/Alineo/pom.xml
++++ b/Jaguar/Alineo/pom.xml
+@@ -8,7 +8,7 @@
+        <description>Clinical Decision Support for Care Managers</description>
+
+        <organization>
+-               <name>MEDecision</name>
++               <name>MEDecisions</name>^M
+                <url>http://www.medecision.com</url>
+        </organization>
+        <!-- ===================================================================
+
+
+$ git add .
+
+
+$ git status
+
+$ git log
+
+$ git reset
+Unstaged changes after reset:
+M       Jaguar/Alineo/pom.xml
+
+
+$ git status
+# On branch ClientLetter
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Alineo/pom.xml
+#
+no changes added to commit (use "git add" and/or "git commit -a")
+
+
+$ git checkout .
+
+$ git status
+# On branch ClientLetter
+nothing to commit (working directory clean)
+
+$ git add .
+
+$ gitk --all
+
+$ git commit -m "comment"
+
+$ git push origin ClientLetter
+
+=====*******************************======================================================
+======Merge=====Merge========================================================================
+*************************************
+
+$ git status
+# On branch pgm_load
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+#       modified:   Jaguar/Sql/pom.xml
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       Jaguar/Sql/pom1.xml
+no changes added to commit (use "git add" and/or "git commit -a")
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git stash
+Saved working directory and index state WIP on pgm_load: c8dcc57 Merge branch 'master' into pgm_load
+HEAD is now at c8dcc57 Merge branch 'master' into pgm_load
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git status
+# On branch pgm_load
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       Jaguar/Sql/pom1.xml
+nothing added to commit but untracked files present (use "git add" to track)
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git pull origin pgm_load
+git@p4.grt.bz's password:
+From p4.grt.bz:anaconda
+ * branch            pgm_load   -> FETCH_HEAD
+Updating c8dcc57..439373c
+Fast forward
+ .../java/com/med/rpimport/RPIProgramHelper.java    |   30 ++++++++++++++++---
+ .../errorlog/RequestProgramLoadErrors.java         |    2 +
+ 2 files changed, 27 insertions(+), 5 deletions(-)
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git stash pop
+Auto-merging Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+Auto-merging Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+CONFLICT (content): Merge conflict in Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git status
+# On branch pgm_load
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#       modified:   Jaguar/Sql/pom.xml
+#
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add <file>..." to mark resolution)
+#
+#       both modified:      Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+#
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       Jaguar/Sql/pom1.xml
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ gitk
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git status
+# On branch pgm_load
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#       modified:   Jaguar/Sql/pom.xml
+#
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add <file>..." to mark resolution)
+#
+#       both modified:      Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+#
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       Jaguar/Sql/pom1.xml
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git add Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batc
+h/src/main/java/com/med/rpimport/RPIProgramHelper.java
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git status
+# On branch pgm_load
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#       modified:   Jaguar/Sql/pom.xml
+#
+# Unmerged paths:
+#   (use "git reset HEAD <file>..." to unstage)
+#   (use "git add <file>..." to mark resolution)
+#
+#       both modified:      Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       Jaguar/Sql/pom1.xml
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git add Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batc
+h/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git status
+# On branch pgm_load
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+#       modified:   Jaguar/Sql/pom.xml
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       Jaguar/Sql/pom1.xml
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git reset HEAD Jaguar/S
+Security_Core/ Sql/
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git reset HEAD Jaguar/Sql/pom.xml
+Unstaged changes after reset:
+M       Jaguar/Sql/pom.xml
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git status
+# On branch pgm_load
+# Changes to be committed:
+#   (use "git reset HEAD <file>..." to unstage)
+#
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/RPIProgramHelper.java
+#       modified:   Jaguar/Integrate/RequestAndProgramImport/request-and-program-import-batch/src/main/java/com/med/rpimport/errorlog/RequestProgramLoadErrors.java
+#
+# Changed but not updated:
+#   (use "git add <file>..." to update what will be committed)
+#   (use "git checkout -- <file>..." to discard changes in working directory)
+#
+#       modified:   Jaguar/Sql/pom.xml
+#
+# Untracked files:
+#   (use "git add <file>..." to include in what will be committed)
+#
+#       Jaguar/Sql/pom1.xml
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ gik
+sh.exe": gik: command not found
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ gitk
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ history|grep commit
+   24  git commit -m "#BOA-219 MEDecision -- Alineo-2.2_BOA: Inpatient/Outpatient letter page improvement"
+   30  git commit --help
+   64  history|grep commit
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git commit -m "#ANACONDA-327 program load - code change"
+[pgm_load 9b661dd] #ANACONDA-327 program load - code change
+ 2 files changed, 151 insertions(+), 68 deletions(-)
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ git push origin pgm_load
+git@p4.grt.bz's password:
+Counting objects: 29, done.
+Delta compression using up to 4 threads.
+Compressing objects: 100% (11/11), done.
+Writing objects: 100% (15/15), 2.21 KiB, done.
+Total 15 (delta 8), reused 0 (delta 0)
+To git@p4.grt.bz:anaconda.git
+   439373c..9b661dd  pgm_load -> pgm_load
+
+water@GRT1-RMXHHYZSVG /d/git_workspace/Anaconda (pgm_load)
+$ gitk
+
+remove ==>$ git clean -d -f . 
+$ git gui
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+====make baseline============================
+20.7: gge/gavin012
+
+GRT_TEAM_Anaconda file folder
+1. git pull
+2. git status
+
+Update PM view(no need team view)
+Rebase team stream
+Team  view make baseline
+recommand baseline
+Rebase GRT stream (undo hijact)
+
+3. git add .
+4. git commit 
+5. git push
+
+===================merge local branch and push =========================
+git checkout master
+git merge defects
+git push origin master
+========================================================================
+
+=====Delivering Team=================================
+login 20.7
+
+GRT_TEAM_Anaconda file folder
+1. git pull
+Update veiw
+GRT_TEAM_Anaconda
+TEAM_Anaconda
+
+localhost==>>branch master
+git merge test
+
+go to 20.7 
+GRT_TEAM_Anaconda==>>
+git pull 
+
+Find modified files
+Check out
+Check in
+Deliver from Stream to Default
+TEAM_Anaconda==>>Make Baseline==>>Recommended Baseline
+
+=====Delivering PM==================================
+Update Veiw GRT_Anaconda_int and TEAM_Anaconda file folder
+Find modified files ==> pop error ==> Rebase Stream
+Find modified files ==> not error ==> Deliver
+......
+Deliver TEAM similar operation
+==============================================================================================================================
+1.update view (all)
+2.TEAM_Anaconda # Rebase Stream
+3.GRT_TEAM_Anaconda # Rebase Stream
+4.GRT_TEAM_Anaconda # git pull >> git pull origin master
+5.GRT_TEAM_Anaconda  # find modified files >> (checkout ? yes) new activity (auto pop up) >> check in  >> 1.(new file(right key): add file to source control;) 2.delete file : ClearCase Explorer ->  checkout folder > do delete ->check in folder 
+6.To Team 
+	GRT_TEAM_Anaconda # Deliver from Stream to Default (Note: View must be right : GGE_TEAM_Anaconda)
+  To PM
+	TEAM_Anaconda # Deliver from Stream to Default (Note: View must be right. : gge_Alineo_Model_int2)
+7.Make BaseLine.
+	Team_Anaconda(Team BaseLine)  Alineo_projects>Alineo_Model
+	(1) make baseline 
+	(2) recommand baseline
+	
+	PM : after complete make baseline 
+		 after CC successful recommanbaseline 
+============================================================================================================
+
+git reset --hard HEAD 
+git pull 
+git checkout <your-branch> -f 
+git clean -f 
+
+git clean -d -f
+
+git checkout -f HomepageConfig
+
+=========================================================
+mvn org.apache.maven.plugins:maven-eclipse-plugin:2.5.1:myeclipse -U -Declipse.useProjectReferences=false
+
+mvn test -Dcom.med.common.globals=F:\job\global\globals_oracle_localJMS.xml -Dtest=SeleniumHomePageTestCase 
+

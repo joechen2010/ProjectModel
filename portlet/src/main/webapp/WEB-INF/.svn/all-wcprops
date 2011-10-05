@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/portletfaces/!svn/ver/945/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF
+END
+liferay-portlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF/liferay-portlet.xml
+END
+faces-config.xml
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF/faces-config.xml
+END
+portlet.xml
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/portletfaces/!svn/ver/945/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF/portlet.xml
+END
+jboss-web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF/jboss-web.xml
+END
+liferay-plugin-package.properties
+K 25
+svn:wc:ra_dav:version-url
+V 125
+/svn/portletfaces/!svn/ver/945/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF/liferay-plugin-package.properties
+END
+web.xml
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF/web.xml
+END
+liferay-display.xml
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/portletfaces/!svn/ver/935/portlets/examples/jsf2-portlet/trunk/src/main/webapp/WEB-INF/liferay-display.xml
+END

@@ -1,0 +1,463 @@
+<!-- 
+
+The profiles below should be placed in the "M2_HOME/conf/settings.xml" file in the "<profiles>" section.
+These profiles contain all properties used by all Alineo build JUnit tests.
+Additional <profile> entries can be created/copied from these profiles for additional database environments.
+	 
+-->
+<settings>
+<profiles>
+	<!-- ====================================================================================== -->
+	<!--  Environment configuration for running against development build server Caché database -->
+	<profile>
+		<id>LOCAL:CACHE</id>
+		<activation>
+			<property>
+				<name>database</name>
+				<value>LOCAL:CACHE</value>
+			</property>
+		</activation>
+		<properties>
+
+			
+			<!-- Database configuration -->
+			<com.med.config.dataSource.cacheDataSource.jdbc.url>jdbc:Cache://localhost:1972/ANACONDA</com.med.config.dataSource.cacheDataSource.jdbc.url>
+			<com.med.config.dataSource.cacheDataSource.jdbc.driver>com.intersys.jdbc.CacheDriver</com.med.config.dataSource.cacheDataSource.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSource.jdbc.user>_SYSTEM</com.med.config.dataSource.cacheDataSource.jdbc.user>
+			<com.med.config.dataSource.cacheDataSource.jdbc.password>SYS</com.med.config.dataSource.cacheDataSource.jdbc.password>
+
+			<hibernate.dialect>org.hibernate.dialect.Cache71Dialect</hibernate.dialect>
+			<hibernate.show_sql>false</hibernate.show_sql>
+
+			<log4j.logger.org.hibernate>warn</log4j.logger.org.hibernate>
+			<log4j.logger.org.hibernate.SQL>warn</log4j.logger.org.hibernate.SQL>
+			<log4j.logger.com.med>info</log4j.logger.com.med>
+
+			<!-- Used by utilities-core -->
+			<database.url>jdbc:Cache://localhost:1972/ANACONDA</database.url>
+
+			<!-- Database connection for remote -->
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>jdbc:Cache://localhost:1972/ANACONDA</com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>com.intersys.jdbc.CacheDriver</com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>_SYSTEM</com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>SYS</com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>
+
+			<!-- PCS data sources -->
+			<com.med.config.dataSource.pcsDataSource.jdbc.url>jdbc:oracle:thin:@soadev.grt.bz:1521:CIRD</com.med.config.dataSource.pcsDataSource.jdbc.url>
+			<com.med.config.dataSource.pcsDataSource.jdbc.driver>oracle.jdbc.driver.OracleDriver</com.med.config.dataSource.pcsDataSource.jdbc.driver>
+			<com.med.config.dataSource.pcsDataSource.jdbc.user>prav_dev2</com.med.config.dataSource.pcsDataSource.jdbc.user>
+			<com.med.config.dataSource.pcsDataSource.jdbc.password>prav_dev2</com.med.config.dataSource.pcsDataSource.jdbc.password>
+
+			<!-- Authentication: Let's one get past logon -->
+			<ldap.test.skip>false</ldap.test.skip>
+			<com.med.security.authentication.ldap.IMPLEMENTATION>OpenDS Directory Server</com.med.security.authentication.ldap.IMPLEMENTATION>
+			<com.med.security.authentication.ldap.HOST>192.168.182.143</com.med.security.authentication.ldap.HOST>
+			<com.med.security.authentication.ldap.PORT>389</com.med.security.authentication.ldap.PORT>
+			<com.med.security.authentication.ldap.VERSION>3</com.med.security.authentication.ldap.VERSION>
+			<com.med.security.authentication.ldap.ADMIN_DN>cn=Directory Manager</com.med.security.authentication.ldap.ADMIN_DN>
+			<com.med.security.authentication.ldap.ADMIN_PW>MYNwx2Wwky4=</com.med.security.authentication.ldap.ADMIN_PW>
+			<com.med.security.authentication.ldap.USER_DN_TEMPLATE>uid={0}\,ou=People\,dc=medecision\,dc=com</com.med.security.authentication.ldap.USER_DN_TEMPLATE>
+
+			<!-- JMS configuration for online claims extract testing -->
+			<claims-extract.online.test.skip>true</claims-extract.online.test.skip>
+			<com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>
+			<com.med.config.jmsSource.claims-extract.requestQName>ClaimsExtract.devbuild.Request</com.med.config.jmsSource.claims-extract.requestQName>
+			<com.med.claims-extract.output-directory>target/extractOutput</com.med.claims-extract.output-directory>
+
+			<!-- JMS configuration for Autocoder testing -->
+			<autocoder-interface.test.skip>true</autocoder-interface.test.skip>
+			<com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>
+			<com.med.config.jmsSource.autocoder-interface.requestQName>Autocoder.devbuild.Request</com.med.config.jmsSource.autocoder-interface.requestQName>
+			<com.med.config.jmsSource.autocoder-interface.timeout>5000</com.med.config.jmsSource.autocoder-interface.timeout>
+			<!-- JMS configuration for online remote eligibility testing -->
+			<com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>
+			<com.med.config.jmsSource.remote-elig.requestQName>RemoteEligibility.devbuild.Request</com.med.config.jmsSource.remote-elig.requestQName>
+			<remote-elig.oli.test.skip>true</remote-elig.oli.test.skip>
+
+			<!-- Skip Solucient tests -->
+			<solucient.test.skip>true</solucient.test.skip>
+
+			<!-- Skip OCC tests -->
+			<occ.test.skip>true</occ.test.skip>
+			
+			<!-- Skip client db letter tests -->
+			<client-letter.db.test.skip>true</client-letter.db.test.skip>
+
+			<!-- Skip client web service letter tests -->
+			<client-letter.ws.test.skip>true</client-letter.ws.test.skip>
+			
+			<com.med.clientLetter.app_URL>http://CWVDV-CRUISE-1</com.med.clientLetter.app_URL>
+  			<com.med.clientLetter.app_dbkey>ALINEOCLALINEOCL</com.med.clientLetter.app_dbkey>
+  			<com.med.clientLetter.app_workgroup>MEDWRKGRP</com.med.clientLetter.app_workgroup>
+  			
+  			<!-- used by AlineoWebServices -->
+			<com.med.config.dataSource.cacheDataSource.schema.occClinical>OccCln.</com.med.config.dataSource.cacheDataSource.schema.occClinical>
+			<com.med.config.dataSource.cacheDataSource.schema.occHistory>OccHist.</com.med.config.dataSource.cacheDataSource.schema.occHistory>
+	
+
+			<!-- CERMe URL-->
+			<com.med.cerme.url>http://cwvdv-cerm802-1:8000/rm</com.med.cerme.url>
+			<com.med.claims-extract.type>FILE</com.med.claims-extract.type>
+			<com.med.cerme.cermeHostContext>cerme-host</com.med.cerme.cermeHostContext>
+			<com.med.alineo.returntourl>http://localhost:9090/Alineo</com.med.alineo.returntourl>
+
+			<!-- CareWebQI Url-->
+			<com.med.cwqi.url>http://cwvdv-cwqi-1:8383/CareWebQI/Interface/InterfaceLogin.aspx</com.med.cwqi.url>
+            <com.med.cerme.url>http://cwvdv-cerm802-1:8000/rm</com.med.cerme.url>
+			<com.med.claims-extract.type>FILE</com.med.claims-extract.type>
+			<com.med.test.string>BigFoot</com.med.test.string>
+            <com.med.test.override>Customer Override</com.med.test.override>
+            <com.med.test.systemOverride>System Override</com.med.test.systemOverride>
+		</properties>
+	</profile>
+
+<!-- ===ORACLE============================================================================= -->
+	<profile>
+		<id>LOCAL:ORACLE</id>
+		<activation>
+			<property>
+				<name>database</name>
+				<value>LOCAL:ORACLE</value>
+			</property>
+		</activation>
+		<properties>
+
+			<!-- Database configuration -->
+			<com.med.config.dataSource.cacheDataSource.jdbc.url>jdbc:oracle:thin:@localhost:1521:ALINEO</com.med.config.dataSource.cacheDataSource.jdbc.url>
+			<com.med.config.dataSource.cacheDataSource.jdbc.driver>oracle.jdbc.driver.OracleDriver</com.med.config.dataSource.cacheDataSource.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSource.jdbc.user>SYSTEM</com.med.config.dataSource.cacheDataSource.jdbc.user>
+			<com.med.config.dataSource.cacheDataSource.jdbc.password>sys</com.med.config.dataSource.cacheDataSource.jdbc.password>
+
+			<hibernate.dialect>org.hibernate.dialect.Oracle10Dialect</hibernate.dialect>
+			<hibernate.show_sql>false</hibernate.show_sql>
+
+			<log4j.logger.org.hibernate>warn</log4j.logger.org.hibernate>
+			<log4j.logger.org.hibernate.SQL>warn</log4j.logger.org.hibernate.SQL>
+			<log4j.logger.com.med>info</log4j.logger.com.med>
+
+			<!-- Used by utilities-core -->
+			<database.url>jdbc:oracle:thin:@localhost:1521:ALINEO</database.url>
+
+			<!-- Database connection for remote -->
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>jdbc:oracle:thin:@localhost:1521:ALINEO</com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>oracle.jdbc.driver.OracleDriver</com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>SYSTEM</com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>SYS</com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>
+
+			<!-- PCS data sources -->
+			<com.med.config.dataSource.pcsDataSource.jdbc.url>jdbc:oracle:thin:@localhost:1521:ALINEO</com.med.config.dataSource.pcsDataSource.jdbc.url>
+			<com.med.config.dataSource.pcsDataSource.jdbc.driver>oracle.jdbc.driver.OracleDriver</com.med.config.dataSource.pcsDataSource.jdbc.driver>
+			<com.med.config.dataSource.pcsDataSource.jdbc.user>SYSTEM</com.med.config.dataSource.pcsDataSource.jdbc.user>
+			<com.med.config.dataSource.pcsDataSource.jdbc.password>SYS</com.med.config.dataSource.pcsDataSource.jdbc.password>
+
+			<!-- Authentication: Let's one get past logon -->
+			<ldap.test.skip>false</ldap.test.skip>
+			<com.med.security.authentication.ldap.IMPLEMENTATION>OpenDS Directory Server</com.med.security.authentication.ldap.IMPLEMENTATION>
+			<com.med.security.authentication.ldap.HOST>192.168.182.143</com.med.security.authentication.ldap.HOST>
+			<com.med.security.authentication.ldap.PORT>389</com.med.security.authentication.ldap.PORT>
+			<com.med.security.authentication.ldap.VERSION>3</com.med.security.authentication.ldap.VERSION>
+			<com.med.security.authentication.ldap.ADMIN_DN>cn=Directory Manager</com.med.security.authentication.ldap.ADMIN_DN>
+			<com.med.security.authentication.ldap.ADMIN_PW>MYNwx2Wwky4=</com.med.security.authentication.ldap.ADMIN_PW>
+			<com.med.security.authentication.ldap.USER_DN_TEMPLATE>uid={0}\,ou=People\,dc=medecision\,dc=com</com.med.security.authentication.ldap.USER_DN_TEMPLATE>
+             <com.med.config.jmsSource.autocoder-interface.timeout>50000</com.med.config.jmsSource.autocoder-interface.timeout>
+			<!-- JMS configuration for online claims extract testing -->
+			<claims-extract.online.test.skip>true</claims-extract.online.test.skip>
+			<com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>
+			<com.med.config.jmsSource.claims-extract.requestQName>ClaimsExtract.devbuild.Request</com.med.config.jmsSource.claims-extract.requestQName>
+			<com.med.claims-extract.output-directory>target/extractOutput</com.med.claims-extract.output-directory>
+
+			<!-- JMS configuration for Autocoder testing -->
+			<autocoder-interface.test.skip>true</autocoder-interface.test.skip>
+			<com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>
+			<com.med.config.jmsSource.autocoder-interface.requestQName>Autocoder.devbuild.Request</com.med.config.jmsSource.autocoder-interface.requestQName>
+
+			<!-- JMS configuration for online remote eligibility testing -->
+			<com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>
+			<com.med.config.jmsSource.remote-elig.requestQName>RemoteEligibility.devbuild.Request</com.med.config.jmsSource.remote-elig.requestQName>
+			<remote-elig.oli.test.skip>true</remote-elig.oli.test.skip>
+
+			<!-- Skip Solucient tests -->
+			<solucient.test.skip>true</solucient.test.skip>
+
+			<!-- Skip OCC tests -->
+			<occ.test.skip>true</occ.test.skip>
+			
+			<!-- Skip client db letter tests -->
+			<client-letter.db.test.skip>true</client-letter.db.test.skip>
+
+			<!-- Skip client web service letter tests -->
+			<client-letter.ws.test.skip>true</client-letter.ws.test.skip>
+			
+			<com.med.clientLetter.app_URL>http://CWVDV-CRUISE-1</com.med.clientLetter.app_URL>
+  			<com.med.clientLetter.app_dbkey>ALINEOCLALINEOCL</com.med.clientLetter.app_dbkey>
+  			<com.med.clientLetter.app_workgroup>MEDWRKGRP</com.med.clientLetter.app_workgroup>
+  			
+  			<!-- used by AlineoWebServices -->
+			<com.med.config.dataSource.cacheDataSource.schema.occClinical>OccCln.</com.med.config.dataSource.cacheDataSource.schema.occClinical>
+			<com.med.config.dataSource.cacheDataSource.schema.occHistory>OccHist.</com.med.config.dataSource.cacheDataSource.schema.occHistory>
+
+			<!-- CareWebQI Url-->
+			<com.med.cwqi.url>http://cwvdv-cwqi-1:8383/CareWebQI/Interface/InterfaceLogin.aspx</com.med.cwqi.url>
+            <com.med.cerme.url>http://cwvdv-cerm802-1:8000/rm</com.med.cerme.url>
+			<com.med.claims-extract.type>FILE</com.med.claims-extract.type>
+			<com.med.test.string>BigFoot</com.med.test.string>
+            <com.med.test.override>Customer Override</com.med.test.override>
+            <com.med.test.systemOverride>System Override</com.med.test.systemOverride>
+		</properties>
+	</profile>
+	<!-- ====================================================================================== -->
+	<!-- ====================================================================================== -->
+	<!--  Environment configuration for Artifactory -->	
+	<profile>
+	    <id>repos</id>
+	    <repositories>
+		<repository>
+		    <id>central</id>
+		    <url>http://cwvdv-maven-1:8081/artifactory/repo</url>
+		    <snapshots>
+			<enabled>false</enabled>
+		    </snapshots>
+		</repository>
+		<repository>
+		    <id>snapshots</id>
+		    <url>http://cwvdv-maven-1:8081/artifactory/repo</url>
+		    <snapshots>
+			<enabled>false</enabled>
+		    </snapshots>
+		</repository>
+	    </repositories>
+	    <pluginRepositories>
+		<pluginRepository>
+		    <id>central</id>
+		    <url>http://cwvdv-maven-1:8081/artifactory/plugins-releases-local</url>
+		    <snapshots>
+			<enabled>false</enabled>
+		    </snapshots>
+		</pluginRepository>
+		<pluginRepository>
+		    <id>snapshots</id>
+		    <url>http://cwvdv-maven-1:8081/artifactory/plugins-snapshots-local</url>
+		    <releases>
+			<enabled>false</enabled>
+		    </releases>
+		</pluginRepository>
+	    </pluginRepositories>
+	</profile>
+
+	
+	
+	<profile>
+		<id>ANACONDA:SQLSERVER1</id>
+		<activation>
+			<property>
+				<name>database</name>
+				<value>ANACONDA:SQLSERVER1</value>
+			</property>
+		</activation>
+		<properties>		
+			<dbms>mssql</dbms>
+			<!-- Database configuration -->
+			<com.med.config.dataSource.cacheDataSource.jdbc.url>jdbc:jtds:sqlserver://cwpdv-alsqldv-1:1433/tanaconda</com.med.config.dataSource.cacheDataSource.jdbc.url>
+			<com.med.config.dataSource.cacheDataSource.jdbc.driver>net.sourceforge.jtds.jdbc.Driver</com.med.config.dataSource.cacheDataSource.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSource.jdbc.user>sa</com.med.config.dataSource.cacheDataSource.jdbc.user>
+			<com.med.config.dataSource.cacheDataSource.jdbc.password>alineosql</com.med.config.dataSource.cacheDataSource.jdbc.password>
+
+			<hibernate.dialect>org.hibernate.dialect.SQLServerDialect</hibernate.dialect>
+			<hibernate.show_sql>false</hibernate.show_sql>
+
+			<log4j.logger.org.hibernate>warn</log4j.logger.org.hibernate>
+			<log4j.logger.org.hibernate.SQL>warn</log4j.logger.org.hibernate.SQL>
+			<log4j.logger.com.med>info</log4j.logger.com.med>
+
+			<!-- Used by utilities-core -->
+			<database.url>jdbc:jtds:sqlserver://cwpdv-alsqldv-1:1433/tanaconda</database.url>
+
+			<!-- Database connection for remote -->
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>jdbc:jtds:sqlserver://cwpdv-alsqldv-1:1433/tanaconda</com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>net.sourceforge.jtds.jdbc.Driver</com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>sa</com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>alineosql</com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>
+
+			<!-- PCS data sources -->
+			<com.med.config.dataSource.pcsDataSource.jdbc.url>jdbc:jtds:sqlserver://cwpdv-alsqldv-1:1433/tanaconda</com.med.config.dataSource.pcsDataSource.jdbc.url>
+			<com.med.config.dataSource.pcsDataSource.jdbc.driver>net.sourceforge.jtds.jdbc.Driver</com.med.config.dataSource.pcsDataSource.jdbc.driver>
+			<com.med.config.dataSource.pcsDataSource.jdbc.user>sa</com.med.config.dataSource.pcsDataSource.jdbc.user>
+			<com.med.config.dataSource.pcsDataSource.jdbc.password>alineosql</com.med.config.dataSource.pcsDataSource.jdbc.password>
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.url>jdbc:oracle:thin:@MEDHQ-ORCL-DEV1.medecision.com:1521:CA5D</com.med.config.dataSource.pcsDataSource.jdbc.url-->
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.driver>oracle.jdbc.driver.OracleDriver</com.med.config.dataSource.pcsDataSource.jdbc.driver-->
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.user>prav_dev2</com.med.config.dataSource.pcsDataSource.jdbc.user-->
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.password>prav_dev2</com.med.config.dataSource.pcsDataSource.jdbc.password-->
+
+			<!-- Authentication: Let's one get past logon -->
+			<ldap.test.skip>false</ldap.test.skip>
+			<com.med.security.authentication.ldap.IMPLEMENTATION>OpenDS Directory Server</com.med.security.authentication.ldap.IMPLEMENTATION>
+			<com.med.security.authentication.ldap.HOST>CWPDV-DEVBOX-2</com.med.security.authentication.ldap.HOST>
+			<com.med.security.authentication.ldap.PORT>389</com.med.security.authentication.ldap.PORT>
+			<com.med.security.authentication.ldap.VERSION>3</com.med.security.authentication.ldap.VERSION>
+			<com.med.security.authentication.ldap.ADMIN_DN>cn=Directory Manager</com.med.security.authentication.ldap.ADMIN_DN>
+			<com.med.security.authentication.ldap.ADMIN_PW>MYNwx2Wwky4=</com.med.security.authentication.ldap.ADMIN_PW>
+			<com.med.security.authentication.ldap.USER_DN_TEMPLATE>uid={0}\,ou=People\,dc=medecision\,dc=com</com.med.security.authentication.ldap.USER_DN_TEMPLATE>
+
+			<!-- JMS configuration for online claims extract testing -->
+			<claims-extract.online.test.skip>true</claims-extract.online.test.skip>
+			<com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>tcp://CWPDV-DEVBOX-2:61616</com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>
+			<com.med.config.jmsSource.claims-extract.requestQName>ClaimsExtract.devbuild.Request</com.med.config.jmsSource.claims-extract.requestQName>
+			<com.med.claims-extract.output-directory>target/extractOutput</com.med.claims-extract.output-directory>
+
+			<!-- JMS configuration for Autocoder testing -->
+			<autocoder-interface.test.skip>true</autocoder-interface.test.skip>
+			<com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>tcp://CWPDV-DEVBOX-2:61616</com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>
+			<com.med.config.jmsSource.autocoder-interface.requestQName>Autocoder.devbuild.Request</com.med.config.jmsSource.autocoder-interface.requestQName>
+			<com.med.config.jmsSource.autocoder-interface.timeout>5000</com.med.config.jmsSource.autocoder-interface.timeout>
+			<!-- JMS configuration for online remote eligibility testing -->
+			<com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>tcp://CWPDV-DEVBOX-2:61616</com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>
+			<com.med.config.jmsSource.remote-elig.requestQName>remote-elig.Request</com.med.config.jmsSource.remote-elig.requestQName>
+			<remote-elig.oli.test.skip>true</remote-elig.oli.test.skip>
+
+			<!-- Skip Solucient tests -->
+			<solucient.test.skip>true</solucient.test.skip>
+
+			<!-- Skip OCC tests -->
+			<occ.test.skip>true</occ.test.skip>
+			
+			<!-- Skip client db letter tests -->
+			<client-letter.db.test.skip>true</client-letter.db.test.skip>
+
+			<!-- Skip client web service letter tests -->
+			<client-letter.ws.test.skip>true</client-letter.ws.test.skip>
+			
+			<com.med.clientLetter.app_URL>http://CWVDV-CRUISE-1</com.med.clientLetter.app_URL>
+  			<com.med.clientLetter.app_dbkey>ALINEOCLALINEOCL</com.med.clientLetter.app_dbkey>
+  			<com.med.clientLetter.app_workgroup>MEDWRKGRP</com.med.clientLetter.app_workgroup>
+  			
+  			<!-- used by AlineoWebServices -->
+			<com.med.config.dataSource.cacheDataSource.schema.occClinical>OccCln.</com.med.config.dataSource.cacheDataSource.schema.occClinical>
+			<com.med.config.dataSource.cacheDataSource.schema.occHistory>OccHist.</com.med.config.dataSource.cacheDataSource.schema.occHistory>
+	
+
+			<!-- CERMe URL-->
+			<com.med.cerme.url>http://cwvdv-cerm802-1:8000/rm</com.med.cerme.url>
+			<com.med.claims-extract.type>FILE</com.med.claims-extract.type>
+			<com.med.cerme.cermeHostContext>cerme-host</com.med.cerme.cermeHostContext>
+			<com.med.alineo.returntourl>http://localhost:9090/Alineo</com.med.alineo.returntourl>
+
+			<!-- CareWebQI Url-->
+			<com.med.cwqi.url>http://cwvdv-cwqi-1:8383/CareWebQI/Interface/InterfaceLogin.aspx</com.med.cwqi.url>
+            <com.med.cerme.url>http://cwvdv-cerm802-1:8000/rm</com.med.cerme.url>
+			<com.med.claims-extract.type>FILE</com.med.claims-extract.type>
+			<com.med.test.string>BigFoot</com.med.test.string>
+            <com.med.test.override>Customer Override</com.med.test.override>
+            <com.med.test.systemOverride>System Override</com.med.test.systemOverride>
+		</properties>
+	</profile>
+	
+	
+	
+	<profile>
+		<id>LOCAL:SQLSERVER</id>
+		<activation>
+			<property>
+				<name>database</name>
+				<value>LOCAL:SQLSERVER</value>
+			</property>
+		</activation>
+		<properties>		
+			<dbms>mssql</dbms>
+			<!-- Database configuration -->
+			<com.med.config.dataSource.cacheDataSource.jdbc.url>jdbc:jtds:sqlserver://192.168.182.117:1433/anaconda</com.med.config.dataSource.cacheDataSource.jdbc.url>
+			<com.med.config.dataSource.cacheDataSource.jdbc.driver>net.sourceforge.jtds.jdbc.Driver</com.med.config.dataSource.cacheDataSource.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSource.jdbc.user>sa</com.med.config.dataSource.cacheDataSource.jdbc.user>
+			<com.med.config.dataSource.cacheDataSource.jdbc.password>SYSTEM</com.med.config.dataSource.cacheDataSource.jdbc.password>
+
+			<hibernate.dialect>org.hibernate.dialect.SQLServerDialect</hibernate.dialect>
+			<hibernate.show_sql>false</hibernate.show_sql>
+
+			<log4j.logger.org.hibernate>warn</log4j.logger.org.hibernate>
+			<log4j.logger.org.hibernate.SQL>warn</log4j.logger.org.hibernate.SQL>
+			<log4j.logger.com.med>info</log4j.logger.com.med>
+
+			<!-- Used by utilities-core -->
+			<database.url>jdbc:jtds:sqlserver://192.168.182.117:1433/anaconda</database.url>
+
+			<!-- Database connection for remote -->
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>jdbc:jtds:sqlserver://192.168.182.117:1433/anaconda</com.med.config.dataSource.cacheDataSourceRemote.jdbc.url>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>net.sourceforge.jtds.jdbc.Driver</com.med.config.dataSource.cacheDataSourceRemote.jdbc.driver>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>sa</com.med.config.dataSource.cacheDataSourceRemote.jdbc.user>
+			<com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>SYSTEM</com.med.config.dataSource.cacheDataSourceRemote.jdbc.password>
+
+			<!-- PCS data sources -->
+			<com.med.config.dataSource.pcsDataSource.jdbc.url>jdbc:jtds:sqlserver://192.168.182.117:1433/anaconda</com.med.config.dataSource.pcsDataSource.jdbc.url>
+			<com.med.config.dataSource.pcsDataSource.jdbc.driver>net.sourceforge.jtds.jdbc.Driver</com.med.config.dataSource.pcsDataSource.jdbc.driver>
+			<com.med.config.dataSource.pcsDataSource.jdbc.user>sa</com.med.config.dataSource.pcsDataSource.jdbc.user>
+			<com.med.config.dataSource.pcsDataSource.jdbc.password>SYSTEM</com.med.config.dataSource.pcsDataSource.jdbc.password>
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.url>jdbc:oracle:thin:@MEDHQ-ORCL-DEV1.medecision.com:1521:CA5D</com.med.config.dataSource.pcsDataSource.jdbc.url-->
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.driver>oracle.jdbc.driver.OracleDriver</com.med.config.dataSource.pcsDataSource.jdbc.driver-->
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.user>prav_dev2</com.med.config.dataSource.pcsDataSource.jdbc.user-->
+			<!--com.med.config.dataSource.pcsDataSource.jdbc.password>prav_dev2</com.med.config.dataSource.pcsDataSource.jdbc.password-->
+
+			<!-- Authentication: Let's one get past logon -->
+			<ldap.test.skip>false</ldap.test.skip>
+			<com.med.security.authentication.ldap.IMPLEMENTATION>OpenDS Directory Server</com.med.security.authentication.ldap.IMPLEMENTATION>
+			<com.med.security.authentication.ldap.HOST>192.168.182.143</com.med.security.authentication.ldap.HOST>
+			<com.med.security.authentication.ldap.PORT>389</com.med.security.authentication.ldap.PORT>
+			<com.med.security.authentication.ldap.VERSION>3</com.med.security.authentication.ldap.VERSION>
+			<com.med.security.authentication.ldap.ADMIN_DN>cn=Directory Manager</com.med.security.authentication.ldap.ADMIN_DN>
+			<com.med.security.authentication.ldap.ADMIN_PW>MYNwx2Wwky4=</com.med.security.authentication.ldap.ADMIN_PW>
+			<com.med.security.authentication.ldap.USER_DN_TEMPLATE>uid={0}\,ou=People\,dc=medecision\,dc=com</com.med.security.authentication.ldap.USER_DN_TEMPLATE>
+
+			<!-- JMS configuration for online claims extract testing -->
+			<claims-extract.online.test.skip>true</claims-extract.online.test.skip>
+			<com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.claims-extract.activeMQ.brokerURL>
+			<com.med.config.jmsSource.claims-extract.requestQName>ClaimsExtract.devbuild.Request</com.med.config.jmsSource.claims-extract.requestQName>
+			<com.med.claims-extract.output-directory>target/extractOutput</com.med.claims-extract.output-directory>
+
+			<!-- JMS configuration for Autocoder testing -->
+			<autocoder-interface.test.skip>true</autocoder-interface.test.skip>
+			<com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>tcp://CWPDV-DEVBOX-2:61616</com.med.config.jmsSource.autocoder-interface.activeMQ.brokerURL>
+			<com.med.config.jmsSource.autocoder-interface.requestQName>Autocoder.devbuild.Request</com.med.config.jmsSource.autocoder-interface.requestQName>
+			<com.med.config.jmsSource.autocoder-interface.timeout>5000</com.med.config.jmsSource.autocoder-interface.timeout>
+			<!-- JMS configuration for online remote eligibility testing -->
+			<com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>tcp://localhost:61616</com.med.config.jmsSource.remote-elig.activeMQ.brokerURL>
+			<com.med.config.jmsSource.remote-elig.requestQName>remote-elig.Request</com.med.config.jmsSource.remote-elig.requestQName>
+			<remote-elig.oli.test.skip>true</remote-elig.oli.test.skip>
+
+			<!-- Skip Solucient tests -->
+			<solucient.test.skip>true</solucient.test.skip>
+
+			<!-- Skip OCC tests -->
+			<occ.test.skip>true</occ.test.skip>
+			
+			<!-- Skip client db letter tests -->
+			<client-letter.db.test.skip>true</client-letter.db.test.skip>
+
+			<!-- Skip client web service letter tests -->
+			<client-letter.ws.test.skip>true</client-letter.ws.test.skip>
+			
+			<com.med.clientLetter.app_URL>http://CWVDV-CRUISE-1</com.med.clientLetter.app_URL>
+  			<com.med.clientLetter.app_dbkey>ALINEOCLALINEOCL</com.med.clientLetter.app_dbkey>
+  			<com.med.clientLetter.app_workgroup>MEDWRKGRP</com.med.clientLetter.app_workgroup>
+  			
+  			<!-- used by AlineoWebServices -->
+			<com.med.config.dataSource.cacheDataSource.schema.occClinical>OccCln.</com.med.config.dataSource.cacheDataSource.schema.occClinical>
+			<com.med.config.dataSource.cacheDataSource.schema.occHistory>OccHist.</com.med.config.dataSource.cacheDataSource.schema.occHistory>
+	
+
+			<!-- CERMe URL-->
+			<com.med.cerme.url>http://cwvdv-cerm802-1:8000/rm</com.med.cerme.url>
+			<com.med.claims-extract.type>FILE</com.med.claims-extract.type>
+			<com.med.cerme.cermeHostContext>cerme-host</com.med.cerme.cermeHostContext>
+			<com.med.alineo.returntourl>http://localhost:9090/Alineo</com.med.alineo.returntourl>
+
+			<!-- CareWebQI Url-->
+			<com.med.cwqi.url>http://cwvdv-cwqi-1:8383/CareWebQI/Interface/InterfaceLogin.aspx</com.med.cwqi.url>
+            <com.med.cerme.url>http://cwvdv-cerm802-1:8000/rm</com.med.cerme.url>
+			<com.med.claims-extract.type>FILE</com.med.claims-extract.type>
+			<com.med.test.string>BigFoot</com.med.test.string>
+            <com.med.test.override>Customer Override</com.med.test.override>
+            <com.med.test.systemOverride>System Override</com.med.test.systemOverride>
+		</properties>
+	</profile>
+	
+	
+</profiles>
+</settings>
