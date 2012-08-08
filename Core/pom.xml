@@ -367,6 +367,21 @@
 		</dependency>
 		-->
 
+		<!-- mybatis jdbc begin -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<optional>true</optional>
+			<version>3.0.6</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis-spring</artifactId>
+			<optional>true</optional>
+			<version>1.0.2</version>
+		</dependency>
+		<!-- mybatis jdbc end -->
+
 		<dependency>
 			<groupId>commons-logging</groupId>
 			<artifactId>commons-logging</artifactId>
@@ -688,13 +703,82 @@
       <groupId>net.sourceforge.jtds</groupId>
       <artifactId>jtds</artifactId>
       <version>${jtds.version}</version>
-    </dependency>     
+    </dependency> 
+	
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<optional>true</optional>
+		<version>5.1.13</version>
+	</dependency>
     
     <dependency>
 	  <groupId>org.slf4j</groupId>
 	  <artifactId>slf4j-nop</artifactId>
 	  <version>1.5.2</version>
 	</dependency>
-	
+
+	<!-- json -->
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-core-asl</artifactId>
+		<version>1.9.4</version>
+	</dependency>
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-mapper-asl</artifactId>
+		<version>1.9.4</version>
+	</dependency>
+	<dependency>
+		<groupId>org.codehaus.jackson</groupId>
+		<artifactId>jackson-jaxrs</artifactId>
+		<version>1.9.4</version>
+	</dependency>
+
+	<dependency>
+		<groupId>com.google.guava</groupId>
+		<artifactId>guava</artifactId>
+		<optional>true</optional>
+		<version>11.0.2</version>
+	</dependency>
+	<dependency>
+		<groupId>joda-time</groupId>
+		<artifactId>joda-time</artifactId>
+		<optional>true</optional>
+		<version>1.6.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.shiro</groupId>
+		<artifactId>shiro-core</artifactId>
+		<version>1.2.0</version>
+	</dependency>
+
+	<!-- test -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<optional>true</optional>
+		<version>4.8.1</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-test</artifactId>
+		<optional>true</optional>
+		<version>${springVersion}</version>
+	</dependency>
+	<dependency>
+		<groupId>com.h2database</groupId>
+		<artifactId>h2</artifactId>
+		<optional>true</optional>
+		<version>1.2.147</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.dbunit</groupId>
+		<artifactId>dbunit</artifactId>
+		<optional>true</optional>
+		<version>2.4.8</version>
+	</dependency>
+
   </dependencies>
 </project>
