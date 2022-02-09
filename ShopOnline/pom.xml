@@ -73,7 +73,7 @@
 		<springVersion>3.0.0.RELEASE</springVersion>
 		<myFacesCoreVersion>1.2.8</myFacesCoreVersion>
 		<iceVersion>2.0.0</iceVersion>
-		<hibernateVersion>3.5.6-Final</hibernateVersion>
+		<hibernateVersion>5.4.24.Final</hibernateVersion>
 		<javaVersion>1.6</javaVersion>
 		<ojdbc6.version>11.2.0.1.0</ojdbc6.version>
     	<jtds.version>1.2.4</jtds.version>
