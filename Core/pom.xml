@@ -70,7 +70,7 @@
 	  
 	  <properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<springVersion>3.0.0.RELEASE</springVersion>
+		<springVersion>5.3.18</springVersion>
 		<hibernateVersion>3.5.6-Final</hibernateVersion>
 		<javaVersion>1.6</javaVersion>
 		<ojdbc6.version>11.2.0.1.0</ojdbc6.version>
