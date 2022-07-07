@@ -70,7 +70,7 @@
 	</repositories>
 	  
 	  <properties>
-		<springVersion>3.0.0.RELEASE</springVersion>
+		<springVersion>3.2.5.RELEASE</springVersion>
 		<myFacesCoreVersion>1.2.8</myFacesCoreVersion>
 		<iceVersion>2.0.0</iceVersion>
 		<hibernateVersion>3.5.6-Final</hibernateVersion>
