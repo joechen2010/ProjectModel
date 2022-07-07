@@ -75,7 +75,7 @@
 		<javaVersion>1.6</javaVersion>
 		<ojdbc6.version>11.2.0.1.0</ojdbc6.version>
     	<jtds.version>1.2.4</jtds.version>
-    	<cxf.version>2.2.2</cxf.version>
+    	<cxf.version>2.6.12</cxf.version>
 	</properties>
   
   	
